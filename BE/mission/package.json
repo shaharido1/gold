@@ -1,0 +1,48 @@
+{
+  "name": "missionService",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm run serve",
+    "watch-ts": "tsc -w",
+    "watch-node": "nodemon dist/server.js",
+    "serve": "concurrently \"npm run watch-ts\" \"npm run watch-node\"",
+    "debug": "tsc -p ./tsconfig.debug.json",
+    "mongoDocker": "docker run --network host -v mongoVol:/data/db --name mongo mongo",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "test": "jest --coverage --verbose",
+    "lint": "tslint -c tslint.json -p tsconfig.json --fix"
+  },
+  "private": true,
+  "precommit": [
+    "lint"
+  ],
+  "dependencies": {
+    "crudutils": "^1.0.0",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "mongoose": "^5.0.17",
+    "morgan": "^1.9.0",
+    "ts-jest": "^22.4.6"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.2.3",
+    "@types/node": "^10.1.4",
+    "async": "^2.6.1",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "chai": "^4.1.2",
+    "concurrently": "^3.5.1",
+    "eslint": "4.0.0",
+    "eslint-config-airbnb-base": "11.2.0",
+    "eslint-plugin-import": "2.3.0",
+    "eslint-plugin-promise": "3.5.0",
+    "jest": "^23.0.1",
+    "mocha": "^3.4.2",
+    "mockgoose": "^7.3.5",
+    "nodemon": "^1.17.5",
+    "supertest": "3.0.0",
+    "tsc": "^1.20150623.0",
+    "tslint": "^5.10.0",
+    "typescript": "^2.8.3"
+  }
+}
