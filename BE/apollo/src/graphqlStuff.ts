@@ -1,7 +1,7 @@
 
 // The GraphQL schema in string form
 import { makeExecutableSchema } from 'graphql-tools';
-import { books } from './fakeData';
+import { books } from './graphQl/fakeData';
 
 const typeDefs = `
   type Query { books: [Book] }
@@ -14,7 +14,7 @@ const resolvers = {
 };
 
 // Put together a schema
-export const schema = makeExecutableSchema({
+export const booksSchema = makeExecutableSchema({
   typeDefs,
   resolvers
 });

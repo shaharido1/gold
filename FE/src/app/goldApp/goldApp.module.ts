@@ -37,7 +37,7 @@ export const metaReducers = [MetaReducer];
   providers: [],
   bootstrap: [AppComponent]
 })
-export class GoleAppModule {
+export class GoldAppModule {
 
 }
 

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { store } from '@angular/core/src/render3/instructions';
 import { apolloSelector, testSelector } from '../store/core.selectors';
 import { IGoldAppState } from '../../goldApp/interfaces/goldApp.interface';
 import { Observable } from 'rxjs/Observable';
 import { TestAction } from '../store/core.actions';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
+import 'rxjs-compat/add/operator/filter';
+import 'rxjs-compat/add/operator/map';
 
 @Component({
   selector: 'gold-core',
@@ -17,26 +18,58 @@ import { Apollo } from 'apollo-angular';
 export class CoreComponent {
 
   name$ : Observable<string> = this.store.select(testSelector);
-  books$ : Observable<any> = this.store.select(apolloSelector);
-  constructor(private store: Store<IGoldAppState>, apollo: Apollo) {
-    setTimeout(() => {
-      this.store.dispatch(new TestAction("haim"))
-    }, 5000)
+  books$ : Observable<any> = this.store.select(apolloSelector)
+    .filter(Boolean)
+    .filter(query => Boolean(query["ROOT_QUERY.books.0"]))
+    .filter(query => Boolean(query["ROOT_QUERY.books.0"]["author"]))
+    .map(query => query["ROOT_QUERY.books.0"]["author"]);
 
-    this.books$.subscribe(book => {
-      console.log(book)
-    })
-    apollo
-      .query({
-        query: gql`
+  constructor(private store: Store<IGoldAppState>, private apollo: Apollo) {
+      this.testBooksQuery();
+      this.testAction();
+
+
+  }
+
+  testBooksQuery() {
+    this.apollo
+    .query({
+      query: gql`
           {
             books {
               author
             }
           }
         `,
+    })
+    .subscribe();
+
+  }
+
+  testAction() {
+
+
+      setTimeout(() => {
+        this.store.dispatch(new TestAction("haim"))
+      }, 5000)
+
+      this.books$.subscribe(book => {
+        console.log(book)
       })
-      .subscribe(console.log);
+
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
   }
 
 
