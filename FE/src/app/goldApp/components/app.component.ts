@@ -9,15 +9,5 @@ import gql from 'graphql-tag';
 })
 export class AppComponent {
   title = 'app';
-  constructor(apollo: Apollo) {
-    apollo
-      .query({
-        query: gql`
-          {
-            hello
-          }
-        `,
-      })
-      .subscribe(console.log);
-  }
+
 }
