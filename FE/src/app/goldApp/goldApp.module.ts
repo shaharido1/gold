@@ -4,9 +4,6 @@ import {HttpClientModule} from '@angular/common/http';
 import { HttpLinkModule } from 'apollo-angular-link-http';
 import { AppComponent } from './components/app.component';
 import {StoreModule} from '@ngrx/store';
-import {
-  apolloReducer,
-} from 'apollo-angular-cache-ngrx';
 import { ApolloSetupModule } from '../apollo/apolloSetup.module';
 import { CoreModule } from '../core/core.module';
 
@@ -27,7 +24,7 @@ export const metaReducers = [MetaReducer];
   imports: [
     HttpClientModule,
     StoreModule.forRoot({
-      apollo: apolloReducer,
+
     }, { metaReducers }),
     ApolloSetupModule,
     BrowserModule,

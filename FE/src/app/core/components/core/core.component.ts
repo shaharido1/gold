@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { apolloSelector, testSelector } from '../store/core.selectors';
-import { IGoldAppState } from '../../goldApp/interfaces/goldApp.interface';
+import { apolloSelector, testSelector } from '../../store/core.selectors';
+import { IGoldAppState } from '../../../goldApp/interfaces/goldApp.interface';
 import { Observable } from 'rxjs/Observable';
-import { TestAction } from '../store/core.actions';
+import { TestAction } from '../../store/core.actions';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
 import 'rxjs-compat/add/operator/filter';
@@ -67,14 +67,3 @@ export class CoreComponent {
 
 
 
-
-
-
-  }
-
-
-
-
-
-
-}

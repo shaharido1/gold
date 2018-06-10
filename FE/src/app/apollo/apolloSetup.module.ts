@@ -12,12 +12,11 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
 import { FragmentDefinitionNode, OperationDefinitionNode } from 'graphql';
+import { apolloFeatureKey } from './apollo.selectors';
 
 @NgModule({
   imports: [
-    StoreModule.forRoot({
-      apollo: apolloReducer,
-    }),
+    StoreModule.forFeature(apolloFeatureKey, apolloReducer),
     NgrxCacheModule,
     ApolloModule,
   ]
