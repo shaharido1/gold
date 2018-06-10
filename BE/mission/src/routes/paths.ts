@@ -1,6 +1,6 @@
 
 export const paths = {
-  test: "/test",
+  test: "/publisher",
   getMissionById : "/getMissionById",
   getAllMission: "/getAllMissions",
   addMission: "/addMission",

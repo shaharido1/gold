@@ -52,13 +52,13 @@ app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
 app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
-app.set("port", appConfig.port);
+app.set("port", appConfig.rabbitPort);
 
-app.get('/test', (req, res) => res.send("okdasasdsdfsdfsdas "))
+app.get('/publisher', (req, res) => res.send("okdasasdsdfsdfsdas "))
 
-server.listen(appConfig.port, () => {
+server.listen(appConfig.rabbitPort, () => {
 
-  console.log(`running fsdfsdon localhost:${appConfig.port}`);
+  console.log(`running fsdfsdon localhost:${appConfig.rabbitPort}`);
 
 });
 

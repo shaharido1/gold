@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+      - 6379:6379
+
+
+  rabbitmq:
+    container_name: rabbitMQ
+    image: 'rabbitmq:3-management'
+    ports:
+      - 5672:5672
+      - 15672:15672
+      - 25672:25672
+
+
+  prod:
+    container_name: producer
+    build: './mock_prod/'
+    links:
+      - rabbitmq
+
+
+  consumer:
+    container_name: consumer
+    build: './consumer/'
+    links:
+      - rabbitmq
+      - redis
+
+
+  enrich:
+    container_name: enrichment
+    build: './enrich/'
+    links:
+          - redis
+
+
+
+
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16

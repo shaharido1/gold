@@ -4,7 +4,7 @@ import { DBManager } from "../dbModule/connect";
 import { DBTestConfig } from "./config/config";
 
 
-describe("test DB methods", () => {
+describe("publisher DB methods", () => {
   let missionMethod;
   const missionToAdd = {
     name: "test1"

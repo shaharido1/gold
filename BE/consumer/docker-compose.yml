@@ -1,0 +1,21 @@
+version: '2'
+services:
+  node:
+    build:
+      context: .
+    volumes:
+      -  .:/opt
+    external_links:
+      - rabbitmq
+    ports:
+      - 8081:3000
+      - 3002:3002
+    environment:
+    - redisHost=redis
+
+#  rabbitmq:
+#    image: 'rabbitmq:3-management'
+#    ports:
+#      - 5672:5672
+#      - 15672:15672
+#      - 25672:25672

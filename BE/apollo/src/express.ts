@@ -43,7 +43,7 @@ const app = express();
 //
 // // GraphiQL, a visual editor for queries
 // app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
-app.get('/test', (req, res) => res.send('hello'));
+app.get('/publisher', (req, res) => res.send('hello'));
 const server = http.createServer(app);
 const port = '6000';
 

@@ -1,6 +1,6 @@
 
 
 export const appConfig = {
-  port : process.env.port || "3500",
-  domainName: process.env.domainName || "localhost"
+  rabbitPort : process.env.port || "3500",
+  redisHost: process.env.domainName || "localhost"
 };
