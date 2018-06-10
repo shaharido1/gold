@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { MapReducer } from './store/map.reducer';
 import { mapFeatureKey } from './store/map.selectors';
-import { MapComponent } from './components/map.component';
+import { MapComponent } from './components/mapComponent/map.component';
+import { AngularCesiumModule } from 'angular-cesium';
 
 
 
@@ -14,6 +15,7 @@ import { MapComponent } from './components/map.component';
   imports: [
     CommonModule,
     StoreModule.forFeature(mapFeatureKey, MapReducer),
+    AngularCesiumModule.forRoot()
   ],
   exports: [
     MapComponent

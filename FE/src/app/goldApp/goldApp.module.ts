@@ -1,14 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { HttpLinkModule } from 'apollo-angular-link-http';
 import { AppComponent } from './components/app.component';
-import {StoreModule} from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import {
-  apolloReducer,
+  apolloReducer
 } from 'apollo-angular-cache-ngrx';
 import { ApolloSetupModule } from '../apollo/apolloSetup.module';
 import { CoreModule } from '../core/core.module';
+import { MapModule } from '../map/map.module';
 
 export function MetaReducer(reducer) {
   return function (state, action) {
@@ -19,20 +20,20 @@ export function MetaReducer(reducer) {
 export const metaReducers = [MetaReducer];
 
 
-
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     HttpClientModule,
     StoreModule.forRoot({
-      apollo: apolloReducer,
+      apollo: apolloReducer
     }, { metaReducers }),
     ApolloSetupModule,
     BrowserModule,
     HttpLinkModule,
-    CoreModule
+    CoreModule,
+    MapModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
