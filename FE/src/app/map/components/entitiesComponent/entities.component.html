@@ -1,0 +1,12 @@
+<ac-layer acFor="let plane of mockDataExample$" [context]="this">
+  <ac-billboard-desc  props="{
+                    image: plane.image,
+                    position: plane.bbPosition
+                  }">
+  </ac-billboard-desc>
+  <ac-label-desc props="{
+                  position: plane.bbPosition,
+                  text: plane.name
+          }">
+  </ac-label-desc>
+</ac-layer>
