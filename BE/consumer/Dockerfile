@@ -2,11 +2,12 @@ FROM node:9.5.0-slim
 
 WORKDIR /opt/app
 
-COPY . /opt/app/
-RUN npm install
+COPY ./dist /opt/app/
+COPY ./package.json /opt/app/
 
-EXPOSE 3002
+RUN npm install --production
 
-CMD npm run start:prod
+
+CMD node server.js
 
 

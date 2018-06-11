@@ -22,13 +22,16 @@
   "dependencies": {
     "amqplib": "^0.5.2",
     "crudutils": "^1.0.0",
+    "nodemon": "^1.17.5",
     "redis": "^2.8.0",
-    "uuidv4": "^1.0.0",
-    "nodemon": "^1.17.5"
+    "rxjs": "^6.2.0",
+    "uuidv4": "^1.0.0"
   },
   "devDependencies": {
+    "@types/amqplib": "^0.5.7",
     "@types/jest": "^22.2.3",
     "@types/node": "^10.1.4",
+    "@types/redis": "^2.8.6",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "concurrently": "^3.5.1",
     "eslint": "4.0.0",

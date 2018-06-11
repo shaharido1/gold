@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+
+  rabbitmq:
+    image: 'rabbitmq:3-management'
+    ports:
+      - 5672:5672
+      - 15672:15672
+      - 25672:25672
+
+  prod:
+    build: './mock_prod/'
+    environment:
+      - rabbitHost=rabbitmq
+      - rabbitPort=5672
+
