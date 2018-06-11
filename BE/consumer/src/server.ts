@@ -12,7 +12,7 @@ let data;
       conn.createChannel((err, ch) => {
         const q = "task";
         ch.assertQueue(q);
-        console.log(` [*] Waiting for messages in ${q}`);
+        // console.log(` [*] Waiting for messages in ${q}`);
         ch.consume(q, (msg) => {
           data = (JSON.parse(msg.content.toString()));
           setTimeout(() => {
@@ -25,10 +25,10 @@ let data;
 
     function saveInRedisAndPublish() {
       const message = { key: `${appConfig.keyId}:${data.id}`, massage: data.massage };
-      console.log("writing to redis:" + message);
+      // console.log("writing to redis:" + message);
       multi
           .hmset(`${appConfig.keyId}:${data.id}`, "massage", data.massage, (err, res) => {
-            console.log("redis:" + res);
+            // console.log("redis:" + res);
             if (err) {
               console.error(err);
             }

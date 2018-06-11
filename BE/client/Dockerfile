@@ -5,8 +5,7 @@ WORKDIR /opt/app
 COPY . /opt/app/
 RUN npm install
 
-EXPOSE 3003
+EXPOSE 3004
 
 CMD npm run start:prod
-
 

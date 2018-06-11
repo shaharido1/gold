@@ -36,8 +36,14 @@ services:
     container_name: enrichment
     build: './enrich/'
     links:
-          - redis
+      - redis
 
+
+  client:
+    container_name: client
+    build: "./client/"
+    links:
+      - redis
 
 
 

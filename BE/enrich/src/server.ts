@@ -30,7 +30,7 @@ function saveInRedisAndPublish(newData) {
   // console.log(massage);
   multi
       .hmset(newData.key, "massage", newData.massage, "status", newData.status, (err, res) =>{
-        if (err) { console.error(err)}
+        if (err) { console.error(err) }
       })
       .publish(appConfig.publishToApollo, JSON.stringify(massage))
       .exec();

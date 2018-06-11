@@ -14,7 +14,7 @@ amqp.connect(`amqp://guest:guest@rabbitmq:5672`, (err, conn) => {
     setInterval(() => {
       const msg = JSON.stringify({massage: `ms-${i}`, id: `${id}`});
       i++;
-      console.log(msg);
+      // console.log(msg);
       ch.sendToQueue(q, Buffer.from(msg), {persistent: true});
     }, 5000);
   });
