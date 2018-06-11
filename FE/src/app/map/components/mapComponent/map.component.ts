@@ -17,6 +17,7 @@ import { DeleteAction, LoadAction } from '../../store/map.actions';
 })
 
 export class MapComponent {
+  public id: Guid;
   entities$ = this.store.select(entitiesSelector);
   mockDataSrc$;
   testArr: AcNotification[] = [];
@@ -28,7 +29,7 @@ export class MapComponent {
   getMockData() {
     return this.mockDataSrc$.map(entity => ({
       actionType: ActionType.ADD_UPDATE,
-      id: Guid.create().value,
+      id: this.id = Guid.create(),
       entity: ({
           name: 'test',
           image: new Cesium.PinBuilder().fromText('?', Cesium.Color.BLACK, 48).toDataURL(),
