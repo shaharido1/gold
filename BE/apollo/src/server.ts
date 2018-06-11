@@ -1,36 +1,47 @@
+import Config from './config';
 import express from 'express';
-import morgan from 'morgan';
+import {
+  graphqlExpress,
+  graphiqlExpress,
+} from 'apollo-server-express';
 import bodyParser from 'body-parser';
+
 import cors from 'cors';
-import { appConfig } from './config/appConfig';
-import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
-// import { RedisPubSub } from 'graphql-redis-subscriptions';
-// const pubsub = new RedisPubSub();
 import { createServer } from 'http';
 import { execute, subscribe } from 'graphql';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
-import { booksSchema } from './graphqlStuff';
 
+// schema file
+import schema from './redisModule/schema';
 
-const app = express();
-app.use('*', cors());
-app.use(morgan('dev'));
-app.use('/graphql', cors(), bodyParser.json({ limit: '10mb' }), graphqlExpress({ schema: booksSchema }));
-app.use('/graphiql', graphiqlExpress({
-  endpointURL: '/graphql',
-  subscriptionsEndpoint: `ws://localhost${appConfig.port}/subscriptions`
+// Express server
+const server = express();
+
+// origin must be same as your client URI
+
+// endpoint for clients to interact with server
+server.use('*', cors());
+server.use('/graphql', bodyParser.json(), graphqlExpress({
+  schema
 }));
-app.get('/test', (req, res) => res.send('apollo server up and running'));
-const server = createServer(app);
 
+// endpoint for browser client and test tool
+server.use('/graphiql', graphiqlExpress({
+  endpointURL: '/graphql',
+  subscriptionsEndpoint: `ws://localhost:${Config.serverPort}/subscriptions`
+}));
 
-server.listen(appConfig.port, () => {
-  console.log('apollo server running on port' + appConfig.port);
-
-
+// IMPORTANT: wrap the Express server with new http client instance
+const ws = createServer(server);
+ws.listen(Config.serverPort, () => {
+  console.log(`Apollo Server is now running on http://localhost:${Config.serverPort}`);
+  // Set up the WebSocket for handling GraphQL subscriptions
+  new SubscriptionServer({
+    execute,
+    subscribe,
+    schema
+  }, {
+    server: ws,
+    path: '/subscriptions',
+  });
 });
-
-module.exports = {
-  app: app
-};
-

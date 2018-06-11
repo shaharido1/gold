@@ -11,13 +11,17 @@ import {
 import { WebSocketLink } from 'apollo-link-ws';
 import { split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
-import { FragmentDefinitionNode, OperationDefinitionNode } from 'graphql';
+import { OperationDefinitionNode } from 'graphql';
+import { apolloFeatureKey } from './store/apollo.selectors';
+import { EffectsModule } from '@ngrx/effects';
+import { ApolloEffects } from './store/apollo.effects';
+import { ApolloService } from './services/apollo.service';
 
 @NgModule({
+  providers: [ApolloService],
   imports: [
-    StoreModule.forRoot({
-      apollo: apolloReducer,
-    }),
+    StoreModule.forFeature(apolloFeatureKey, apolloReducer),
+    EffectsModule.forFeature([ApolloEffects]),
     NgrxCacheModule,
     ApolloModule,
   ]

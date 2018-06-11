@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { CoreReducer } from './store/core.reducer';
 import { coreFeatureKey } from './store/core.selectors';
-import { CoreComponent } from './components/core.component';
+import { CoreComponent } from './components/core/core.component';
 
 
 
