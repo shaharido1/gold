@@ -1,16 +1,16 @@
-import { AcEntity, Cartesian3 } from 'angular-cesium';
+import { AcEntity, AcNotification, Cartesian3 } from 'angular-cesium';
 
 export interface IMapState {
+  entities: AcNotification[],
 }
 
-export class MapEntity extends AcEntity {
-  private name:string;
-  private image: string;
-  private bbPosition: Cartesian3;
-  // polylinePosition: Cartesian3,
-  // polylineWidth: number,
-  // material: {
-  //   glowPower: number,
-  //   color: 'string'
-  // }
+export interface IMapEntity extends AcEntity {
+  name: string;
+  billboard: IBillboard;
+}
+
+
+export interface IBillboard {
+  image: string;
+  position: Cartesian3;
 }

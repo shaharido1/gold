@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { Observable } from 'rxjs/observable';
 import { MockData } from './mockData';
-import { MapEntity } from '../../interfaces/map.interfaces';
+import { IMapState } from '../../interfaces/map.interfaces';
 import { AcNotification, ActionType } from 'angular-cesium';
 import { Guid } from 'guid-typescript';
+import { Store } from '@ngrx/store';
+import { Apollo } from 'apollo-angular';
+import { entitiesSelector } from '../../store/map.selectors';
+import { DeleteAction, LoadAction } from '../../store/map.actions';
 
 
 @Component({
@@ -12,29 +16,34 @@ import { Guid } from 'guid-typescript';
   styleUrls: ['./map.component.scss']
 })
 
-export class MapComponent implements OnInit {
-  public id: Guid;
+export class MapComponent {
+  entities$ = this.store.select(entitiesSelector);
   mockDataSrc$;
-  mockDataExample$;
+  testArr: AcNotification[] = [];
 
-  constructor() {
+  constructor(private store: Store<IMapState>, private apollo: Apollo) {
     this.mockDataSrc$ = Observable.from(MockData);
   }
 
-  ngOnInit() {
-    this.mockDataExample$ = this.getMockData();
-  }
-
-  getMockData(): Observable<AcNotification[]> {
-    return this.mockDataExample$ = this.mockDataSrc$.map(entity => ({
-      id: this.id = Guid.create(),
-      entity: new MapEntity({
+  getMockData() {
+    return this.mockDataSrc$.map(entity => ({
+      actionType: ActionType.ADD_UPDATE,
+      id: Guid.create().value,
+      entity: ({
           name: 'test',
           image: new Cesium.PinBuilder().fromText('?', Cesium.Color.BLACK, 48).toDataURL(),
-          bbPosition: new Cesium.Cartesian3.fromDegrees(entity.position.x, entity.position.y),
+          bbPosition: new Cesium.Cartesian3.fromDegrees(entity.position.x, entity.position.y)
         }
-      ),
-      actionType: ActionType.ADD_UPDATE
+      )
     }));
+  }
+
+  testDispatch() {
+    this.getMockData().subscribe(x => this.testArr.push(x));
+    this.store.dispatch(new LoadAction(this.testArr));
+  }
+
+  removeData() {
+    this.store.dispatch(new DeleteAction(this.testArr));
   }
 }

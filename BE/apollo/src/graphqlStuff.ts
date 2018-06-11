@@ -1,7 +1,18 @@
 
 // The GraphQL schema in string form
 import { makeExecutableSchema } from 'graphql-tools';
-import { books } from './graphQl/fakeData';
+
+const books = [
+  {
+    title: "Harry Potter and the Sorcerer's stone",
+    author: 'J.K. Rowling',
+  },
+  {
+    title: 'Jurassic Park',
+    author: 'Michael Crichton',
+  },
+];
+
 
 const typeDefs = `
   type Query { books: [Book] }

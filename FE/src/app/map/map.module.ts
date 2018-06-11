@@ -5,12 +5,14 @@ import { MapReducer } from './store/map.reducer';
 import { mapFeatureKey } from './store/map.selectors';
 import { MapComponent } from './components/mapComponent/map.component';
 import { AngularCesiumModule } from 'angular-cesium';
+import { EntitiesComponent } from './components/entitiesComponent/entities.component';
 
 
 
 @NgModule({
   declarations: [
-    MapComponent
+    MapComponent,
+    EntitiesComponent
   ],
   imports: [
     CommonModule,
