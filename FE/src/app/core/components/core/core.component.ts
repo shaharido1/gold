@@ -4,10 +4,11 @@ import { apolloSelector, testSelector } from '../../store/core.selectors';
 import { IGoldAppState } from '../../../goldApp/interfaces/goldApp.interface';
 import { Observable } from 'rxjs/Observable';
 import { TestAction } from '../../store/core.actions';
-import gql from 'graphql-tag';
-import { Apollo } from 'apollo-angular';
 import 'rxjs-compat/add/operator/filter';
 import 'rxjs-compat/add/operator/map';
+import 'rxjs-compat/add/operator/do';
+import { QueryAction } from '../../../apollo/store/apollo.action';
+import { messageAddedSelector } from '../../../apollo/store/apollo.selectors';
 
 @Component({
   selector: 'gold-core',
@@ -18,31 +19,14 @@ import 'rxjs-compat/add/operator/map';
 export class CoreComponent {
 
   name$ : Observable<string> = this.store.select(testSelector);
-  books$ : Observable<any> = this.store.select(apolloSelector)
+  books$ : Observable<any> = this.store.select(messageAddedSelector)
     .filter(Boolean)
-    .filter(query => Boolean(query["ROOT_QUERY.books.0"]))
-    .filter(query => Boolean(query["ROOT_QUERY.books.0"]["author"]))
-    .map(query => query["ROOT_QUERY.books.0"]["author"]);
-
-  constructor(private store: Store<IGoldAppState>, private apollo: Apollo) {
-      this.testBooksQuery();
-      this.testAction();
+    .do(query => console.log(query))
 
 
-  }
+  constructor(private store: Store<IGoldAppState>) {
+      this.store.dispatch(new QueryAction())
 
-  testBooksQuery() {
-    this.apollo
-    .query({
-      query: gql`
-          {
-            books {
-              author
-            }
-          }
-        `,
-    })
-    .subscribe();
 
   }
 
@@ -60,6 +44,8 @@ export class CoreComponent {
 
     }
 }
+
+
 
 
 
