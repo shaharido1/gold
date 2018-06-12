@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  url: 'http://localhost:6000/graphiql'
+  url: 'http://localhost:5222/graphql/',
+  ws: 'ws://localhost:5222/subscriptions'
 };
 
 /*

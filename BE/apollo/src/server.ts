@@ -1,70 +1,47 @@
-import { appConfig } from "./config/appConfig";
+import Config from './config';
+import express from 'express';
+import {
+  graphqlExpress,
+  graphiqlExpress,
+} from 'apollo-server-express';
+import bodyParser from 'body-parser';
 
-import express from "express";
-import http from "http";
-import morgan from "morgan";
-import bodyParser from "body-parser";
-import { makeExecutableSchema } from 'graphql-tools';
-import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
+import cors from 'cors';
+import { createServer } from 'http';
+import { execute, subscribe } from 'graphql';
+import { SubscriptionServer } from 'subscriptions-transport-ws';
 
+// schema file
+import schema from './redisModule/schema';
 
+// Express server
+const server = express();
 
-const books = [
-  {
-    title: "Harry Potter and the Sorcerer's stone",
-    author: 'J.K. Rowling',
-  },
-  {
-    title: 'Jurassic Park',
-    author: 'Michael Crichton',
-  },
-];
+// origin must be same as your client URI
 
-// The GraphQL schema in string form
-const typeDefs = `
-  type Query { books: [Book] }
-  type Book { title: String, author: String }
-`;
+// endpoint for clients to interact with server
+server.use('*', cors());
+server.use('/graphql', bodyParser.json(), graphqlExpress({
+  schema
+}));
 
-// The resolvers
-const resolvers = {
-  Query: { books: () => books },
-};
+// endpoint for browser client and test tool
+server.use('/graphiql', graphiqlExpress({
+  endpointURL: '/graphql',
+  subscriptionsEndpoint: `ws://localhost:${Config.serverPort}/subscriptions`
+}));
 
-// Put together a schema
-const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers
+// IMPORTANT: wrap the Express server with new http client instance
+const ws = createServer(server);
+ws.listen(Config.serverPort, () => {
+  console.log(`Apollo Server is now running on http://localhost:${Config.serverPort}`);
+  // Set up the WebSocket for handling GraphQL subscriptions
+  new SubscriptionServer({
+    execute,
+    subscribe,
+    schema
+  }, {
+    server: ws,
+    path: '/subscriptions',
+  });
 });
-
-
-
-const app = express();
-const server = http.createServer(app);
-
-
-
-
-
-app.use(morgan("dev"));
-app.use(bodyParser.json({ limit: "10mb" }));
-app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
-
-app.set("port", appConfig.rabbitPort);
-
-app.get('/publisher', (req, res) => res.send("okdasasdsdfsdfsdas "))
-
-server.listen(appConfig.rabbitPort, () => {
-
-  console.log(`running fsdfsdon localhost:${appConfig.rabbitPort}`);
-
-});
-
-
-module.exports = {
-  server: server,
-  app: app
-};
-
