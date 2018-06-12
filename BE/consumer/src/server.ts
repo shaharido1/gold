@@ -12,7 +12,7 @@ Promise.all([rabbit.initConnection(queue), redis.initConnection()]).then(connect
   const channel: Channel = connections[0].channel;
   channel.consume(queue, data => {
     const parsedData = (JSON.parse(data.content.toString()));
-    this.redis.saveInRedisAndPublish(parsedData);
+    // redis.saveInRedisAndPublish(parsedData);
   }, { noAck: false });
 });
 

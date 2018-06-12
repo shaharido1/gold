@@ -1,0 +1,45 @@
+{
+  "name": "mock_prod",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc -w",
+    "serve": "node dist/server.js",
+    "serve:watch": "nodemon dist/server.js",
+    "start": "concurrently \"npm run build:watch\" \"npm run serve:watch\"",
+    "start:prod": "concurrently \"npm run build\" \"npm run serve\"",
+    "debug": "tsc -p ./tsconfig.debug.json",
+    "mongoDocker": "docker run --network host -v mongoVol:/data/db --name mongo mongo",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "test": "jest --coverage --verbose",
+    "lint": "tslint -c tslint.json -p tsconfig.json --fix"
+  },
+  "private": true,
+  "precommit": [
+    "lint"
+  ],
+  "dependencies": {
+    "@types/amqplib": "^0.5.7",
+    "amqplib": "^0.5.2",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.2.3",
+    "@types/node": "^10.1.4",
+    "async": "^2.6.1",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "concurrently": "^3.5.1",
+    "eslint": "4.0.0",
+    "eslint-config-airbnb-base": "11.2.0",
+    "eslint-plugin-import": "2.3.0",
+    "eslint-plugin-promise": "3.5.0",
+    "jest": "^23.0.1",
+    "mocha": "^5.2.0",
+    "morgan": "^1.9.0",
+    "supertest": "3.0.0",
+    "tsc": "^1.20150623.0",
+    "tslint": "^5.10.0",
+    "typescript": "^2.8.3"
+  }
+}
