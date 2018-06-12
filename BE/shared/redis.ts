@@ -1,7 +1,6 @@
-import { appConfig } from './config/appConfig';
+import { appConfig } from '../consumer/src/config/appConfig';
 
 import redis, { Multi, RedisClient } from 'redis';
-import { Connection } from 'amqplib/callback_api';
 
 
 export class Redis {

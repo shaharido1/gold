@@ -8,8 +8,8 @@ services:
       - 6379:6379
 
 
-  rabbitmq:
-    container_name: rabbitMQ
+  rabbitmq2:
+    container_name: rabbitMQ2
     image: 'rabbitmq:3-management'
     ports:
       - 5679:5672

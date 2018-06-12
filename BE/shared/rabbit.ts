@@ -1,6 +1,7 @@
 import amqp, { Channel, Connection } from 'amqplib/callback_api';
 import { Observable } from 'rxjs/internal/Observable';
 import { Replies } from 'amqplib/properties';
+
 export interface rabbitAddress {
   port: string,
   host: string
@@ -82,12 +83,12 @@ export class Rabbit {
   private assertQueue(queue, options?): Promise<Replies.AssertQueue> {
     return new Promise((resolve, reject) => {
       this.rabbitChannel.assertQueue(queue, options, (err, ok) => {
-        if (err) {
-          console.log(err);
-          return reject();
-        }
         if (ok) {
           return resolve(ok)
+        }
+        else if (err) {
+          console.log(err);
+          return reject();
         }
       })
     })
