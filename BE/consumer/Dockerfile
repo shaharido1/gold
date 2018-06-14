@@ -4,10 +4,7 @@ WORKDIR /opt/app/
 
 COPY ./dist /opt/app/
 COPY ./package.json /opt/app/
-
 RUN npm install --production
 
-
-CMD node ./consumer/src/server.js
-
+CMD node consumer/src/server.js
 

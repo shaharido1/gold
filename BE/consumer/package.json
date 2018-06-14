@@ -5,8 +5,8 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc -w",
-    "serve": "node dist/server.js",
-    "serve:watch": "nodemon dist/server.js",
+    "serve": "node ./dist/consumer/src/server.js",
+    "serve:watch": "nodemon ./dist/consumer/src/server.js",
     "start": "concurrently \"npm run build:watch\" \"npm run serve:watch\"",
     "start:prod": "concurrently \"npm run build\" \"npm run serve\"",
     "debug": "tsc -p ./tsconfig.debug.json",
@@ -24,6 +24,9 @@
     "crudutils": "^1.0.0",
     "nodemon": "^1.17.5",
     "redis": "^2.8.0",
+    "rsmq": "^0.8.3",
+    "rsmq-promise": "^1.0.1",
+    "rsmq-worker": "^0.5.2",
     "rxjs": "^6.2.0",
     "uuidv4": "^1.0.0"
   },

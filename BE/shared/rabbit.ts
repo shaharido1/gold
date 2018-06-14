@@ -1,6 +1,6 @@
-import amqp, { Channel, Connection } from 'amqplib/callback_api';
-import { Observable } from 'rxjs/internal/Observable';
-import { Replies } from 'amqplib/properties';
+import amqp, { Channel, Connection } from "amqplib/callback_api";
+import { Observable } from "rxjs/internal/Observable";
+import { Replies } from "amqplib/properties";
 
 export interface rabbitAddress {
   port: string,
@@ -14,8 +14,8 @@ export class Rabbit {
 
   constructor(rabbitAddress?: rabbitAddress) {
     this.rabbitAddress = rabbitAddress || {
-          host: process.env.rabbitHost,
-          port: process.env.rabbitPort
+          host: process.env.rabbitHost || "10.0.75.1",
+          port: process.env.rabbitPort || "5672"
         };
   }
 
@@ -23,7 +23,7 @@ export class Rabbit {
     return new Promise((resolve, reject) => {
       this.intervalConnection().then(() => {
         this.createChannel().then(() => {
-          this.assertQueue(queue).then(ok =>{
+          this.assertQueue(queue).then(ok => {
             return resolve({ok: ok, channel: this.rabbitChannel})
           })
         })
@@ -40,21 +40,21 @@ export class Rabbit {
               return resolve(connection);
             })
             .catch(err => err);
-      }, 2000);
+      }, 10000);
     });
   }
 
   private connect(): Promise<Connection> {
     return new Promise((resolve, reject) => {
-      console.log('trying to connect to ' + `amqp://guest:guest@${this.rabbitAddress.host}:${this.rabbitAddress.port}`);
+      console.log("trying to connect to " + `amqp://guest:guest@${this.rabbitAddress.host}:${this.rabbitAddress.port}`);
       amqp.connect(`amqp://guest:guest@${this.rabbitAddress.host}:${this.rabbitAddress.port}`, (err, conn) => {
         if (conn) {
-          console.log('connected to rabbit!');
+          console.log("connected to rabbit!");
           this.rabbitConnection = conn;
           return resolve(conn);
         }
         else if (err) {
-          console.log('fail to connect');
+          console.log("fail to connect");
           console.log(err);
           return reject();
         }
@@ -71,7 +71,7 @@ export class Rabbit {
           return resolve(channel);
         }
         else if (err) {
-          console.log('fail to connect');
+          console.log("fail to connect");
           console.log(err);
           return reject();
         }
