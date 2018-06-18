@@ -9,44 +9,88 @@ import { RedisMqAdapter } from '../../shared/redis/redisMQ';
 
 const reabbitQueueName = process.env.rabbitQueueName || 'task';
 const redisQueueName = process.env.redisQueueName || 'task2';
+const redisEnv = process.env.redisEnv || 'localhost';
+
 const rabbit = new Rabbit();
 const redis = new RedisMqAdapter();
 
-Promise.all([redis.initRMSQ(redisQueueName), rabbit.initConnection(reabbitQueueName)]).then(connections => {
+let avgTime = 0;
+let numberOfRounds = 0;
+let roundTime = 0;
+let toatalTime = 0;
+Promise.all([redis.initRMSQ(redisQueueName, redisEnv), rabbit.initConnection(reabbitQueueName)]).then(connections => {
+
   const rsmq: RSMQPromise = connections[0];
   const rabbitChannel: Channel = connections[1].channel;
   const rabbitStartTime = new Date().getTime();
 
   rabbitChannel.consume(reabbitQueueName, data => {
-    let avgTime = 0;
-    let numberOfMsg = 0;
 
     const rabbitEnd = new Date().getTime();
     const rawData = data.content.toString();
     const parsedData = JSON.parse(rawData);
-    console.log(parsedData.rabbitStart);
-    if (rabbitStartTime > parsedData.start) { }
-    else {
-      const timeSec = (rabbitEnd - parsedData.rabbitStart) / 1000;
-      numberOfMsg++;
-      avgTime += timeSec;
-      console.log(`batch ${numberOfMsg} time: ${(timeSec)} sec`);
-      console.log(`avg time: ${(avgTime / numberOfMsg)} sec`);
-      // redis.saveInRedis(parsedData.message, appConfig.keyId)
+    if (rabbitStartTime > parsedData.start) {
+      console.log('pass');
     }
-    const redisStart = new Date().getTime();
-    rsmq.sendMessage({ qname: redisQueueName, message: `{"message":${JSON.stringify(parsedData.message)} ,"start":${redisStart}}` }, (err, resp) => {
-      if (resp) {
-        // console.log('Message sent. ID:', resp);
+    else {
+      const timeSec = (rabbitEnd - parsedData.rabbitStart) * 0.001;
+      numberOfRounds++;
+      avgTime += timeSec;
+      // console.log(`batch ${numberOfRounds} time: ${(timeSec)} sec`);
+      roundTime += timeSec;
+
+      if (numberOfRounds % appConfig.totalNumberOfRounds == 0) {
+        toatalTime += roundTime / appConfig.totalNumberOfRounds;
+        console.log(`\n********************************************`);
+        console.log(`Average time for this round: ${roundTime / appConfig.totalNumberOfRounds}`);
+        console.log(`Finished ${numberOfRounds} number of rounds`);
+        console.log(`avg time: ${(avgTime / numberOfRounds)} sec`);
+        console.log(`Total entities : ${numberOfRounds * appConfig.batchNumber }`);
+        console.log(`********************************************\n`);
+        roundTime = 0;
+
       }
-      else if (err) {
-        console.log(err);
-      }
-      else {
-        console.log('error with no error message');
-      }
-    });
-  }, { noAck: false });
+
+      // redis.saveInRedis(parsedData.message, appConfig.keyId)
+
+      rsmq.sendMessage({
+        qname: redisQueueName,
+        message: `{"message":${JSON.stringify(parsedData.message)} ,"start":${new Date().getTime()}}`
+      }, (err, resp) => {
+
+        if (resp) {
+          // console.log('Message sent. ID:', resp);
+        }
+        else if (err) {
+          console.log(err);
+        }
+        else {
+          console.log('error with no error message');
+        }
+      });
+
+    }
+    // console.log('trying to connect to ' + `amqp://guest:guest@${process.env.rabbitHost}:${process.env.rabbitPort}`);
+    // rabbitChannel3.connect(`amqp://guest:guest@${process.env.rabbitHost}:${process.env.rabbitPort}`, (err, conn) => {
+    //   if (conn) {
+    //     console.log(`connected to ${reabbitQueueName3} queue`);
+    //     conn.createChannel((err, ch) => {
+    //       const q = reabbitQueueName3;
+    //
+    //       ch.assertQueue(reabbitQueueName3);
+    //       const start = new Date().getTime();
+    //       ch.sendToQueue(q, Buffer.from(`{"message":${JSON.stringify(parsedData.message)} ,"rabbitStart":${start}}`), { persistent: true });
+    //     });
+    //   }
+    //   else {
+    //     if (err) {
+    //       console.log('fail to connect');
+    //       console.log(err);
+    //     }
+    //   }
+    // });
+
+  }, { noAck: true });
   // });
 }).catch(err => err);
 

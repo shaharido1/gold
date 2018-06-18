@@ -8,13 +8,14 @@ export class RedisAdapter {
   RedisAdapter: RedisAdapter;
 
 
-  initClientConnection(): Promise<RedisClient> {
+  initClientConnection(redisEnv): Promise<RedisClient> {
     return new Promise((resolve, reject) => {
       const tryToConnect = setInterval(() => {
-        this.redisConnect()
+        this.redisConnect(redisEnv)
             .then(() => {
               clearInterval(tryToConnect);
               this.multi = this.client.multi();
+              console.log('redis Created');
               return resolve(this.client);
             })
             .catch(err => err);
@@ -23,10 +24,10 @@ export class RedisAdapter {
   }
 
 
-  private redisConnect() {
+  private redisConnect(redisEnv) {
     return new Promise((resolve, reject) => {
-      this.client = redis.createClient({ host: 'localhost' });
-      // this.client = redis.createClient({ host: "redis" });
+      this.client = redis.createClient({ host: redisEnv });
+      // this.client = redis.createClient({ host: 'redis' });
       this.client.on('ready', () => {
         return resolve();
       });

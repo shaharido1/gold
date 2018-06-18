@@ -1,8 +1,13 @@
 export const appConfig = {
-  redisHost: process.env.redisHost || "172.18.0.2",
-  redisPort: process.env.redisPort || 6379,
-  publishToEnrich: process.env.redisChanel || "publishToEnrich",
-  publishToApollo: process.env.redisChanel || "publishToApollo",
+  // publishToEnrich: process.env.redisChanel || "publishToEnrich",
+  // publishToApollo: process.env.redisChanel || "publishToApollo",
+
+
+
+
+
+  batchNumber: Number (process.env.batchNumber ) || 1,
+  totalNumberOfRounds: Number(process.env.totalNumberOfRounds) || 1000,
 
   keyId: "enrich"
 

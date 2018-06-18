@@ -6,6 +6,4 @@ COPY ./dist /opt/app/
 COPY ./package.json /opt/app/
 RUN npm install --production
 
-CMD node server.js
-
-
+CMD node enrich/src/server.js

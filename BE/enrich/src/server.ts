@@ -1,50 +1,71 @@
 import { appConfig } from './config/appConfig';
-import RedisSMQ, { Client } from 'rsmq';
 import { RedisAdapter } from '../../shared/redis/redis';
 import RSMQWorker from 'rsmq-worker';
 
 const redisQueueName = process.env.redisQueueName || 'task2';
-const worker = new RSMQWorker(redisQueueName);
+const redisEnv = process.env.redisEnv || 'localhost';
+const worker = new RSMQWorker(redisQueueName, { host: redisEnv, interval: 0 });
 const redis = new RedisAdapter();
 
+let avgTime = 0;
+let numberOfRounds = 0;
+let roundTime = 0;
 
-redis.initClientConnection()
+
+redis.initClientConnection(redisEnv)
     .then((client) => {
+
       const radisStartTime = new Date().getTime();
-      let avgTime = 0;
-      let numberOfMsg = 0;
+      console.log('enriching...');
 
       worker.on('message', (msg, next, id) => {
         const end = new Date().getTime();
         const parsedData = (JSON.parse(msg));
+        // console.log(`${numberOfRounds} number of rounds`);
+
         if (radisStartTime > parsedData.start) {
+          // console.log('pass');
           next();
         }
         else {
-          const timeSec = (end - parsedData.start) / 1000;
-          numberOfMsg++;
+          const timeSec = (end - parsedData.start) * 0.001;
+          numberOfRounds++;
           avgTime += timeSec;
-          console.log(`batch ${numberOfMsg} time: ${(timeSec)} sec`);
-          console.log(`avg time: ${(avgTime / numberOfMsg)} sec`);
-          const newList = createList(parsedData.message);
-          redis.saveInRedis(newList, appConfig.keyId).then(() => {
-            worker.del(id);
-            next();
-          });
+          // console.log(`batch ${numberOfRounds} time: ${(timeSec)} sec`);
+          roundTime += timeSec;
+
+          if (numberOfRounds % appConfig.totalNumberOfRounds == 0) {
+            console.log(`\n********************************************`);
+            console.log(`Average time for this round: ${roundTime / appConfig.totalNumberOfRounds}`);
+            // console.log(`Finished ${numberOfRounds} number of rounds`);
+            console.log(`avg time: ${(avgTime / numberOfRounds)} sec`);
+            console.log(`Total entities : ${numberOfRounds * appConfig.batchNumber }`);
+            console.log(`********************************************\n`);
+            roundTime = 0;
+
+          }
+
+          // const newList = createList(parsedData.message);
+          // redis.saveInRedis(newList, appConfig.keyId).then(() => {
+          worker.del(id);
+          next();
+          // });
         }
       });
       worker.start();
     });
 
-function createList(msg): Array<any> {
-  const data = msg;
-  const newList = [];
-  data.forEach(x => {
-    const newData = { ...x, status: 12 };
-    newList.push(newData);
-  });
-  return newList;
-}
+// function createList(msg): Array<any> {
+//   const data = msg;
+//   const newList = [];
+//   data.forEach(x => {
+//     const newData = { ...x, status: 12 };
+//     newList.push(newData);
+//   });
+//   return newList;
+// }
+
+// }, 3000);
 
 // (function Worker(redisQueueName) {
 //

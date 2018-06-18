@@ -6,6 +6,10 @@ export const appConfig = {
   redisPort: process.env.redisPort || "6379",
   publishToEnrich: process.env.publishToEnrich || "publishToEnrich",
 
+  batchNumber: Number (process.env.batchNumber ) || 1,
+  totalNumberOfRounds: Number(process.env.totalNumberOfRounds) || 1000,
+
+
   keyId: "raw"
 
 };

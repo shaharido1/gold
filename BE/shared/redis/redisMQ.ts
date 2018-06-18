@@ -9,14 +9,15 @@ export class RedisMqAdapter extends RedisAdapter {
   private qname: string;
   private unDeletedMsg: Array<string> = [];
 
-  initRMSQ(qname): Promise<RSMQPromise> {
+  initRMSQ(qname, redisEnv): Promise<RSMQPromise> {
     return new Promise((resolve, reject) => {
-      this.initClientConnection()
+      this.initClientConnection(redisEnv)
           .then(client => {
             this.client = client;
-            this.rsmq = new RSMQPromise(client);
+            this.rsmq = new RSMQPromise({client});
             this.assertQueue(qname)
                 .then(() => {
+                  console.log('finished assert Q');
                   this.qname = qname;
                   return resolve(this.rsmq);
                 });
@@ -38,8 +39,12 @@ export class RedisMqAdapter extends RedisAdapter {
           console.log(`Queue ${qname} already exist`);
           return reoslve();
         }
+        if (err) {
+          console.error(err);
+        }
         else {
-          this.rsmq.createQueue({ qname })
+          console.log(`creating Queue ${qname}`);
+          this.rsmq.createQueue({ qname: qname })
               .then(() => {
                 console.log('Queue created!');
                 return reoslve();
