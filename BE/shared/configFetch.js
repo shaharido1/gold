@@ -9,12 +9,11 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var node_fetch_1 = require("node-fetch");
-var process = require("process");
 var ConfigFetch = /** @class */ (function () {
     function ConfigFetch(DefaultConfig, routeName, configServerAddress) {
         this.configServerAddress = {
-            host: '',
-            port: ''
+            host: 'localhost',
+            port: '5000'
         };
         this.defaultConfig = this.defaultConfig;
         this.route = routeName;
@@ -22,6 +21,9 @@ var ConfigFetch = /** @class */ (function () {
     }
     ConfigFetch.prototype.init = function () {
         var _this = this;
+        return new Promise(resolve, reject);
+        {
+        }
         node_fetch_1.default(this.configServerAddress.host + ":" + this.configServerAddress.port + "/" + this.route)
             .then(function (res) { return res.json(); })
             .then(function (serverConfig) {
@@ -32,8 +34,9 @@ var ConfigFetch = /** @class */ (function () {
                 newData[k] = env[k];
                 return newData;
             }, {});
-            _this.finalConfig = __assign({}, _this.defaultConfig, { serverConfig: serverConfig }, filterEnv);
+            _this.finalConfig = __assign({}, _this.defaultConfig, { serverConfig: serverConfig, filterEnv: filterEnv });
         });
+        return this.finalConfig;
     };
     return ConfigFetch;
 }());
