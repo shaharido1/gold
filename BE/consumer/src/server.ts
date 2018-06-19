@@ -50,8 +50,8 @@ Promise.all([redis.initRMSQ(redisQueueName, redisEnv), rabbit.initConnection(rea
         roundTime = 0;
 
       }
-
       // redis.saveInRedis(parsedData.message, appConfig.keyId)
+
       const timeTowightToRedis = new Date().getTime();
       rsmq.sendMessage({
         qname: redisQueueName,
