@@ -2,17 +2,17 @@ import amqp, { Channel, Connection } from "amqplib/callback_api";
 import { Observable } from "rxjs/internal/Observable";
 import { Replies } from "amqplib/properties";
 
-export interface rabbitAddress {
-  port: string,
-  host: string
+export interface RabbitAddress {
+  port: string;
+  host: string;
 }
 
 export class Rabbit {
-  private rabbitAddress: rabbitAddress;
+  private rabbitAddress: RabbitAddress;
   private rabbitConnection: Connection;
   private rabbitChannel: Channel;
 
-  constructor(rabbitAddress?: rabbitAddress) {
+  constructor(rabbitAddress?: RabbitAddress) {
     this.rabbitAddress = rabbitAddress || {
           host: process.env.rabbitHost || "10.0.75.1",
           port: process.env.rabbitPort || "5672"

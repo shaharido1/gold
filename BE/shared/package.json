@@ -5,12 +5,11 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc -w",
-    "serve": "node dist/server.js",
-    "serve:watch": "nodemon dist/server.js",
+    "serve": "node dist/configServer/src/server.js",
+    "serve:watch": "nodemon dist/configServer/src/server.js",
     "start": "concurrently \"npm run build:watch\" \"npm run serve:watch\"",
     "start:prod": "concurrently \"npm run build\" \"npm run serve\"",
     "debug": "tsc -p ./tsconfig.debug.json",
-    "mongoDocker": "docker run --network host -v mongoVol:/data/db --name mongo mongo",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "test": "jest --coverage --verbose",
     "lint": "tslint -c tslint.json -p tsconfig.json --fix"
@@ -20,13 +19,13 @@
     "lint"
   ],
   "dependencies": {
-    "@types/amqplib": "^0.5.7",
-    "@types/rsmq": "^0.3.27",
     "amqplib": "^0.5.2",
     "rsmq": "^0.8.3",
     "rsmq-worker": "^0.5.2"
   },
   "devDependencies": {
+    "@types/amqplib": "^0.5.7",
+    "@types/rsmq": "^0.3.27",
     "@types/jest": "^22.2.3",
     "@types/node": "^10.1.4",
     "async": "^2.6.1",

@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "deploy": "tsc -w --outDir ../deploy/consuler",
     "build": "tsc",
     "build:watch": "tsc -w",
     "serve": "node ./dist/consumer/src/server.js",

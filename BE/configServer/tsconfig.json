@@ -16,9 +16,9 @@
     }
   },
   "include": [
-    "../src/**/*"
+    "../configServer/src/**/*"
   ],
   "exclude": [
-    "../src/test/**/*"
+    "../configServer/src/test/**/*"
   ]
 }

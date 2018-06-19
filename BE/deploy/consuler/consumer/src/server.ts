@@ -52,16 +52,14 @@ Promise.all([redis.initRMSQ(redisQueueName, redisEnv), rabbit.initConnection(rea
       }
 
       // redis.saveInRedis(parsedData.message, appConfig.keyId)
-      const timeTowightToRedis = new Date().getTime();
+
       rsmq.sendMessage({
         qname: redisQueueName,
-        message: `{"message":${JSON.stringify(parsedData.message)} ,"start":${ new Date().getTime()}}`
+        message: `{"message":${JSON.stringify(parsedData.message)} ,"start":${new Date().getTime()}}`
       }, (err, resp) => {
+
         if (resp) {
-          if (numberOfRounds % appConfig.totalNumberOfRounds == 0) {
-            console.log(`Time to write to redis: ${(new Date().getTime() - timeTowightToRedis) * 0.001} sec\n`);
-            // console.log('Message sent. ID:', resp);
-          }
+          // console.log('Message sent. ID:', resp);
         }
         else if (err) {
           console.log(err);
