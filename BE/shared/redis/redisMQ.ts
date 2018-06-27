@@ -6,20 +6,21 @@ export class RedisMqAdapter extends RedisAdapter {
 
   client: RedisClient;
   rsmq: RSMQPromise;
-  private qname: string;
-  private unDeletedMsg: Array<string> = [];
+  // private unDeletedMsg: Array<string> = [];
 
-  initRMSQ(qname, redisEnv): Promise<RSMQPromise> {
+  initRMSQ(): Promise<RSMQPromise> {
     return new Promise((resolve, reject) => {
-      this.initClientConnection(redisEnv)
+      console.log("initRMSQ");
+      this.initClientConnection()
           .then(client => {
             this.client = client;
-            this.rsmq = new RSMQPromise({client});
-            this.assertQueue(qname)
+            this.rsmq = new RSMQPromise({ client });
+            this.assertQueue()
                 .then(() => {
                   console.log('finished assert Q');
-                  this.qname = qname;
-                  return resolve(this.rsmq);
+                  console.log(this.config.config_redisQueueName);
+                  // this.config.config_redisQueueName= qname;
+                  return resolve();
                 });
           })
           .catch(err => {
@@ -27,14 +28,14 @@ export class RedisMqAdapter extends RedisAdapter {
             return reject(err);
           });
     });
-
-
   }
 
 
-  private assertQueue(qname): Promise<void> {
+  private assertQueue(qname?): Promise<void> {
+    qname ? this.config.config_redisQueueName = qname : this.config.config_redisQueueName;
+
     return new Promise((reoslve, reject) => {
-      this.client.exists(`rsmq:${qname}:Q`, (err, res) => {
+      this.client.exists(`rsmq:${this.config.config_redisQueueName}:Q`, (err, res) => {
         if (res >= 1) {
           console.log(`Queue ${qname} already exist`);
           return reoslve();
@@ -43,8 +44,8 @@ export class RedisMqAdapter extends RedisAdapter {
           console.error(err);
         }
         else {
-          console.log(`creating Queue ${qname}`);
-          this.rsmq.createQueue({ qname: qname })
+          console.log(`creating Queue ${this.config.config_redisQueueName}`);
+          this.rsmq.createQueue({ qname: this.config.config_redisQueueName })
               .then(() => {
                 console.log('Queue created!');
                 return reoslve();
@@ -62,28 +63,48 @@ export class RedisMqAdapter extends RedisAdapter {
     });
   }
 
-  reciveMessageNDo(workToDo: (message) => Promise<any>) {
-    this.rsmq.receiveMessage({ qname: this.qname }).then((message) => {
-      if (message && Object.keys(message).length) {
-        workToDo(message).then(message => {
-          this.rsmq.deleteMessage({ qname: this.qname, id: message.id }, (err, resp) => {
-            if (resp === 1) {
-              this.reciveMessageNDo(workToDo);
-            }
-            else {
-              this.unDeletedMsg.push(message.id);
-            }
-          });
-        });
+  public sendMassage(message, numberOfRounds, totalNumberOfRounds) {
+    const timeToWightToRedis = new Date().getTime();
+    this.rsmq.sendMessage({
+      qname: this.config.config_redisQueueName,
+      message
+    }, (err, resp) => {
+      if (resp) {
+        if (numberOfRounds % totalNumberOfRounds == 0) {
+          console.log(`Time to write to redis: ${(new Date().getTime() - timeToWightToRedis) * 0.001} sec\n`);
+        }
+      }
+      else if (err) {
+        console.log(err);
       }
       else {
-        console.log('no message');
-        setTimeout(() => {
-          this.reciveMessageNDo(workToDo);
-        }, 200);
+        console.log('error with no error message');
       }
     });
   }
+
+  // reciveMessageNDo(workToDo: (message) => Promise<any>) {
+  //   this.rsmq.receiveMessage({ qname: this.qname }).then((message) => {
+  //     if (message && Object.keys(message).length) {
+  //       workToDo(message).then(message => {
+  //         this.rsmq.deleteMessage({ qname: this.qname, id: message.id }, (err, resp) => {
+  //           if (resp === 1) {
+  //             this.reciveMessageNDo(workToDo);
+  //           }
+  //           else {
+  //             this.unDeletedMsg.push(message.id);
+  //           }
+  //         });
+  //       });
+  //     }
+  //     else {
+  //       console.log('no message');
+  //       setTimeout(() => {
+  //         this.reciveMessageNDo(workToDo);
+  //       }, 200);
+  //     }
+  //   });
+  // }
 
 
 }

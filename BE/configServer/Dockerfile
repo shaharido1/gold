@@ -6,8 +6,8 @@ COPY ./dist /opt/app/
 COPY ./package.json /opt/app/
 RUN npm install
 
-EXPOSE 3001
+EXPOSE 5000
 
-CMD node server.js
+CMD node ./src/server.js
 
 

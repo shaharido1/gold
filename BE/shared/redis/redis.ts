@@ -1,14 +1,23 @@
 import redis, { Multi, RedisClient } from 'redis';
+import { RedisConfig } from '../interfase/redisConfig';
 
 
 export class RedisAdapter {
-
+  config: RedisConfig;
   multi: Multi;
   client: RedisClient;
-  RedisAdapter: RedisAdapter;
+  redisAdapter: RedisAdapter;
+
+  constructor(redisConfig: RedisConfig) {
+    this.config = redisConfig || {
+      config_redisHost: 'localhost',
+      config_redisPort: 6379,
+      config_redisQueueName: 'q'
+    };
+  }
 
 
-  initClientConnection(redisEnv): Promise<RedisClient> {
+  initClientConnection(redisEnv?): Promise<RedisClient> {
     return new Promise((resolve, reject) => {
       const tryToConnect = setInterval(() => {
         this.redisConnect(redisEnv)
@@ -24,9 +33,10 @@ export class RedisAdapter {
   }
 
 
-  private redisConnect(redisEnv) {
+  private redisConnect(redisEnv?) {
+    redisEnv ? this.config.config_redisHost = redisEnv : this.config.config_redisHost;
     return new Promise((resolve, reject) => {
-      this.client = redis.createClient({ host: redisEnv });
+      this.client = redis.createClient({ host: this.config.config_redisHost });
       // this.client = redis.createClient({ host: 'redis' });
       this.client.on('ready', () => {
         return resolve();

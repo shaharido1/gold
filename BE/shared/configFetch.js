@@ -8,35 +8,49 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var node_fetch_1 = require("node-fetch");
+var axios_1 = require("axios");
 var ConfigFetch = /** @class */ (function () {
     function ConfigFetch(DefaultConfig, routeName, configServerAddress) {
         this.configServerAddress = {
-            host: 'localhost',
+            host: '172.30.65.113',
             port: '5000'
         };
-        this.defaultConfig = this.defaultConfig;
+        this.defaultConfig = DefaultConfig;
         this.route = routeName;
         this.configServerAddress = configServerAddress || this.configServerAddress;
     }
     ConfigFetch.prototype.init = function () {
         var _this = this;
-        return new Promise(resolve, reject);
-        {
-        }
-        node_fetch_1.default(this.configServerAddress.host + ":" + this.configServerAddress.port + "/" + this.route)
-            .then(function (res) { return res.json(); })
-            .then(function (serverConfig) {
-            var env = process.env;
-            var filterEnv = env.filter(function (k) {
-                return k.indexOf('config_') == 0;
-            }).reduce(function (newData, k) {
-                newData[k] = env[k];
-                return newData;
-            }, {});
-            _this.finalConfig = __assign({}, _this.defaultConfig, { serverConfig: serverConfig, filterEnv: filterEnv });
+        return new Promise(function (resolve, reject) {
+            console.log('start Fetch');
+            // const request: RequestInit = {
+            //   method: 'GET'
+            //   };
+            var url = "http://" + _this.configServerAddress.host + ":" + _this.configServerAddress.port + "/" + _this.route;
+            var request = {
+                params: { type: 'producer' }
+            };
+            axios_1.default.get(url, request)
+                .then(function (response) {
+                // console.log('serverConfig');
+                var serverConfig = (response.data);
+                var env = process.env;
+                var envConfig = {};
+                Object.keys(env)
+                    .filter(function (key) { return key.includes('TES', 0); })
+                    .map(function (key) {
+                    envConfig[key] = env[key];
+                });
+                console.log('!@');
+                console.log(_this.defaultConfig);
+                console.log(serverConfig);
+                console.log(envConfig);
+                console.log('!@');
+                _this.finalConfig = __assign({}, _this.defaultConfig, { serverConfig: serverConfig, envConfig: envConfig });
+                return resolve(_this.finalConfig);
+            })
+                .catch(function (err) { return console.error(err); });
         });
-        return this.finalConfig;
     };
     return ConfigFetch;
 }());

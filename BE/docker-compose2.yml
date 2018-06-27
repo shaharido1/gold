@@ -15,9 +15,14 @@ services:
       - 15672:15672
       - 25672:25672
 
-  prod:
-    build: '../mock/mock_prod/'
-    environment:
-      - rabbitHost=rabbitmq
-      - rabbitPort=5672
-      - batchNumber=100
+#  configserver:
+#    build: './configServer/'
+#    ports:
+#      - 5000:5000
+#
+#  prod:
+#    build: '../mock/mock_prod/'
+#    environment:
+#      - rabbitHost=rabbitmq
+#      - rabbitPort=5672
+#      - batchNumber=100

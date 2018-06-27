@@ -1,0 +1,19 @@
+{
+  "rabbitConfig": {
+    "config_rabbitHost": "localhost",
+    "config_rabbitPort": 5672,
+    "config_rabbitUser": "guest",
+    "config_rabbitPassword": "guest",
+    "config_rabbitQueueName": "task"
+  },
+  "redisConfig": {
+    "config_redisHost":  "localhost",
+    "config_redisPort": 6379,
+    "config_redisQueueName": "task2"
+  },
+  "config_batchNumber": 100,
+  "config_totalNumberOfRounds": 100,
+
+  "config_keyId": "raw",
+  "TEST": "localConfig"
+}
