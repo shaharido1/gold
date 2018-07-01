@@ -1,12 +1,12 @@
 {
-  "name": "Enrichment",
+  "name": "enrichment",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "build:watch": "tsc -w",
+    "build:watch": "tsc -p tsconfig.enrich.json -w",
     "serve": "node dist/enrich/src/server.js",
-    "serve:watch": "nodemon dist/enrich/src/server.js",
+    "serve:watch": "nodemon dist/enrich/src/server.js goldStarDevelopment",
     "start": "concurrently \"npm run build:watch\" \"npm run serve:watch\"",
     "start:prod": "concurrently \"npm run build\" \"npm run serve\"",
     "debug": "tsc -p ./tsconfig.debug.json",

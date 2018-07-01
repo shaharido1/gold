@@ -1,0 +1,1 @@
+{"version":3,"file":"dbConfig.js","sourceRoot":"","sources":["../../../../mission/src/config/dbConfig.ts"],"names":[],"mappings":";;AAAa,QAAA,QAAQ,GAAG;IACtB,GAAG,EAAI,YAAY,GAAG,WAAW,GAAG,iBAAiB;CACtD,CAAC","sourcesContent":["export const dbConfig = {\r\n  url :  \"mongodb://\" + \"localhost\" + \":27017/goldstar\"\r\n};"]}

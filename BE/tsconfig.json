@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "rootDir": ".",
+    "module": "commonjs",
+    "target": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "inlineSources" :true,
+    "outDir": "dist",
+    "paths": {
+      "@gold/shared/*": ["shared/dist/*"]
+    }
+  }
+}

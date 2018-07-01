@@ -2,7 +2,7 @@ version: '3'
 
 services:
 
-  rabbitmq:
+  rabbitmqmock:
     image: 'rabbitmq:3-management'
     ports:
       - 5672:5672
@@ -12,6 +12,6 @@ services:
   prod:
     build: './mock_prod/'
     environment:
-      - rabbitHost=rabbitmq
-      - rabbitPort=5672
+      - config_rabbitHost=rabbitmqmock
+      - config_batchNumber=100
 

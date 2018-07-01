@@ -1,28 +1,46 @@
 version: '3'
 
 services:
-  redis:
-    container_name: redis
-    image: redis
-    ports:
-      - 6379:6379
 
-
-  rabbitmq:
+  rabbitmqmock:
     image: 'rabbitmq:3-management'
     ports:
       - 5672:5672
       - 15672:15672
       - 25672:25672
 
-#  configserver:
-#    build: './configServer/'
+#  rabbitmqreal:
+#    image: 'rabbitmq:3-management'
 #    ports:
-#      - 5000:5000
-#
+#      - 5679:5672
+#      - 15679:15672
+#      - 25679:25672
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+
 #  prod:
-#    build: '../mock/mock_prod/'
+#    build: './mock/mock_prod/'
 #    environment:
-#      - rabbitHost=rabbitmq
-#      - rabbitPort=5672
-#      - batchNumber=100
+#      - config_rabbitHost=rabbitmqmock
+#      - config_rabbitPort=5672
+#      - config_batchNumber=100
+#
+#
+#  consumer:
+#    build: './consumer/'
+#    environment:
+#      - config_rabbitHost=rabbitmqmock
+#      - config_rabbitPort=5672
+#      - config_totalNumberOfRounds=100
+#      - config_batchNumber=100
+#      - config_redisHost=redis
+
+#  enrich:
+#    build: './enrich'
+#    environment:
+#      - config_redisHost=redis
+#      - config_totalNumberOfRounds=100
+#      - config_batchNumber=100

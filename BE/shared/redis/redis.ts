@@ -1,26 +1,24 @@
-import redis, { Multi, RedisClient } from 'redis';
+import { createClient, Multi, RedisClient } from 'redis';
 import { RedisConfig } from '../interfase/redisConfig';
+import { redisDefaultConfig } from './redis.config.defalt';
+import { RedisListenEvents } from './model/redisListenEvents';
 
 
 export class RedisAdapter {
-  config: RedisConfig;
-  multi: Multi;
-  client: RedisClient;
-  redisAdapter: RedisAdapter;
+  public config: RedisConfig;
+  private multi: Multi;
+  public client: RedisClient;
 
   constructor(redisConfig: RedisConfig) {
-    this.config = redisConfig || {
-      config_redisHost: 'localhost',
-      config_redisPort: 6379,
-      config_redisQueueName: 'q'
-    };
+    this.config = redisConfig || redisDefaultConfig;
+    // todo chane error listener
+    // this.setErrorListener();
   }
 
-
-  initClientConnection(redisEnv?): Promise<RedisClient> {
+  initClientConnection(): Promise<RedisClient> {
     return new Promise((resolve, reject) => {
       const tryToConnect = setInterval(() => {
-        this.redisConnect(redisEnv)
+        this.redisConnect()
             .then(() => {
               clearInterval(tryToConnect);
               this.multi = this.client.multi();
@@ -28,33 +26,53 @@ export class RedisAdapter {
               return resolve(this.client);
             })
             .catch(err => err);
-      }, 2000);
+      }, this.config.reconnect);
+    });
+  }
+
+  setErrorListener() {
+    this.client.on(RedisListenEvents.ERROR, (err) => {
+      console.log(err);
     });
   }
 
 
-  private redisConnect(redisEnv?) {
-    redisEnv ? this.config.config_redisHost = redisEnv : this.config.config_redisHost;
+  private redisConnect() {
     return new Promise((resolve, reject) => {
-      this.client = redis.createClient({ host: this.config.config_redisHost });
-      // this.client = redis.createClient({ host: 'redis' });
-      this.client.on('ready', () => {
+      this.client = createClient({
+        port: this.config.config_redisPort,
+        host: this.config.config_redisHost,
+        retry_strategy: (options) => {
+          if (options.error && options.error.code === 'ECONNREFUSED') {
+            // End reconnecting on a specific error and flush all commands with
+            // a individual error
+            return new Error('The server refused the connection');
+          }
+          if (options.total_retry_time > 1000 * 60 * 60) {
+            // End reconnecting after a specific timeout and flush all commands
+            // with a individual error
+            return new Error('Retry time exhausted');
+          }
+          if (options.attempt > 10) {
+            // End reconnecting with built in error
+            return undefined;
+          }
+          // reconnect after
+          return (3000);
+        }
+      });
+      this.client.on(RedisListenEvents.READY, () => {
         return resolve();
       });
-      this.client.on('error', (err) => {
-        console.log(err);
-        return reject();
-      });
+
     });
   }
 
 
-  saveInRedis(list, key) {
+  sendToQueue(list: Array<{ id: string }>, key) {
     return new Promise((resolve, reject) => {
       list.forEach(data => {
-        // console.log(typeof data.id);
-        this.multi.hmset(`${key}:${data.id.toString()}`, 'massage', JSON.stringify(data), (err, res) => {
-          // console.log('redis:' + res);
+        this.multi.hmset(`${key}:${data.id.toString()}`, RedisListenEvents.MESSAGE, JSON.stringify(data), (err, res) => {
           if (err) {
             console.error(err);
           }

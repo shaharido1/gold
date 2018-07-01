@@ -1,16 +1,17 @@
 import { RedisAdapter } from './redis';
+import * as RSMQPromise from 'rsmq-promise';
 import { RedisClient } from 'redis';
-import RSMQPromise from 'rsmq-promise';
 
 export class RedisMqAdapter extends RedisAdapter {
 
   client: RedisClient;
   rsmq: RSMQPromise;
+
   // private unDeletedMsg: Array<string> = [];
 
   initRMSQ(): Promise<RSMQPromise> {
     return new Promise((resolve, reject) => {
-      console.log("initRMSQ");
+      console.log('initRMSQ');
       this.initClientConnection()
           .then(client => {
             this.client = client;
@@ -19,7 +20,6 @@ export class RedisMqAdapter extends RedisAdapter {
                 .then(() => {
                   console.log('finished assert Q');
                   console.log(this.config.config_redisQueueName);
-                  // this.config.config_redisQueueName= qname;
                   return resolve();
                 });
           })
@@ -64,6 +64,7 @@ export class RedisMqAdapter extends RedisAdapter {
   }
 
   public sendMassage(message, numberOfRounds, totalNumberOfRounds) {
+    message = JSON.stringify(message);
     const timeToWightToRedis = new Date().getTime();
     this.rsmq.sendMessage({
       qname: this.config.config_redisQueueName,

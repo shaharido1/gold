@@ -1,0 +1,1 @@
+{"version":3,"file":"server.js","sourceRoot":"","sources":["../../../../mock/mock_prod/src/server.ts"],"names":[],"mappings":";;AAAA,yCAAsC;AAEtC,MAAM,QAAQ,GAAG,IAAI,mBAAQ,EAAE,CAAC","sourcesContent":["import { Producer } from './producer';\r\n\r\nconst producer = new Producer();\r\n\r\n"]}
