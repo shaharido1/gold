@@ -1,16 +1,31 @@
-import { AcEntity, Cartesian3 } from 'angular-cesium';
+import { AcEntity } from 'angular-cesium';
 
 export interface IMapState {
 }
 
 export class MapEntity extends AcEntity {
-  private name:string;
-  private image: string;
-  private bbPosition: Cartesian3;
-  // polylinePosition: Cartesian3,
-  // polylineWidth: number,
-  // material: {
-  //   glowPower: number,
-  //   color: 'string'
-  // }
+  // id: string;
+  name: string;
+  zoomLevelOne?: { [key: string]: ShapeEntity };
+  position?: any;
+  zoomLevelTwo?: ShapeEntity[];
+  zoomLevelThree?: ShapeEntity[];
+}
+
+
+export class ShapeEntity {
+  // position: any;
+  color: any;
+}
+
+export class EllipseGraphic extends ShapeEntity {
+  semiMinorAxis: number;
+  semiMajorAxis: number;
+  // material: any;
+}
+
+export class PointGraphic extends ShapeEntity {
+  pixelSize: number;
+  outlineColor: any;
+  outlineWidth: number;
 }
