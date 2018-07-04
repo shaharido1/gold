@@ -2,9 +2,16 @@ import { makeExecutableSchema } from 'graphql-tools';
 import resolvers from './resolvers';
 
 const typeDefs = `
+type Position {
+    x: String,
+    y: String
+}
 type Message {
     id: String!
-    content: String
+    message: String,
+    position: Position,
+    rank: Float,
+    category: String
 }
 type Query {
   messages: [Message!]!
@@ -20,3 +27,4 @@ type Subscription {
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
 export default schema;
+

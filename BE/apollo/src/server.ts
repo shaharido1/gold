@@ -13,9 +13,12 @@ import { SubscriptionServer } from 'subscriptions-transport-ws';
 
 // schema file
 import schema from './redisModule/schema';
+import { MockPublisher } from './redisModule/redis.publisher';
 
 // Express server
 const server = express();
+
+
 
 // origin must be same as your client URI
 

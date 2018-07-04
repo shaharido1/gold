@@ -5,12 +5,16 @@ import { MapReducer } from './store/map.reducer';
 import { mapFeatureKey } from './store/map.selectors';
 import { MapComponent } from './components/mapComponent/map.component';
 import { AngularCesiumModule } from 'angular-cesium';
+import { ZoomLevelOneComponent } from './components/zoom-level-one/zoom-level-one.component';
+import { ZoomLevelTwoComponent } from './components/zoom-level-two/zoom-level-two.component';
 
 
 
 @NgModule({
   declarations: [
-    MapComponent
+    MapComponent,
+    ZoomLevelOneComponent,
+    ZoomLevelTwoComponent
   ],
   imports: [
     CommonModule,

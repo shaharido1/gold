@@ -19,6 +19,7 @@ export class QueryAction implements Action {
 
 export class SubscriberData implements Action {
   type: string = ApolloActionTypes.SUBSCRIBER_DATA;
-  constructor(public payload : string) {
+
+  constructor(public payload: any) {
   }
 }

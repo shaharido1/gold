@@ -1,42 +1,6 @@
 <ac-map>
   <ac-layer acFor="let plane of mockData$" [context]="this">
-    <!--<ac-billboard-desc props="{-->
-    <!--image: plane.image,-->
-    <!--position: plane.bbPosition-->
-    <!--}">-->
-    <!--</ac-billboard-desc>-->
-    <ac-point-desc props="{
-          position: plane.position,
-          pixelSize: plane.zoomLevelOne.point.pixelSize,
-          color: plane.zoomLevelOne.point.color,
-          outlineColor: plane.zoomLevelOne.point.outlineColor,
-          outlineWidth: plane.zoomLevelOne.point.outlineWidth
-    }"></ac-point-desc>
-    <ac-ellipse-desc props="{
-                    semiMinorAxis: plane.zoomLevelOne.firstElipse.semiMinorAxis,
-                    semiMajorAxis: plane.zoomLevelOne.firstElipse.semiMajorAxis,
-                    material: plane.zoomLevelOne.firstElipse.color,
-                    position: plane.position
-                  }">
-    </ac-ellipse-desc>
-    <ac-ellipse-desc props="{
-                    semiMinorAxis: plane.zoomLevelOne.secondElipse.semiMinorAxis,
-                    semiMajorAxis: plane.zoomLevelOne.secondElipse.semiMajorAxis,
-                    material: plane.zoomLevelOne.secondElipse.color,
-                    position: plane.position
-                  }">
-    </ac-ellipse-desc>
-    <ac-ellipse-desc props="{
-                    semiMinorAxis: plane.zoomLevelOne.thirdElipse.semiMinorAxis,
-                    semiMajorAxis: plane.zoomLevelOne.thirdElipse.semiMajorAxis,
-                    material: plane.zoomLevelOne.thirdElipse.color,
-                    position: plane.position
-                  }">
-    </ac-ellipse-desc>
-    <!--<ac-label-desc props="{-->
-                  <!--position: plane.position,-->
-                  <!--text: plane.name-->
-          <!--}">-->
-    <!--</ac-label-desc>-->
+    <app-zoom-level-one [plane]="plane"></app-zoom-level-one>
+    <app-zoom-level-two [plane]="plane"></app-zoom-level-two>
   </ac-layer>
 </ac-map>

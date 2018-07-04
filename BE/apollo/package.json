@@ -33,6 +33,7 @@
     "graphql-yoga": "^1.14.7",
     "ioredis": "^3.2.2",
     "pub-sub": "^0.1.13",
+    "redis": "^2.8.0",
     "reflect-metadata": "^0.1.12",
     "subscriptions-transport-ws": "^0.9.9",
     "ts-graphql-plugin": "^1.1.2",
