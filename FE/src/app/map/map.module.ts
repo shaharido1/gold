@@ -7,6 +7,7 @@ import { MapComponent } from './components/mapComponent/map.component';
 import { AngularCesiumModule } from 'angular-cesium';
 import { ZoomLevelOneComponent } from './components/zoom-level-one/zoom-level-one.component';
 import { ZoomLevelTwoComponent } from './components/zoom-level-two/zoom-level-two.component';
+import { MapProviderComponent } from './components/map-provider/map-provider.component';
 
 
 
@@ -14,7 +15,8 @@ import { ZoomLevelTwoComponent } from './components/zoom-level-two/zoom-level-tw
   declarations: [
     MapComponent,
     ZoomLevelOneComponent,
-    ZoomLevelTwoComponent
+    ZoomLevelTwoComponent,
+    MapProviderComponent
   ],
   imports: [
     CommonModule,
