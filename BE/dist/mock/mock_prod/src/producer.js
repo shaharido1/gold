@@ -1,23 +1,41 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const rabbit_1 = require("../../../shared/rabbit/rabbit");
-const mockDataGeneretor_1 = require("./mockDataGeneretor/mockDataGeneretor");
 const configHandler_1 = require("../../../shared/configSetup/configHandler");
 const config_filePath_1 = require("../config/config.filePath");
-class Producer {
-    constructor() {
-        this.config = new configHandler_1.ConfigHandler(config_filePath_1.ConfigFileLocation).finalConfig;
-        this.rabbitAdapter = new rabbit_1.RabbitAdapter(this.config.rabbitConfig);
-        this.init();
+const redis_1 = require("../../../shared/redis/redis");
+const Qtypes_1 = require("./model/Qtypes");
+class MockProducer {
+    constructor(QueueType, timeToRepeat) {
+        this.config = new configHandler_1.ConfigHandler(config_filePath_1.configFileLocation).finalConfig;
+        this.queueTypeTest(QueueType);
+        this.logesHandler();
+        this.init(timeToRepeat);
     }
-    init() {
-        this.rabbitAdapter.initConnection().then(() => {
-            setInterval(() => {
-                const batch = mockDataGeneretor_1.MockDataGeneretor.createBatch(this.config.config_batchNumber);
-                this.rabbitAdapter.sendToQueue(batch);
-            }, this.config.config_batchNumber / 10);
+    queueTypeTest(QueueType) {
+        if (QueueType === Qtypes_1.QueueTipe.rabbit) {
+            this.QType = Qtypes_1.QueueTipe.rabbit;
+            this.rabbitAdapter = new rabbit_1.RabbitAdapter(this.config.rabbitConfig);
+        }
+        else if (QueueType === Qtypes_1.QueueTipe.redis) {
+            this.QType = Qtypes_1.QueueTipe.redis;
+            this.redisAdapter = new redis_1.RedisAdapter(this.config.redisConfig);
+        }
+    }
+    logesHandler() {
+        // todo finish loggerHandler
+        // const loggerSetup = { name: 'producer', path: __dirname };
+        // this.loggerHandler = new LoggerHandler(loggerSetup);
+        // this.loggerHandler.loggerWrite(levels.TRACE, 'producer starting to work');
+    }
+    init(timeToRepeat) {
+        return this.rabbitAdapter.initConnection();
+    }
+    generateToQueue(obs) {
+        obs.subscribe(data => {
+            this.rabbitAdapter.sendToQueue(data);
         });
     }
 }
-exports.Producer = Producer;
+exports.MockProducer = MockProducer;
 //# sourceMappingURL=producer.js.map

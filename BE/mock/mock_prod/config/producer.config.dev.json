@@ -6,5 +6,5 @@
     "config_rabbitUser": "guest",
     "config_rabbitPassword": "guest"
   },
-  "config_batchNumber": 1000
+  "config_batchNumber": 1
 }

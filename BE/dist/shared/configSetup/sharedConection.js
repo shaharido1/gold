@@ -1,9 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const bodyParser = require("body-parser");
-const express_1 = require("express");
-const cors_1 = require("cors");
-const configHandler_1 = require("./configHandler");
+const express = require("express");
 exports.appConfig = {
     config_Port: '5000',
     config_Host: 'localhost'
@@ -12,13 +10,12 @@ class SharedServices {
     constructor() {
         // this.logService = new LogHandler;
         // this.testHandler = new testHandler;
-        this.configHandler = new configHandler_1.ConfigHandler;
+        // this.configHandler = new ConfigHandler;
     }
     initConnection() {
         return new Promise((resolve, reject) => {
-            this.app = express_1.default();
+            this.app = express();
             const port = exports.appConfig.config_Port;
-            this.app.use(cors_1.default());
             this.app.use(bodyParser.json());
             this.app.use(bodyParser.urlencoded({ extended: true }));
             this.app.listen(port, () => {
@@ -27,7 +24,7 @@ class SharedServices {
         });
     }
     initConfigHandler(path) {
-        return this.configHandler.getConfig(path);
+        // return this.configHandler.getConfig(path);
     }
     initHandlers() {
         // return new Promise((resolve, reject) => {

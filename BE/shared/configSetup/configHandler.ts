@@ -1,14 +1,16 @@
 import { PathLike, readFileSync } from 'fs';
 import * as path from 'path';
+import { ConfigFileLocation } from './configFileLocation';
 
 
 export class ConfigHandler {
   public finalConfig: any;
-  public environmentVariables: any;
+  private environmentVariables: any;
+  public environmentMode: any;
 
-  constructor(ConfigFileLocation, configInitial = 'config_') {
+  constructor(configFileLocation: ConfigFileLocation, configInitial = 'config_') {
     this.environmentVariables = this.getEnvironmentVariables(configInitial);
-    const configPath = this.resolveConfigFileLocation(ConfigFileLocation);
+    const configPath = this.resolveConfigFileLocation(configFileLocation);
     this.getConfig(configPath)
   }
 
@@ -23,21 +25,21 @@ export class ConfigHandler {
     return envConfig;
   }
 
-  private resolveConfigFileLocation(ConfigFileLocation) {
+  private resolveConfigFileLocation(configFileLocation) {
     let configPath;
     // todo change to environment_mode
-    const env = this.environmentVariables.config_env;
-    switch (env) {
+    this.environmentMode = this.environmentVariables.config_env;
+    switch (this.environmentMode) {
       case 'prod':
-        configPath = ConfigFileLocation.CONFIG_PATH_PROD;
+        configPath = configFileLocation.CONFIG_PATH_PROD;
         break;
       case 'test':
-        configPath = path.join(__dirname, ConfigFileLocation.CONFIG_PATH_TEST);
+        configPath = path.join(__dirname, configFileLocation.CONFIG_PATH_TEST);
         break;
       case 'custom':
         configPath = process.env.configFileLocation;
         break;
-      default: configPath = path.join(__dirname, ConfigFileLocation.CONFIG_PATH_DEV);
+      default: configPath = path.join(__dirname, configFileLocation.CONFIG_PATH_DEV);
     }
     return configPath;
 

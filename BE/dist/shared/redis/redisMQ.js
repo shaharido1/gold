@@ -25,22 +25,23 @@ class RedisMqAdapter extends redis_1.RedisAdapter {
         });
     }
     assertQueue(qname) {
-        qname ? this.config.config_redisQueueName = qname : this.config.config_redisQueueName;
-        return new Promise((reoslve, reject) => {
+        if (qname !== undefined) {
+            this.config.config_redisQueueName = qname;
+        }
+        return new Promise((resolve, reject) => {
             this.client.exists(`rsmq:${this.config.config_redisQueueName}:Q`, (err, res) => {
                 if (res >= 1) {
-                    console.log(`Queue ${qname} already exist`);
-                    return reoslve();
+                    console.log(`Queue ${this.config.config_redisQueueName} already exist`);
+                    return resolve();
                 }
                 if (err) {
                     console.error(err);
                 }
                 else {
-                    console.log(`creating Queue ${this.config.config_redisQueueName}`);
                     this.rsmq.createQueue({ qname: this.config.config_redisQueueName })
                         .then(() => {
-                        console.log('Queue created!');
-                        return reoslve();
+                        console.log(`Queue ${this.config.config_redisQueueName} created!`);
+                        return resolve();
                     })
                         .catch(err => {
                         if (err) {
@@ -52,24 +53,22 @@ class RedisMqAdapter extends redis_1.RedisAdapter {
             });
         });
     }
-    sendMassage(message, numberOfRounds, totalNumberOfRounds) {
-        message = JSON.stringify(message);
-        const timeToWightToRedis = new Date().getTime();
-        this.rsmq.sendMessage({
-            qname: this.config.config_redisQueueName,
-            message
-        }, (err, resp) => {
-            if (resp) {
-                if (numberOfRounds % totalNumberOfRounds == 0) {
-                    console.log(`Time to write to redis: ${(new Date().getTime() - timeToWightToRedis) * 0.001} sec\n`);
+    sendMassage(message, qname = this.config.config_redisQueueName) {
+        console.log((qname));
+        return new Promise((resolve, reject) => {
+            this.rsmq.sendMessage({ qname, message: JSON.stringify(message) }, (err, res) => {
+                if (err) {
+                    console.log(err);
+                    return reject(err);
                 }
-            }
-            else if (err) {
-                console.log(err);
-            }
-            else {
-                console.log('error with no error message');
-            }
+                else if (res) {
+                    return resolve(res);
+                }
+                else {
+                    console.log('error with no error message');
+                    return reject();
+                }
+            });
         });
     }
 }

@@ -6,6 +6,6 @@ export interface RabbitConfig {
   config_rabbitUser : string;
   config_rabbitPassword : string;
   config_rabbitQueueName? : string;
-  config_persistent?: boolean;
+  config_persistentAndDurable?: boolean;
   config_queueOptions?: Options.Consume;
 }

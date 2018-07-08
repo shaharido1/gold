@@ -8,6 +8,7 @@
     "serve": "node dist/mock/mock_prod/src/server.js",
     "serve:watch": "nodemon dist/mock/mock_prod/src/server.js goldStarDevelopment",
     "start": "concurrently \"npm run build:watch\" \"npm run serve:watch\"",
+    "log": "",
     "start:prod": "concurrently \"npm run build\" \"npm run serve\"",
     "debug": "tsc -p ./tsconfig.debug.json",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
@@ -22,9 +23,12 @@
     "amqplib": "^0.5.2",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "bunyan": "^1.8.12",
     "cors": "^2.8.4",
+    "elasticsearch": "^15.0.0",
     "express": "^4.16.3",
     "node-fetch": "^2.1.2",
+    "rxjs": "^6.2.1",
     "uuid": "^3.2.1"
   },
   "devDependencies": {

@@ -12,6 +12,7 @@ class Enrich {
         this.init();
     }
     init() {
+        console.log(this.config);
         this.redis = new redis_1.RedisAdapter(this.config.redisConfig);
         this.worker = new redisMQ_worker_1.RedisMQWorkerAdapter(this.config.redisConfig.config_redisQueueName, this.config.redisConfig.config_redisHost);
         this.measureTime = new measeuerTime_1.MeasureTime();

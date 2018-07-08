@@ -1,4 +1,10 @@
-import { Producer } from './producer';
+import { MockProducer } from './producer';
+import { MockDataGenerator } from './mockDataGeneretor/mockDataGeneretor';
 
-const producer = new Producer();
+const QueueType = 'rabbit'; // 'redis';
+const number = 100;
 
+const producer = new MockProducer(QueueType, number);
+producer.init(3).then(() => {
+  producer.generateToQueue(MockDataGenerator.generateMockData())
+});

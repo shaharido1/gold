@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = require("fs");
 const path = require("path");
 class ConfigHandler {
-    constructor(ConfigFileLocation, configInitial = 'config_') {
+    constructor(configFileLocation, configInitial = 'config_') {
         this.environmentVariables = this.getEnvironmentVariables(configInitial);
-        const configPath = this.resolveConfigFileLocation(ConfigFileLocation);
+        const configPath = this.resolveConfigFileLocation(configFileLocation);
         this.getConfig(configPath);
     }
     getEnvironmentVariables(configInitial) {
@@ -18,21 +18,21 @@ class ConfigHandler {
         });
         return envConfig;
     }
-    resolveConfigFileLocation(ConfigFileLocation) {
+    resolveConfigFileLocation(configFileLocation) {
         let configPath;
         // todo change to environment_mode
-        const env = this.environmentVariables.config_env;
-        switch (env) {
+        this.environmentMode = this.environmentVariables.config_env;
+        switch (this.environmentMode) {
             case 'prod':
-                configPath = ConfigFileLocation.CONFIG_PATH_PROD;
+                configPath = configFileLocation.CONFIG_PATH_PROD;
                 break;
             case 'test':
-                configPath = path.join(__dirname, ConfigFileLocation.CONFIG_PATH_TEST);
+                configPath = path.join(__dirname, configFileLocation.CONFIG_PATH_TEST);
                 break;
             case 'custom':
                 configPath = process.env.configFileLocation;
                 break;
-            default: configPath = path.join(__dirname, ConfigFileLocation.CONFIG_PATH_DEV);
+            default: configPath = path.join(__dirname, configFileLocation.CONFIG_PATH_DEV);
         }
         return configPath;
     }

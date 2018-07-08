@@ -1,6 +1,5 @@
 import * as bodyParser from 'body-parser';
-import express from 'express';
-import cors from 'cors';
+import * as express from 'express';
 import { ConfigHandler } from './configHandler';
 import { Application } from 'express-serve-static-core';
 
@@ -19,7 +18,7 @@ export class SharedServices {
   constructor() {
     // this.logService = new LogHandler;
     // this.testHandler = new testHandler;
-    this.configHandler = new ConfigHandler;
+    // this.configHandler = new ConfigHandler;
   }
 
 
@@ -27,7 +26,6 @@ export class SharedServices {
     return new Promise((resolve, reject) => {
       this.app = express();
       const port = appConfig.config_Port;
-      this.app.use(cors());
       this.app.use(bodyParser.json());
       this.app.use(bodyParser.urlencoded({ extended: true }));
       this.app.listen(port, () => {
@@ -37,7 +35,7 @@ export class SharedServices {
   }
 
   initConfigHandler(path) {
-    return this.configHandler.getConfig(path);
+    // return this.configHandler.getConfig(path);
   }
 
   initHandlers() {

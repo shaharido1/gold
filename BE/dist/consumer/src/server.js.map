@@ -1,1 +1,1 @@
-{"version":3,"file":"server.js","sourceRoot":"","sources":["../../../consumer/src/server.ts"],"names":[],"mappings":";;AAAA,yCAAsC;AAEtC,MAAM,QAAQ,GAAG,IAAI,mBAAQ,EAAE,CAAC","sourcesContent":["import { Consumer } from './consumer';\r\n\r\nconst consumer = new Consumer();\r\n\r\n\r\n"]}
+{"version":3,"file":"server.js","sourceRoot":"","sources":["../../../consumer/src/server.ts"],"names":[],"mappings":";;AAAA,yCAAsC;AAEtC,MAAM,QAAQ,GAAG,IAAI,mBAAQ,EAAE,CAAC","sourcesContent":["import { Consumer } from './consumer';\n\nconst consumer = new Consumer();\n\n\n"]}

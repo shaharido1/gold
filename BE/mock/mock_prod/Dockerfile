@@ -10,4 +10,3 @@ RUN npm install --production
 
 CMD node mock/mock_prod/src/server.js
 
-

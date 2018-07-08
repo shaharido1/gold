@@ -6,26 +6,15 @@ const redisListenEvents_1 = require("./model/redisListenEvents");
 class RedisAdapter {
     constructor(redisConfig) {
         this.config = redisConfig || redis_config_defalt_1.redisDefaultConfig;
-        // todo chane error listener
-        // this.setErrorListener();
     }
     initClientConnection() {
         return new Promise((resolve, reject) => {
-            const tryToConnect = setInterval(() => {
-                this.redisConnect()
-                    .then(() => {
-                    clearInterval(tryToConnect);
-                    this.multi = this.client.multi();
-                    console.log('redis Created');
-                    return resolve(this.client);
-                })
-                    .catch(err => err);
-            }, this.config.reconnect);
-        });
-    }
-    setErrorListener() {
-        this.client.on(redisListenEvents_1.RedisListenEvents.ERROR, (err) => {
-            console.log(err);
+            this.redisConnect().then();
+            this.client.on(redisListenEvents_1.RedisListenEvents.READY, () => {
+                this.multi = this.client.multi();
+                console.log('redis is ready');
+                return resolve(this.client);
+            });
         });
     }
     redisConnect() {
@@ -34,27 +23,29 @@ class RedisAdapter {
                 port: this.config.config_redisPort,
                 host: this.config.config_redisHost,
                 retry_strategy: (options) => {
-                    if (options.error && options.error.code === 'ECONNREFUSED') {
-                        // End reconnecting on a specific error and flush all commands with
-                        // a individual error
-                        return new Error('The server refused the connection');
+                    // console.log(options);
+                    if (options.error && options.error.code === redisListenEvents_1.RedisConnectionSetup.ECONNREFUSED) {
+                        console.log('connection refused');
                     }
-                    if (options.total_retry_time > 1000 * 60 * 60) {
-                        // End reconnecting after a specific timeout and flush all commands
-                        // with a individual error
+                    if (options.total_retry_time > Number(redisListenEvents_1.RedisConnectionSetup.TOTAL_RETRY_TIMES)) {
                         return new Error('Retry time exhausted');
                     }
-                    if (options.attempt > 10) {
-                        // End reconnecting with built in error
-                        return undefined;
-                    }
-                    // reconnect after
-                    return (3000);
+                    return (Number(redisListenEvents_1.RedisConnectionSetup.RETRY_TIME));
                 }
             });
-            this.client.on(redisListenEvents_1.RedisListenEvents.READY, () => {
-                return resolve();
-            });
+            this.createListeners();
+            resolve();
+        });
+    }
+    createListeners() {
+        this.client.on(redisListenEvents_1.RedisListenEvents.ERROR, (err) => {
+            console.error(err);
+        });
+        this.client.on(redisListenEvents_1.RedisListenEvents.RECONNECTING, () => {
+            console.log('Connection reestablished to redis');
+        });
+        this.client.on(redisListenEvents_1.RedisListenEvents.CONNECT, () => {
+            console.log('redis is connecting');
         });
     }
     sendToQueue(list, key) {

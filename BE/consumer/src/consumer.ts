@@ -1,17 +1,18 @@
 import { ConsumerConfig } from './model/consumer.config.interface';
-import { RabbitAdapter } from '../../shared/rabbit/rabbit';
 import { RedisMqAdapter } from '../../shared/redis/redisMQ';
 import { ConfigHandler } from '../../shared/configSetup/configHandler';
 import { TimeSetup } from '../../shared/measureTime/TimeSetup';
 import { MeasureTime } from '../../shared/measureTime/measeuerTime';
-import { ConfigFileLocation } from '../config/config.filePath';
+import { configFileLocation } from '../config/config.filePath';
+import { Message } from 'amqplib';
+import { RabbitConsumer } from '../../shared/rabbit/rabbitConsumer';
 
 
 export class Consumer {
 
   private config: ConsumerConfig;
 
-  private rabbitAdapter: RabbitAdapter;
+  private rabbitConsumer: RabbitConsumer;
   private redisAdapter: RedisMqAdapter;
   private rabbitStartTime: number;
   private timeSetup: TimeSetup = {
@@ -21,35 +22,73 @@ export class Consumer {
     totalTime: 0
   };
   private measureTime: MeasureTime = new MeasureTime();
-
+  subscriptions = [];
 
   constructor() {
-    this.config = <ConsumerConfig>new ConfigHandler(ConfigFileLocation).finalConfig;
-    this.rabbitAdapter = new RabbitAdapter(this.config.rabbitConfig);
+    this.config = <ConsumerConfig>new ConfigHandler(configFileLocation).finalConfig;
+    this.rabbitConsumer = new RabbitConsumer(this.config.rabbitConfig);
     this.redisAdapter = new RedisMqAdapter(this.config.redisConfig);
     this.init();
   }
 
 
-  init() {
-    Promise.all([this.redisAdapter.initRMSQ(), this.rabbitAdapter.initConnection()]).then((connections) => {
+  async init() {
+    Promise.all([this.redisAdapter.initRMSQ(), this.rabbitConsumer.getChannel()]).then(() => {
       this.rabbitStartTime = new Date().getTime();
-      this.rabbitAdapter.consumeFromQueue().then(this.doStuff.bind(this));
-    }).catch(err => err);
+      const subscription = this.rabbitConsumer.clientConsume()
+          .subscribe(message => {
+            this.doStuff(message)
+                .then(() => {
+                  try {
+                    console.log('ack');
+                    this.rabbitConsumer.ack(message);
+                  }
+                  catch (e) {
+                    console.log('failed ack');
+                    console.log(e);
+                  }
+                })
+                .catch((e) => {
+                  console.log(e);
+                  console.log('canceling..');
+                  this.rabbitConsumer.cancel(message);
+                });
+          }, err => console.log(err));
+      this.subscriptions.push(subscription);
+    }).catch(err => Error(err));
   }
 
-  doStuff(data) {
-    const rabbitEnd = new Date().getTime();
-    const rawData = data.content.toString();
-    const parsedData = JSON.parse(rawData);
-    if (this.rabbitStartTime > parsedData.rabbitStart) {
-      console.log('pass');
-    }
-    else {
-      this.measureTime.showMeasureTime(rabbitEnd, parsedData.rabbitStart, this.timeSetup, this.config);
-      const messageWithTime = this.measureTime.timeWrapper(parsedData.message);
-      this.redisAdapter.sendMassage(messageWithTime, this.timeSetup, this.config.config_totalNumberOfRounds);
-      this.redisAdapter.sendToQueue(parsedData.message, this.config.config_keyId).then();
-    }
+
+  doStuff(msg): Promise<Message> {
+    return new Promise((resolve, reject) => {
+    //   return resolve();
+    // })
+      const rabbitEnd = new Date().getTime();
+      const rawData = msg.content.toString();
+      const parsedData = JSON.parse(rawData);
+      if (this.rabbitStartTime > parsedData.rabbitStart) {
+        console.log('pass');
+        return resolve(msg);
+      }
+      else {
+        this.measureTime.showMeasureTime(rabbitEnd, parsedData.rabbitStart, this.timeSetup, this.config);
+        const messageWithTime = this.measureTime.timeWrapper(parsedData.message);
+        const timeToWightToRedis = new Date().getTime();
+        console.log(messageWithTime);
+        this.redisAdapter.sendMassage(messageWithTime)
+            .then(() => {
+              if (this.timeSetup.numberOfRounds % this.config.config_totalNumberOfRounds == 0) {
+                console.log(`Time to write to redis: ${(new Date().getTime() - timeToWightToRedis) * 0.001} sec\n`);
+              }
+              return resolve(msg);
+            }).catch(err => {
+          console.log(err);
+          // todo error log handling etc....
+          return reject(msg);
+        });
+      }
+    });
   }
+
+
 }

@@ -6,6 +6,6 @@ exports.rabbitDefaultConfig = {
     config_rabbitUser: 'guest',
     config_rabbitPassword: 'guest',
     config_rabbitQueueName: 'q',
-    config_persistent: true
+    config_persistentAndDurable: true
 };
 //# sourceMappingURL=rabbit.config.default.js.map

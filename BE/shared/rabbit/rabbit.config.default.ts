@@ -6,5 +6,5 @@ export const rabbitDefaultConfig : RabbitConfig = {
   config_rabbitUser: 'guest',
   config_rabbitPassword: 'guest',
   config_rabbitQueueName: 'q',
-  config_persistent: true
+  config_persistentAndDurable: true
 }
