@@ -1,1 +1,1 @@
-{"version":3,"file":"server.js","sourceRoot":"","sources":["../../../consumer/src/server.ts"],"names":[],"mappings":";;AAAA,yCAAsC;AAEtC,MAAM,QAAQ,GAAG,IAAI,mBAAQ,EAAE,CAAC","sourcesContent":["import { Consumer } from './consumer';\n\nconst consumer = new Consumer();\n\n\n"]}
+{"version":3,"file":"server.js","sourceRoot":"","sources":["../../../consumer/src/server.ts"],"names":[],"mappings":";;AAAA,uDAAoD;AAEpD,MAAM,QAAQ,GAAG,IAAI,iCAAe,EAAE,CAAC","sourcesContent":["import { ValidateNRepack } from './validateNRepack';\n\nconst consumer = new ValidateNRepack();\n\n\n"]}

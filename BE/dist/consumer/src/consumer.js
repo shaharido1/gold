@@ -8,7 +8,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const redisMQ_1 = require("../../shared/redis/redisMQ");
 const configHandler_1 = require("../../shared/configSetup/configHandler");
 const measeuerTime_1 = require("../../shared/measureTime/measeuerTime");
 const config_filePath_1 = require("../config/config.filePath");
@@ -25,12 +24,13 @@ class Consumer {
         this.subscriptions = [];
         this.config = new configHandler_1.ConfigHandler(config_filePath_1.configFileLocation).finalConfig;
         this.rabbitConsumer = new rabbitConsumer_1.RabbitConsumer(this.config.rabbitConfig);
-        this.redisAdapter = new redisMQ_1.RedisMqAdapter(this.config.redisConfig);
+        // this.redisAdapter = new RedisMqAdapter(this.config.redisConfig);
         this.init();
     }
     init() {
         return __awaiter(this, void 0, void 0, function* () {
-            Promise.all([this.redisAdapter.initRMSQ(), this.rabbitConsumer.getChannel()]).then(() => {
+            // Promise.all([this.redisAdapter.initRMSQ(), this.rabbitConsumer.getChannel()]).then(() => {
+            Promise.all([this.rabbitConsumer.getChannel()]).then(() => {
                 this.rabbitStartTime = new Date().getTime();
                 const subscription = this.rabbitConsumer.clientConsume()
                     .subscribe(message => {
@@ -57,33 +57,34 @@ class Consumer {
     }
     doStuff(msg) {
         return new Promise((resolve, reject) => {
-            //   return resolve();
-            // })
-            const rabbitEnd = new Date().getTime();
-            const rawData = msg.content.toString();
-            const parsedData = JSON.parse(rawData);
-            if (this.rabbitStartTime > parsedData.rabbitStart) {
-                console.log('pass');
-                return resolve(msg);
-            }
-            else {
-                this.measureTime.showMeasureTime(rabbitEnd, parsedData.rabbitStart, this.timeSetup, this.config);
-                const messageWithTime = this.measureTime.timeWrapper(parsedData.message);
-                const timeToWightToRedis = new Date().getTime();
-                console.log(messageWithTime);
-                this.redisAdapter.sendMassage(messageWithTime)
-                    .then(() => {
-                    if (this.timeSetup.numberOfRounds % this.config.config_totalNumberOfRounds == 0) {
-                        console.log(`Time to write to redis: ${(new Date().getTime() - timeToWightToRedis) * 0.001} sec\n`);
-                    }
-                    return resolve(msg);
-                }).catch(err => {
-                    console.log(err);
-                    // todo error log handling etc....
-                    return reject(msg);
-                });
-            }
+            // setTimeout({},3000);
+            return resolve();
         });
+        //   const rabbitEnd = new Date().getTime();
+        //   const rawData = msg.content.toString();
+        //   const parsedData = JSON.parse(rawData);
+        //   if (this.rabbitStartTime > parsedData.rabbitStart) {
+        //     console.log('pass');
+        //     return resolve(msg);
+        //   }
+        //   else {
+        //     this.measureTime.showMeasureTime(rabbitEnd, parsedData.rabbitStart, this.timeSetup, this.config);
+        //     const messageWithTime = this.measureTime.timeWrapper(parsedData.message);
+        //     const timeToWightToRedis = new Date().getTime();
+        //     console.log(messageWithTime);
+        //     this.redisAdapter.sendMassage(messageWithTime)
+        //         .then(() => {
+        //           if (this.timeSetup.numberOfRounds % this.config.config_totalNumberOfRounds == 0) {
+        //             console.log(`Time to write to redis: ${(new Date().getTime() - timeToWightToRedis) * 0.001} sec\n`);
+        //           }
+        //           return resolve(msg);
+        //         }).catch(err => {
+        //       console.log(err);
+        //       // todo error log handling etc....
+        //       return reject(msg);
+        //     });
+        //   }
+        // });
     }
 }
 exports.Consumer = Consumer;

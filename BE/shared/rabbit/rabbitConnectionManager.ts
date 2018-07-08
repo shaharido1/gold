@@ -10,23 +10,22 @@ export class RabbitConnectionManager {
   private rabbitChannels: Array<Channel> = [];
   private workingOnConnection: boolean = false;
 
-  constructor(rabbitConfig: RabbitConfig, connection) {
+  constructor(rabbitConfig: RabbitConfig, connection?) {
     this.config = rabbitConfig || rabbitDefaultConfig;
     if (connection) {
       this.rabbitConnection = connection;
     }
+
   }
 
   private setUpListener() {
     this.rabbitConnection.on('error', () => {
-      this.rabbitConnection = undefined;
-      setTimeout(() => {
-        console.log('[rabbit]: trying to reconnect after an error');
-        this.assertConnection();
-      }, 1000);
+      console.log('[rabbit]: error');
+      this.reconnect();
     });
     this.rabbitConnection.on('close', () => {
       console.log('[rabbit]: connection closed');
+      this.reconnect();
     });
     this.rabbitConnection.on('blocked', () => {
       console.log('[rabbit]: connection blocked');
@@ -36,10 +35,20 @@ export class RabbitConnectionManager {
     });
   }
 
+  public reconnect() {
+    this.destroyConnection().then(() => {
+      setTimeout(() => {
+        console.log('[rabbit]: trying to reconnect after an error');
+        this.assertConnection();
+      }, 1000);
+    });
 
-  public createChannel(): Promise<Channel> {
+  }
+
+  public createChannel(isConsumerOrProducer): Promise<Channel> {
     return new Promise((resolve, reject) => {
       this.assertConnection().then(() => {
+
         this.rabbitConnection.createChannel()
             .then((channel) => {
               console.log('[rabbit]: channel crated');
@@ -56,8 +65,7 @@ export class RabbitConnectionManager {
     });
   }
 
-  private assertConnection(): Promise<Connection> {
-
+  public assertConnection(): Promise<Connection> {
     return new Promise((resolve, reject) => {
       if (this.rabbitConnection) {
         this.workingOnConnection = false;
@@ -72,7 +80,7 @@ export class RabbitConnectionManager {
         this.workingOnConnection = true;
         const { config_rabbitUser, config_rabbitPassword, config_rabbitHost, config_rabbitPort } = this.config;
         const connectionUrl = `amqp://${config_rabbitUser}:${config_rabbitPassword}@${config_rabbitHost}:${config_rabbitPort}`;
-        console.log('trying to connect to ' + connectionUrl);
+        console.log('[rabbit]: trying to connect to ' + connectionUrl);
         retryPromise(() => <any>connect(connectionUrl), 5000)
             .then((connection: Connection) => {
               console.log('[rabbit]: success creating connection' + connection);
@@ -90,12 +98,27 @@ export class RabbitConnectionManager {
 
   }
 
-  private async destroyConnection() {
-    if (this.rabbitConnection) {
-      await this.rabbitConnection.close();
-      this.rabbitChannels = [];
-      this.rabbitConnection = undefined;
-    }
+  private destroyConnection() {
+    return new Promise((resolve, rejects) => {
+      if (this.rabbitConnection) {
+        this.rabbitConnection.close()
+            .then(() => {
+              this.clean();
+              resolve();
+            })
+            .catch(err => {
+              console.log('destroy Connection dont work');
+              console.log(err);
+              this.clean();
+              resolve();
+
+            });
+      }
+    });
   }
 
+  clean() {
+    this.rabbitConnection = undefined;
+    this.rabbitChannels = [];
+  }
 }

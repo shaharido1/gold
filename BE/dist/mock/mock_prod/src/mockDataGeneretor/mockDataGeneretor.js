@@ -3,9 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const uuid_1 = require("uuid");
 const index_1 = require("rxjs/index");
 class MockDataGenerator {
-    constructor() {
-        this.repeated = 0;
-    }
     static createBatch(batchNumber) {
         let i = 0;
         const mockData = [];
@@ -23,18 +20,25 @@ class MockDataGenerator {
         };
         return JSON.stringify(js);
     }
-    static generateMockData(timeToRepeat) {
+    generateMockData(timeToRepeat, batchNumber) {
+        let repeated = 0;
+        this.killSourceMockData();
         return new index_1.Observable(observer => {
-            const interval = setInterval(() => {
-                if (++this.repeated === timeToRepeat) {
-                    clearInterval(interval);
+            this.interval = setInterval(() => {
+                if (++repeated === timeToRepeat) {
+                    this.killSourceMockData();
                 }
-                const batch = MockDataGenerator.createBatch(this.config.config_batchNumber);
-                console.log(batch);
+                const batch = MockDataGenerator.createBatch(batchNumber);
+                // console.log(batch);
                 observer.next(batch);
                 // }, this.config.config_batchNumber / 10);
             }, 2000);
         });
+    }
+    killSourceMockData() {
+        if (this.interval) {
+            clearInterval(this.interval);
+        }
     }
 }
 exports.MockDataGenerator = MockDataGenerator;

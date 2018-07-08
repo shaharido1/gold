@@ -4,7 +4,11 @@
     "config_rabbitPort": 5672,
     "config_rabbitQueueName": "task",
     "config_rabbitUser": "guest",
-    "config_rabbitPassword": "guest"
+    "config_rabbitPassword": "guest",
+    "config_queueOptions": {
+      "persistent": true
+    }
+
   },
   "config_batchNumber": 1
 }

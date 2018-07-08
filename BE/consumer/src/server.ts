@@ -1,5 +1,5 @@
-import { Consumer } from './consumer';
+import { ValidateNRepack } from './validateNRepack';
 
-const consumer = new Consumer();
+const consumer = new ValidateNRepack();
 
 

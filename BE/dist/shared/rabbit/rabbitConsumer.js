@@ -1,65 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const rabbit_config_default_1 = require("./rabbit.config.default");
 const index_1 = require("rxjs/index");
-const rabbitConnectionManager_1 = require("./rabbitConnectionManager");
-class RabbitConsumer {
-    constructor(rabbitConfig, connection) {
-        this.config = rabbitConfig || rabbit_config_default_1.rabbitDefaultConfig;
-        this.rabbitConnectionManager = new rabbitConnectionManager_1.RabbitConnectionManager(this.config, connection);
-    }
-    setUpListener() {
-        this.rabbitChannel.on('error', () => {
-            this.rabbitChannel = undefined;
-            this.consumeFromQueue();
-        });
-        this.rabbitChannel.on('close', () => {
-            console.log('connection closed');
-            this.rabbitChannel = undefined;
-            this.consumeFromQueue();
-        });
-        this.rabbitChannel.on('blocked', () => {
-            console.log('[rabbit]: connection blocked');
-        });
-        this.rabbitChannel.on('unblocked', () => {
-            console.log('[rabbit]: connection unblocked');
-        });
-    }
-    getChannel() {
-        return new Promise((resolve, reject) => {
-            if (this.rabbitChannel) {
-                return resolve(this.rabbitChannel);
-            }
-            this.rabbitConnectionManager.createChannel()
-                .then(channel => {
-                this.rabbitChannel = channel;
-                this.setUpListener();
-                return resolve(channel);
-            })
-                .catch(err => {
-                console.log(err);
-                console.log('fatal - can\'t create channel after multiple retries');
-                this.observer.error('fatal');
-                return reject(err);
-            });
-        });
-    }
-    assertQueue(queue = this.queue, options = this.queueOptions) {
-        return new Promise((resolve, reject) => {
-            this.getChannel()
-                .then(channel => {
-                channel.assertQueue(queue, options)
-                    .then((replay) => {
-                    console.log(`queue ${replay.queue} has ${replay.consumerCount} consumers, and ${replay.messageCount} messages`);
-                    return resolve(channel);
-                })
-                    .catch(err => {
-                    this.rabbitChannel = undefined;
-                    return this.assertQueue(queue, options);
-                });
-            });
-        });
-    }
+const rabbitChannel_1 = require("./rabbitChannel");
+class RabbitConsumer extends rabbitChannel_1.RabbitChannel {
     clientConsume(queue = this.config.config_rabbitQueueName, options = this.config.config_queueOptions) {
         this.queue = queue;
         this.queueOptions = options;
@@ -68,11 +11,32 @@ class RabbitConsumer {
             this.consumeFromQueue();
         });
     }
+    setUpListener() {
+        this.rabbitChannel.on('error', () => {
+            console.log('[rabbitChanel]: error');
+            this.closeChannel().then(() => {
+                this.consumeFromQueue();
+            });
+        });
+        this.rabbitChannel.on('close', () => {
+            console.log('[rabbitChanel]: connection closed');
+            this.closeChannel().then(() => {
+                this.consumeFromQueue();
+            });
+        });
+        this.rabbitChannel.on('blocked', () => {
+            console.log('[rabbit]: connection blocked');
+        });
+        this.rabbitChannel.on('unblocked', () => {
+            console.log('[rabbit]: connection unblocked');
+        });
+    }
     consumeFromQueue() {
         if (this.observer) {
             this.assertQueue()
                 .then(channel => {
                 console.log('[rabbit]: start consuming');
+                this.setUpListener();
                 channel.consume(this.queue, (msg) => {
                     this.observer.next(msg);
                 }, this.queueOptions)
@@ -80,10 +44,14 @@ class RabbitConsumer {
                     this.consumerTag = consumerTag;
                 })
                     .catch(err => {
-                    this.rabbitChannel = undefined;
+                    this.closeChannel();
                     console.log('[rabbit]: can\'t consume');
                     return this.consumeFromQueue();
                 });
+            })
+                .catch(err => {
+                console.log("fatal2");
+                this.observer.error("fatal!");
             });
         }
     }

@@ -1,5 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const consumer_1 = require("./consumer");
-const consumer = new consumer_1.Consumer();
+const validateNRepack_1 = require("./validateNRepack");
+const consumer = new validateNRepack_1.ValidateNRepack();
 //# sourceMappingURL=server.js.map
