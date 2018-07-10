@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const redis_1 = require("../../shared/redis/redis");
-const configHandler_1 = require("../../shared/configSetup/configHandler");
-const measeuerTime_1 = require("../../shared/measureTime/measeuerTime");
+const redis_1 = require("../../shared/src/modules/redis/redis");
+const configHandler_1 = require("../../shared/src/modules/configSetup/configHandler");
+const measeuerTime_1 = require("../../shared/src/modules/measureTime/measeuerTime");
 const config_enrich_default_1 = require("../config/config.enrich.default");
-const redisMQ_worker_1 = require("../../shared/redis/redisMQ-worker");
+const redisMQ_worker_1 = require("../../shared/src/modules/redis/redisMQ-worker");
 exports.DEV_ENVIRONMENT = 'goldStarDevelopment';
 class Enrich {
     constructor() {

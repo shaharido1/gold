@@ -8,6 +8,7 @@
     "sourceMap": true,
     "inlineSources" :true,
     "outDir": "dist",
+    "types": ["mocha"],
     "paths": {
       "@gold/shared/*": ["shared/dist/*"]
     }

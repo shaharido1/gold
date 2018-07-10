@@ -1,5 +1,5 @@
-import { RabbitConfig } from '../../../shared/interfase/rabitConfig';
-import { RedisConfig } from '../../../shared/interfase/redisConfig';
+import { RabbitConfig } from '../../../shared/src/interface/rabitConfig';
+import { RedisConfig } from '../../../shared/src/interface/redisConfig';
 
 export interface ConsumerConfig {
   rabbitConfig : RabbitConfig;

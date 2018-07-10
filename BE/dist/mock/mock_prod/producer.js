@@ -10,7 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path = __importStar(require("path"));
 const uuidv4 = require('uuid/v4');
 const rabbit_1 = require("../../../shared/rabbit");
-const configHandler_1 = require("../../../shared/configSetup/configHandler");
+const configHandler_1 = require("../../../shared/src/modules/configSetup/configHandler");
 class Producer {
     constructor() {
         const LocalPath = '../../../../src/config/config.json';

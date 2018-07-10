@@ -1,13 +1,19 @@
-import { GoldServer } from '../../../shared/goldServer/goldServer';
+import { GoldServer } from '../../../shared/src/modules/goldServer/goldServer';
 import { MockDataGenerator } from './mockDataGeneretor/mockDataGeneretor';
 import { configFileLocation } from '../config/config.filePath';
-import { Producer } from '../../../shared/producer/producer.abstract';
+import { Producer } from '../../../shared/src/modules/producer/producer';
 import { Observable } from 'rxjs/index';
+import { RabbitConnectionManager } from '../../../shared/src/modules/rabbit/rabbitConnectionManager';
+import { EventEmitter } from 'events';
 
 
 export class DataGenerator extends GoldServer {
+
   private source: Observable<any>;
   private mockDataGen: MockDataGenerator;
+  private connectionManager: RabbitConnectionManager;
+  private producer: Producer;
+  private eventListener: EventEmitter;
 
 
   constructor() {
@@ -17,21 +23,22 @@ export class DataGenerator extends GoldServer {
 
   init() {
     this.mockDataGen = new MockDataGenerator();
-    this.sendSourceToQueue();
+    this.connectionManager = new RabbitConnectionManager(this.config.rabbitConfig);
+    this.producer = new Producer(this.config.rabbitConfig, this.connectionManager);
+    this.producer.listener.subscribe(event => {
+      if (event = 'ready' || 'recover')
+        this.sendSourceToQueue();
+    });
 
   }
 
   sendSourceToQueue() {
-    const a = new Producer(this.config.rabbitConfig);
-    a.init()
-        .then(() => {
-          this.source = this.mockDataGen.generateMockData(Infinity, 10);
-          a.generateToQueue(this.source, this.config.rabbitConfig.config_rabbitQueueName, this.config.rabbitConfig.config_queueOptions)
-              .catch(() => {
-                this.mockDataGen.killSourceMockData();
-                this.sendSourceToQueue();
-              })
-        })
+    this.source = this.mockDataGen.generateMockData(Infinity, 10);
+    this.producer.generateToQueue(this.source, this.config.rabbitConfig.config_rabbitQueueName, this.config.rabbitConfig.config_queueOptions)
+        .catch(() => {
+          this.mockDataGen.killSourceMockData();
+          this.sendSourceToQueue();
+        });
   }
 
 

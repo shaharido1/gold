@@ -1,0 +1,1 @@
+{"version":3,"file":"configFileLocation.js","sourceRoot":"","sources":["../../../../../shared/src/modules/configSetup/configFileLocation.ts"],"names":[],"mappings":"","sourcesContent":["export interface ConfigFileLocation {\n  CONFIG_PATH_DEV: string;\n  CONFIG_PATH_PROD: string;\n  CONFIG_PATH_TEST: string;\n}\n"]}

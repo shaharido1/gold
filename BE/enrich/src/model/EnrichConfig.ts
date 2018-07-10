@@ -1,4 +1,4 @@
-import { RedisConfig } from '../../../shared/interfase/redisConfig';
+import { RedisConfig } from '../../../shared/src/interface/redisConfig';
 
 export interface EnrichConfig {
   redisConfig :  RedisConfig;

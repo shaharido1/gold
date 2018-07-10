@@ -1,12 +1,12 @@
 import * as RSMQWorker from 'rsmq-worker';
-import { RedisAdapter } from '../../shared/redis/redis';
-import { ConfigHandler } from '../../shared/configSetup/configHandler';
+import { RedisAdapter } from '../../shared/src/modules/redis/redis';
+import { ConfigHandler } from '../../shared/src/modules/configSetup/configHandler';
 import * as path from 'path';
 import { EnrichConfig } from './model/EnrichConfig';
-import { TimeSetup } from '../../shared/measureTime/TimeSetup';
-import { MeasureTime } from '../../shared/measureTime/measeuerTime';
+import { TimeSetup } from '../../shared/src/modules/measureTime/TimeSetup';
+import { MeasureTime } from '../../shared/src/modules/measureTime/measeuerTime';
 import { ConfigFileLocation } from '../config/config.enrich.default';
-import { RedisMQWorkerAdapter } from '../../shared/redis/redisMQ-worker';
+import { RedisMQWorkerAdapter } from '../../shared/src/modules/redis/redisMQ-worker';
 
 export const DEV_ENVIRONMENT = 'goldStarDevelopment';
 

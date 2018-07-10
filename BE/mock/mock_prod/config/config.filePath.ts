@@ -1,4 +1,4 @@
-import { ConfigFileLocation } from '../../../shared/configSetup/configFileLocation';
+import { ConfigFileLocation } from '../../../shared/src/modules/configSetup/configFileLocation';
 
 
 export const configFileLocation : ConfigFileLocation  = {

@@ -1,7 +1,7 @@
 import { Connection, Message } from 'amqplib';
-import { GoldServer } from '../../shared/goldServer/goldServer';
-import { Consumer } from '../../shared/consumer/consumer';
-import { RabbitConnectionManager } from '../../shared/rabbit/rabbitConnectionManager';
+import { GoldServer } from '../../shared/src/modules/goldServer/goldServer';
+import { Consumer } from '../../shared/src/modules/consumer/consumer';
+import { RabbitConnectionManager } from '../../shared/src/modules/rabbit/rabbitConnectionManager';
 import { configFileLocation } from '../config/config.filePath';
 
 export class ValidateNRepack extends GoldServer {
@@ -12,17 +12,22 @@ export class ValidateNRepack extends GoldServer {
 
   constructor() {
     super(configFileLocation);
-    this.connectionManager = new RabbitConnectionManager(this.config.rabbitConfig);
-    this.init2();
+    this.init();
 
   }
 
-  init2() {
-    this.connectionManager.assertConnection().then(connection => {
-      this.connection = connection;
-      this.consumer = new Consumer(this.config.rabbitConfig, connection);
-      this.consumer.consumeFromQueue(this.doStuff)
-    })
+  init() {
+    this.connectionManager = new RabbitConnectionManager(this.config.rabbitConfig);
+    this.consumer = new Consumer(this.config.rabbitConfig, this.connectionManager);
+    this.consumer.init()
+        .then(() => {
+          this.consumer.consumeFromQueue(this.doStuff);
+        })
+        .catch((err) => console.log(err));
+    // this.connectionManager.assertConnection().then(connection => {
+    //   this.connection = connection;
+    //   this.consumer.consumeFromQueue(this.doStuff);
+    // });
   }
 
 
