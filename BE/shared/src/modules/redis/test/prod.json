@@ -1,0 +1,7 @@
+{
+  "redisConfig": {
+    "config_redisHost": "10.10.10",
+    "config_redisPort": 6123,
+    "config_redisQueueName": "myName"
+  }
+}

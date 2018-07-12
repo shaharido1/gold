@@ -1,0 +1,47 @@
+{
+  "name": "enrichment",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc -p tsconfig.enrich.json -w",
+    "serve": "node dist/enrich/src/server.js",
+    "serve:watch": "nodemon dist/enrich/src/server.js goldStarDevelopment",
+    "start": "concurrently \"npm run build:watch\" \"npm run serve:watch\"",
+    "start:prod": "concurrently \"npm run build\" \"npm run serve\"",
+    "debug": "tsc -p ./tsconfig.debug.json",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "test": "jest --coverage --verbose",
+    "lint": "tslint -c tslint.json -p tsconfig.json --fix"
+  },
+  "private": true,
+  "precommit": [
+    "lint"
+  ],
+  "dependencies": {
+    "crudutils": "^1.0.0",
+    "nodemon": "^1.17.5",
+    "redis": "^2.8.0",
+    "rsmq": "^0.8.3",
+    "rsmq-promise": "^1.0.1",
+    "rsmq-worker": "^0.5.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.2.3",
+    "@types/node": "^10.1.4",
+    "@types/rsmq": "^0.3.27",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "concurrently": "^3.5.1",
+    "eslint": "4.0.0",
+    "eslint-config-airbnb-base": "11.2.0",
+    "eslint-plugin-import": "2.3.0",
+    "eslint-plugin-promise": "3.5.0",
+    "jest": "^23.0.1",
+    "mocha": "^3.4.2",
+    "morgan": "^1.9.0",
+    "supertest": "3.0.0",
+    "tsc": "^1.20150623.0",
+    "tslint": "^5.10.0",
+    "typescript": "^2.8.3"
+  }
+}

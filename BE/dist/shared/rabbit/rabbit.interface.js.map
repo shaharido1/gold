@@ -1,0 +1,1 @@
+{"version":3,"file":"rabbit.interface.js","sourceRoot":"","sources":["../../../shared/rabbit/rabbit.interface.ts"],"names":[],"mappings":"","sourcesContent":["import { Message } from 'amqplib/properties';\r\n\r\ninterface Nack {\r\n  message: Message\r\n  allUpTo?: boolean;\r\n  requeue?: boolean\r\n}\r\n\r\ntype Ack = (message: Message, allUpTo?: boolean) => void\r\n"]}

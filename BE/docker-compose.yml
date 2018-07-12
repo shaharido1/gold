@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+
+#
+  rabbitmqreal:
+    image: 'rabbitmq:3-management'
+    ports:
+      - 5679:5672
+      - 15679:15672
+      - 25679:25672
+
+#  prodfake:
+#    build: './mock/mock_prod/'
+#    environment:
+#      - config_rabbitHost=rabbitmqreal
+#      - config_rabbitPort=5679
+#      - config_batchNumber=100
+
+
+  consumer:
+    container_name: consumer
+    build: './consumer/'
+    environment:
+      - config_rabbitHost=10.0.75.1
+      - config_rabbitPort=5672
+      - config_redisHost=redis
+      - config_totalNumberOfRounds=100
+      - config_batchNumber=100
+
+  enrich:
+    build: './enrich'
+    environment:
+      - config_redisHost=redis
+      - config_totalNumberOfRounds=100
+      - config_batchNumber=100

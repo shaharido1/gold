@@ -4,7 +4,7 @@ const supertest = require("supertest");
 const {app, stop} = require("../server");
 const mongoose = require("mongoose");
 
-describe("test api", () => {
+describe("publisher api", () => {
 
   let request;
   let server;
@@ -16,8 +16,8 @@ describe("test api", () => {
   });
 
 
-  it("get test should return 200 OK", () => {
-    return request.get("/test")
+  it("get publisher should return 200 OK", () => {
+    return request.get("/publisher")
         .expect(200);
   });
   it("get test2 should return 404", () => {

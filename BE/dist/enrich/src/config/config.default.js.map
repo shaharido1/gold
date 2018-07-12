@@ -1,0 +1,1 @@
+{"version":3,"file":"config.default.js","sourceRoot":"","sources":["../../../../enrich/src/config/config.default.ts"],"names":[],"mappings":";;AAAa,QAAA,eAAe,GAAG,iCAAiC,CAAC;AACpD,QAAA,gBAAgB,GAAG,0BAA0B,CAAC","sourcesContent":["export const CONFIG_PATH_DEV = '../../../src/config/config.json';\r\nexport const CONFIG_PATH_PROD = './src/config/config.json';\r\n"]}
