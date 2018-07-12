@@ -1,0 +1,9 @@
+{
+  "redisConfig": {
+    "config_redisHost": "localhost",
+    "config_redisPort": 6379,
+    "config_redisQueueName": "myName",
+    "reconnect": 5000
+
+  }
+}

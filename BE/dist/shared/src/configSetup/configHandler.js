@@ -28,7 +28,7 @@ class ConfigHandler {
     /**
      * This is the foo function
      * @param configFileLocation This is the bar parameter
-     * @returns returns a string version of bar
+     * @returns returns startContainer string version of bar
      */
     resolveConfigFileLocation(configFileLocation) {
         let configPath;

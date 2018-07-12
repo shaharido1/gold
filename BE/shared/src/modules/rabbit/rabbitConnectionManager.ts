@@ -8,7 +8,7 @@ import { RabbitProducer } from './rabbitProducer';
 export enum CreatesType {
   PRODUCER = 'producer',
   CONSUMER = 'consumer'
-};
+}
 
 
 export class RabbitConnectionManager {
@@ -95,11 +95,11 @@ export class RabbitConnectionManager {
     });
   }
 
-  reCreateChannel() {
-    // todo push channels?
-    // check bind this..
-    return this.rabbitConnection.createChannel();
-  }
+  // reCreateChannel() {
+  //   // todo push channels?
+  //   // check bind this..
+  //   return this.rabbitConnection.createChannel();
+  // }
 
   public assertConnection(): Promise<Connection> {
     return new Promise((resolve, reject) => {

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.shared.json",
     "build:watch": "npm run build -- -w",
     "serve": "node dist/configServer/src/server.js",
     "serve:watch": "nodemon dist/configServer/src/server.js",
@@ -11,16 +11,16 @@
     "start:prod": "concurrently \"npm run build\" \"npm run serve\"",
     "debug": "tsc -p ./tsconfig.debug.json",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "test": "mocha --timeout 15000 -r ts-node/register src/**/*.spec.ts",
-    "lint": "tslint -c tslint.json -p tsconfig.json --fix"
+    "test": "mocha --timeout 15000  \"./src/modules/configuration/**/*spec.ts*\"",
+    "test:watch": "concurrently \"npm run build:watch\" \"npm run test\"",
+    "lint": "tslint -c tslint.json -p tsconfig.json --fix",
+    "testModule": "./test.sh"
   },
   "private": true,
   "precommit": [
     "lint"
   ],
   "dependencies": {
-    "@types/chai": "^4.1.4",
-    "@types/chai-json-schema": "^1.4.3",
     "amqplib": "^0.5.2",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
@@ -28,6 +28,7 @@
     "chai-json-schema": "^1.5.0",
     "cors": "^2.8.4",
     "debounce": "^1.1.0",
+    "dockerode": "^2.5.5",
     "elasticsearch": "^15.0.0",
     "express": "^4.16.3",
     "redis": "^2.8.0",
@@ -41,6 +42,9 @@
     "@types/axios": "^0.14.0",
     "@types/body-parser": "^1.17.0",
     "@types/bunyan": "^1.8.4",
+    "@types/chai": "^4.1.4",
+    "@types/chai-json-schema": "^1.4.3",
+    "@types/dockerode": "^2.5.5",
     "@types/elasticsearch": "^5.0.24",
     "@types/express": "^4.16.0",
     "@types/mocha": "^5.2.4",

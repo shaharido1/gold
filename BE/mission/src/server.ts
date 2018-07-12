@@ -12,6 +12,8 @@ import { dbConfig } from "./config/dbConfig";
 const app = express();
 const server = http.createServer(app);
 
+
+
 app.use(morgan("dev"));
 app.use(bodyParser.json({ limit: "10mb" }));
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));

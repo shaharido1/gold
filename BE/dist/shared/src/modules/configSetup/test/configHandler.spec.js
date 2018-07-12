@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const configHandler_1 = require("../configHandler");
 const configPathTest_1 = require("./configPathTest");
 const chai_1 = require("chai");
-const mocha_1 = require("mocha");
-mocha_1.describe('Testing config handler', () => {
+require("mocha");
+describe('Testing config handler', () => {
     let settings;
     (function (settings) {
         settings["object"] = "object";
@@ -17,14 +17,14 @@ mocha_1.describe('Testing config handler', () => {
         prod: { 'a': { '1': 'a.1', '2': 'a.2', '3': { '1': 'a.3.1', '2': 'a.3.2' } }, 'b': 'B' },
         custom: { 'o': 'O', 'h': 'H', 'a': 'A', 'd': 'D' }
     };
-    mocha_1.it('config handler - only file', (done) => {
+    it('config handler - only file', (done) => {
         process.env[settings.Environment] = undefined;
         const configHandler = new configHandler_1.ConfigHandler(configPathTest_1.configFileLocation);
         chai_1.expect(configHandler.finalConfig).to.be.a(settings.object);
         chai_1.expect(configHandler.finalConfig).to.deep.equal(testResults.dev);
         done();
     });
-    mocha_1.it('Test the object in test environment', (done) => {
+    it('Test the object in test environment', (done) => {
         process.env[settings.Environment] = configHandler_1.EnvironementMode.test;
         const configHandler = new configHandler_1.ConfigHandler(configPathTest_1.configFileLocation);
         chai_1.expect(configHandler.environmentMode).to.equal(configHandler_1.EnvironementMode.test);
@@ -32,7 +32,7 @@ mocha_1.describe('Testing config handler', () => {
         chai_1.expect(configHandler.finalConfig).to.deep.equal(testResults.test);
         done();
     });
-    mocha_1.it('Test the object in development environment', (done => {
+    it('Test the object in development environment', (done => {
         process.env[settings.Environment] = configHandler_1.EnvironementMode.dev;
         const configHandler = new configHandler_1.ConfigHandler(configPathTest_1.configFileLocation);
         chai_1.expect(configHandler.environmentMode).to.equal(configHandler_1.EnvironementMode.dev);
@@ -40,7 +40,7 @@ mocha_1.describe('Testing config handler', () => {
         chai_1.expect(configHandler.finalConfig).to.deep.equal(testResults.dev);
         done();
     }));
-    mocha_1.it('Test the object in production environment', (done => {
+    it('Test the object in production environment', (done => {
         process.env[settings.Environment] = configHandler_1.EnvironementMode.prod;
         const configHandler = new configHandler_1.ConfigHandler(configPathTest_1.configFileLocation);
         chai_1.expect(configHandler.environmentMode).to.equal(configHandler_1.EnvironementMode.prod);
@@ -48,7 +48,7 @@ mocha_1.describe('Testing config handler', () => {
         chai_1.expect(configHandler.finalConfig).to.deep.equal(testResults.prod);
         done();
     }));
-    mocha_1.it('Test the object in custom ', (done => {
+    it('Test the object in custom ', (done => {
         process.env[settings.Environment] = configHandler_1.EnvironementMode.custom;
         process.env['configFileLocation'] = settings.CustomPath;
         const configHandler = new configHandler_1.ConfigHandler(configPathTest_1.configFileLocation);

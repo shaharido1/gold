@@ -1,0 +1,23 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="debug test mission" type="mocha-javascript-test-runner" factoryName="Mocha" folderName="New Folder">
+    <node-interpreter>project</node-interpreter>
+    <node-options />
+    <working-directory>$PROJECT_DIR$/be/mission/src</working-directory>
+    <pass-parent-env>true</pass-parent-env>
+    <ui>bdd</ui>
+    <extra-mocha-options />
+    <test-kind>PATTERN</test-kind>
+    <test-pattern>**/*spec.ts*</test-pattern>
+    <method>
+      <option name="NpmBeforeRunTask" enabled="true">
+        <package-json value="$PROJECT_DIR$/BE/mission/package.json" />
+        <command value="run" />
+        <scripts>
+          <script value="watch-ts" />
+        </scripts>
+        <node-interpreter value="project" />
+        <envs />
+      </option>
+    </method>
+  </configuration>
+</component>

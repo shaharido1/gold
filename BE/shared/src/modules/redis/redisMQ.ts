@@ -1,8 +1,8 @@
-import { RedisAdapter } from './redis';
+import { RedisAdapter2 } from './redisAdapter';
 import * as RSMQPromise from 'rsmq-promise';
 import { RedisClient } from 'redis';
 
-export class RedisMqAdapter extends RedisAdapter {
+export class RedisMqAdapter extends RedisAdapter2 {
 
   client: RedisClient;
   rsmq: RSMQPromise;

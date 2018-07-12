@@ -6,6 +6,7 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "inlineSources" :true,
+    "declaration": true,
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
@@ -17,8 +18,8 @@
   },
   "include": [
     "src/**/*"
-  ],
-  "exclude": [
-    "src/test/**/*"
   ]
+//  "exclude": [
+//    "src/test/**/*"
+//  ]
 }

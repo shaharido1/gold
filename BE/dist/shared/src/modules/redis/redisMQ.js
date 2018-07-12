@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const redis_1 = require("./redis");
+const redisAdapter_1 = require("./redisAdapter");
 const RSMQPromise = require("rsmq-promise");
-class RedisMqAdapter extends redis_1.RedisAdapter {
+class RedisMqAdapter extends redisAdapter_1.RedisAdapter2 {
     // private unDeletedMsg: Array<string> = [];
     initRMSQ() {
         return new Promise((resolve, reject) => {

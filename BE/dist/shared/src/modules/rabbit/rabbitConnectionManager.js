@@ -10,7 +10,6 @@ var CreatesType;
     CreatesType["PRODUCER"] = "producer";
     CreatesType["CONSUMER"] = "consumer";
 })(CreatesType = exports.CreatesType || (exports.CreatesType = {}));
-;
 class RabbitConnectionManager {
     constructor(rabbitConfig, connection) {
         this.rabbitChannels = [];
@@ -83,11 +82,11 @@ class RabbitConnectionManager {
             });
         });
     }
-    reCreateChannel() {
-        // todo push channels?
-        // check bind this..
-        return this.rabbitConnection.createChannel();
-    }
+    // reCreateChannel() {
+    //   // todo push channels?
+    //   // check bind this..
+    //   return this.rabbitConnection.createChannel();
+    // }
     assertConnection() {
         return new Promise((resolve, reject) => {
             if (this.rabbitConnection) {

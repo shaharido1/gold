@@ -38,9 +38,9 @@
 //             const env: object = process.env;
 //             const envConfig : any = {};
 //             Object.keys(env)
-//                 .filter(key => key.includes('TES', 0))
-//                 .map(key => {
-//                   envConfig[key] = env[key];
+//                 .filter(entityId => entityId.includes('TES', 0))
+//                 .map(entityId => {
+//                   envConfig[entityId] = env[entityId];
 //                 });
 //             console.log('!@');
 //             console.log(this.defaultConfig);

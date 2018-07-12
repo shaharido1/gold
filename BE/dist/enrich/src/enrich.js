@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const redis_1 = require("../../shared/src/modules/redis/redis");
 const configHandler_1 = require("../../shared/src/modules/configSetup/configHandler");
 const measeuerTime_1 = require("../../shared/src/modules/measureTime/measeuerTime");
 const config_enrich_default_1 = require("../config/config.enrich.default");
 const redisMQ_worker_1 = require("../../shared/src/modules/redis/redisMQ-worker");
+const redisAdapter_1 = require("../../shared/src/modules/redis/redisAdapter");
 exports.DEV_ENVIRONMENT = 'goldStarDevelopment';
 class Enrich {
     constructor() {
@@ -13,7 +13,7 @@ class Enrich {
     }
     init() {
         console.log(this.config);
-        this.redis = new redis_1.RedisAdapter(this.config.redisConfig);
+        this.redis = new redisAdapter_1.RedisAdapter2(this.config.redisConfig);
         this.worker = new redisMQ_worker_1.RedisMQWorkerAdapter(this.config.redisConfig.config_redisQueueName, this.config.redisConfig.config_redisHost);
         this.measureTime = new measeuerTime_1.MeasureTime();
         this.timeSetup = {

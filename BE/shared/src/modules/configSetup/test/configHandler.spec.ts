@@ -1,7 +1,8 @@
 import { ConfigHandler, EnvironementMode } from '../configHandler';
 import { configFileLocation } from './configPathTest';
 import { expect } from 'chai';
-import { describe, it } from 'mocha'
+import 'mocha';
+
 
 describe('Testing config handler', () => {
   enum settings {

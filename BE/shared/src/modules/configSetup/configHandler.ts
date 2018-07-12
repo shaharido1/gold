@@ -10,8 +10,8 @@ export enum EnvironementMode {
 }
 
 export class ConfigHandler {
-  public finalConfig: any;
   private environmentVariables: any;
+  public finalConfig: any;
   public environmentMode: any;
 
   constructor(configFileLocation: ConfigFileLocation, configInitial = 'config_') {
@@ -33,14 +33,13 @@ export class ConfigHandler {
 
 
   /**
-   * This is the foo function
-   * @param configFileLocation This is the bar parameter
-   * @returns returns a string version of bar
+   * This is the config setup location file chosen
+   * @param EnvironementMode.custom config file location.
    */
+
   public resolveConfigFileLocation(configFileLocation) {
     let configPath;
     // todo change to config_env to environment_mode
-    console.log(this.environmentVariables.config_env);
     this.environmentMode = this.environmentVariables.config_env;
     switch (this.environmentMode) {
       case EnvironementMode.prod:

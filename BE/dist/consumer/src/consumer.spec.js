@@ -97,7 +97,7 @@
 //     done();
 //   });
 //
-//   it("should update field in mission from db", async (done) => {
+//   it("should update mainField in mission from db", async (done) => {
 //     expect.assertions(5);
 //     const missionAdded = await missionMethod.add(missionToAdd);
 //     expect(missionAdded._id).toBeDefined();
