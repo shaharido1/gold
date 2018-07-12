@@ -13,6 +13,7 @@ export class CrudMethod {
 
 
   add(entityToAdd: any): Promise<any>   {
+    console.log(entityToAdd)
     return new Promise((resolve, reject) => {
       try {
         this.mongoModel.create(entityToAdd, (err, entityReturn) => {

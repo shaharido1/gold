@@ -31,6 +31,7 @@ export class CrudRoutesManager {
   }
 
   add(req, res) {
+    console.log(req.body)
     this.crudMethods.add(req.body[this.entityName])
         .then(entity => res.status(200).send(entity))
         .catch(err => {
