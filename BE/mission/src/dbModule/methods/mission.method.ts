@@ -1,7 +1,6 @@
-import { CrudMethod } from "./crud.method";
+import { CrudMongoMethod } from '../../../../shared/src/modules/crudManager/crud.mongo.method';
 
-
-export class MissionMethods extends CrudMethod {
+export class MissionMethods extends CrudMongoMethod {
 
 }
 

@@ -4,10 +4,10 @@ import { levels, MyLoggerOptions } from './modle/logerOptions';
 import { LogToBunyan } from './log_to_bunyan';
 import * as elasticsearch from 'elasticsearch';
 
-export class LoggerHandler {
+export class LogService {
 
-  log: any;
-  sendToElastic;
+  log: any = (log) => console.log(log);
+  error: any = (err) => console.log(err);
 
   constructor(setup: MyLoggerOptions) {
     this.init(setup);

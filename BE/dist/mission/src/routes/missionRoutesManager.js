@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const crud_routesManager_1 = require("./crud.routesManager");
+const crud_routesManager_1 = require("../../../shared/src/modules/crudManager/crud.routesManager");
 class MissionRoutesManager extends crud_routesManager_1.CrudRoutesManager {
 }
 exports.MissionRoutesManager = MissionRoutesManager;

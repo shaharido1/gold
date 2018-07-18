@@ -9,7 +9,7 @@ export declare class Consumer {
     constructor(rabbitConfig: any, connectionManager: any);
     init(): Promise<void>;
     initChannels(numberOfChannels?: number): void;
-    consumeFromQueue(promiseFunction: (data: any) => Promise<any>, queue?: any, options?: Options.Consume): Promise<{}>;
+    consumeFromQueue(promiseFunction: (data) => Promise<any>, queue?: any, options?: Options.Consume): Promise<{}>;
     ack(msg: Message): void;
     cancel(msg: Message): Promise<{}>;
     destory(): void;

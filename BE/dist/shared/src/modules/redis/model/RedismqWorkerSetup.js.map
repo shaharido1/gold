@@ -1,1 +1,0 @@
-{"version":3,"file":"RedismqWorkerSetup.js","sourceRoot":"","sources":["../../../../../../shared/src/modules/redis/model/RedismqWorkerSetup.ts"],"names":[],"mappings":"","sourcesContent":["export interface RedismqWorkerSetup {\n  host: string;\n  interval: number;\n\n}"]}

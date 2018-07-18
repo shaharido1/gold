@@ -4,6 +4,7 @@ import { RabbitConfig } from '../../interface/rabitConfig';
 import { retryPromise } from '../utils/utils';
 import { RabbitConsumer } from './rabbitConsumer';
 import { RabbitProducer } from './rabbitProducer';
+import Bluebird = require('bluebird');
 
 export enum CreatesType {
   PRODUCER = 'producer',
@@ -72,20 +73,17 @@ export class RabbitConnectionManager {
               let queueHandler;
               switch (isConsumerOrProducer) {
                 case 'consumer':
-                  queueHandler = new RabbitConsumer(this.config, channel, this.reCreateChannel);
+                  queueHandler = new RabbitConsumer(this.config, channel);
                   this.consumers.push(queueHandler);
                   break;
                 case 'producer':
-                  queueHandler = new RabbitProducer(this.config, channel, this.reCreateChannel);
+                  queueHandler = new RabbitProducer(this.config, channel);
                   this.producers.push(queueHandler);
                   break;
               }
-              // todo push channels?
-              // this.rabbitChannels.push(channel);
               return resolve(queueHandler);
             })
             .catch(err => {
-
               console.log('[rabbitConnection]: can\'t create channel due to err - ' + err);
               this.destroyConnection().then(() => {
                 return this.spawnQueueWorker(isConsumerOrProducer);
@@ -94,12 +92,6 @@ export class RabbitConnectionManager {
       });
     });
   }
-
-  // reCreateChannel() {
-  //   // todo push channels?
-  //   // check bind this..
-  //   return this.rabbitConnection.createChannel();
-  // }
 
   public assertConnection(): Promise<Connection> {
     return new Promise((resolve, reject) => {

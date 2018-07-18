@@ -1,5 +1,6 @@
-import { missionMutations, missionQueries } from './mission.typesDef';
 import { GraphQLSchema } from 'graphql';
+import { missionQueries } from './resolvers/mission.query.resolvers';
+import { missionMutations } from './resolvers/mission.mutation.resolvers';
 
 
 

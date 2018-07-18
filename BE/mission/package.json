@@ -4,11 +4,10 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run serve",
-    "watch-ts": "tsc -w",
-    "build": "tsc",
-    "watch-node": "nodemon dist/server.js",
-    "serve": "concurrently \"npm run watch-ts\" \"npm run watch-node\"",
-    "debug": "tsc -p ./tsconfig.debug.json",
+    "build:watch": "npm run build -- -w",
+    "build": "tsc -p tsconfig.mission.json",
+    "serve": "nodemon ./dist/src/server.js",
+    "serve:watch": "concurrently  \"npm run build:watch\" \"npm run serve\"",
     "mongoDocker": "docker run --network host -v mongoVol:/data/db --name mongo mongo",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "mocha": "mocha \"./src/**/*spec.ts*\"",
@@ -21,6 +20,7 @@
     "lint"
   ],
   "dependencies": {
+    "body-parser": "^1.18.3",
     "crudutils": "^1.0.0",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
@@ -41,7 +41,6 @@
     "jest": "^23.0.1",
     "mocha": "^3.5.3",
     "supertest": "3.0.0",
-    "tsc": "^1.20150623.0",
     "tslint": "^5.10.0",
     "typescript": "^2.8.3"
   }

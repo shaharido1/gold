@@ -1,9 +1,8 @@
-import { LogService } from "../logs/logHandler";
 
 const mongoose = require("mongoose");
 
 export class DBManager {
-  static connect(Url, logService : LogService) {
+  static connect(Url, logService) {
 
     return new Promise((resolve, reject) => {
       mongoose.connect(Url);

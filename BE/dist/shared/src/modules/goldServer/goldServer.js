@@ -9,7 +9,7 @@ class GoldServer {
     logesHandler() {
         // todo finish loggerHandler
         // const loggerSetup = { name: 'producer', path: __dirname };
-        // this.loggerHandler = new LoggerHandler(loggerSetup);
+        // this.loggerHandler = new LogService(loggerSetup);
         // this.loggerHandler.loggerWrite(levels.TRACE, 'producer starting to work');
     }
 }

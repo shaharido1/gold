@@ -1,3 +1,3 @@
-import { CrudMethod } from "./crud.method";
-export declare class MissionMethods extends CrudMethod {
+import { CrudMongoMethod } from '../../../../shared/src/modules/crudManager/crud.mongo.method';
+export declare class MissionMethods extends CrudMongoMethod {
 }

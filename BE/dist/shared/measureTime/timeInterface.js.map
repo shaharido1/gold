@@ -1,1 +1,0 @@
-{"version":3,"file":"timeInterface.js","sourceRoot":"","sources":["../../../shared/measureTime/timeInterface.ts"],"names":[],"mappings":"","sourcesContent":["export interface TimeInterface {\n  avgTime : number;\n  numberOfRounds : number;\n  roundTime : number;\n  totalTime : number;\n}"]}

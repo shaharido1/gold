@@ -1,8 +1,4 @@
-import * as Dockerode from 'dockerode';
-import { Container } from 'dockerode';
-
-
-const docker = new Dockerode();
+import { Container, default as Dockerode } from 'dockerode';
 
 const ErrorMessage = {
   noSuchContainer: 'no such container'
@@ -13,12 +9,16 @@ export class DockerAdapter {
   name: string;
   containers: Array<Container> = [];
   defaultContainer;
+  private docker: Dockerode;
+  constructor() {
+    this.docker = new Dockerode();
+  }
 
   startContainer(imageName: string) {
     this.name = imageName + '-1';
     return new Promise((resolve, reject) => {
       this.ifExistDestroy().then(() => {
-        docker.createContainer({
+        this.docker.createContainer({
           Image: imageName,
           Tty: false,
           name: this.name,
@@ -43,7 +43,7 @@ export class DockerAdapter {
 
   ifExistDestroy(dockerName = this.name) {
     return new Promise((resolve, reject) => {
-      const container = docker.getContainer(dockerName);
+      const container = this.docker.getContainer(dockerName);
       container.remove({ force: true }).then(() => {
         resolve();
       }).catch((e) => {
@@ -60,7 +60,7 @@ export class DockerAdapter {
   }
 
   getContainerById(continerId = this.defaultContainer.id) {
-    return docker.getContainer(continerId);
+    return this.docker.getContainer(continerId);
   }
 
   killContainer(container = this.defaultContainer) {

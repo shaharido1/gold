@@ -5,6 +5,7 @@ import { Channel } from 'amqplib';
 import { RabbitConnectionManager } from './rabbitConnectionManager';
 import { Observable } from 'rxjs/index';
 import { Observer } from 'rxjs/internal/types';
+import { retryPromise } from '../utils/utils';
 
 export abstract class RabbitChannel {
   public rabbitConnectionManager: RabbitConnectionManager;
@@ -13,12 +14,10 @@ export abstract class RabbitChannel {
   protected queue: string;
   protected queueOptions: Options.Consume;
 
-  createChannel;
   public observer: Observer<any>;
 
-  public constructor(rabbitConfig: RabbitConfig, channel, createChannel) {
+  constructor(rabbitConfig: RabbitConfig, channel) {
     this.config = rabbitConfig || rabbitDefaultConfig;
-    this.createChannel = createChannel;
     this.rabbitChannel = channel;
   }
 
@@ -47,36 +46,12 @@ export abstract class RabbitChannel {
     return new Observable((observer) => this.observer = observer);
   }
 
-  public getChannel(): Promise<Channel> {
-    return new Promise((resolve, reject) => {
-      if (this.rabbitChannel) {
-        return resolve(this.rabbitChannel);
-      }
-      else {
-        this.createChannel
-            .then(channel => {
-              this.closeChannel();
-              this.rabbitChannel = channel;
-              // this.setUpListener();
-              return resolve(channel);
-            })
-            .catch(err => {
-              console.log(err);
-              console.log('fatal - can\'t create channel after multiple retries');
-              return reject(err);
-            });
-      }
-    });
-  }
-
-
   public recover(channel) {
-    // todo
     this.rabbitChannel = channel;
     this.observer.next('recover');
   }
 
-  public closeChannel() {
+  public async closeChannel() {
     return new Promise((resolve, reject) => {
       if (this.rabbitChannel) {
         this.rabbitChannel.close();
@@ -89,21 +64,16 @@ export abstract class RabbitChannel {
 
   public assertQueue(queue = this.queue, options = this.queueOptions): Promise<Channel> {
     return new Promise((resolve, reject) => {
-      this.getChannel()
-          .then(channel => {
-            channel.assertQueue(queue, options)
-                .then((replay: Replies.AssertQueue) => {
-                  console.log(`[rabbit]: queue ${replay.queue} has ${replay.consumerCount} consumers, and ${replay.messageCount} messages`);
-                  return resolve(channel);
-                })
-                .catch(err => {
-                  this.rabbitChannel = undefined;
-                  return this.assertQueue(queue, options);
-                });
-          }).catch(err => {
-        console.log('fatal');
-        return reject(err);
-      });
+      retryPromise(() => <any>this.rabbitChannel.assertQueue(queue, options), 5000)
+      // todo make sure that the error is "no such queue, and not -> channel problem
+          .then((replay: Replies.AssertQueue) => {
+            console.log(`[rabbit]: queue ${replay.queue} has ${replay.consumerCount} consumers, and ${replay.messageCount} messages`);
+            return resolve();
+          })
+          .catch(err => {
+            console.log("can't assert queue - fatal");
+            return reject()
+          });
     });
   }
 

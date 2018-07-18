@@ -1,1 +1,0 @@
-{"version":3,"file":"TimeSetup.js","sourceRoot":"","sources":["../../../shared/measureTime/TimeSetup.ts"],"names":[],"mappings":"","sourcesContent":["export interface TimeSetup {\r\n  avgTime : number;\r\n  roundTime : number;\r\n  totalTime : number;\r\n  numberOfRounds : number;\r\n}"]}

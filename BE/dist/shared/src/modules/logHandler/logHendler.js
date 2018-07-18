@@ -3,8 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const bunyan = require("bunyan");
 const logerOptions_1 = require("./modle/logerOptions");
 const elasticsearch = require("elasticsearch");
-class LoggerHandler {
+class LogService {
     constructor(setup) {
+        this.log = (log) => console.log(log);
+        this.error = (err) => console.log(err);
         this.init(setup);
     }
     init(setup) {
@@ -53,5 +55,5 @@ class LoggerHandler {
         }
     }
 }
-exports.LoggerHandler = LoggerHandler;
+exports.LogService = LogService;
 //# sourceMappingURL=logHendler.js.map

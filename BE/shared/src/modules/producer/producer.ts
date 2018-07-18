@@ -29,10 +29,17 @@ export class Producer {
     return this.rabbitProducer.sendToQueue;
   }
 
+  public recover() {
+    this.listener.subscribe((channelEvent) => {
+      if (channelEvent === 'recover') {
+        // return generateToQueue
+      }
+    })
+  }
+
   public generateToQueue(obs: Observable<any>, qname: string, options: Options.Consume) {
     return new Promise((resolve, reject) => {
       const subscriber = obs.subscribe(data => {
-        console.log('d?');
         if (!this.rabbitProducer.sendToQueue(data, qname, options)) {
           console.log('unsubscribe');
           subscriber.unsubscribe();

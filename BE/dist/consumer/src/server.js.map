@@ -1,1 +1,0 @@
-{"version":3,"file":"server.js","sourceRoot":"","sources":["../../../consumer/src/server.ts"],"names":[],"mappings":";;AAAA,uDAAoD;AAEpD,MAAM,QAAQ,GAAG,IAAI,iCAAe,EAAE,CAAC","sourcesContent":["import { ValidateNRepack } from './validateNRepack';\r\n\r\nconst consumer = new ValidateNRepack();\r\n\r\n\r\n"]}

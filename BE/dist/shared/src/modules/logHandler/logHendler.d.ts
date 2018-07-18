@@ -1,8 +1,8 @@
 import { levels, MyLoggerOptions } from './modle/logerOptions';
-export declare class LoggerHandler {
+export declare class LogService {
     log: any;
-    sendToElastic: any;
+    error: any;
     constructor(setup: MyLoggerOptions);
-    private init;
+    private init(setup);
     loggerWrite(level: levels, msg: string): void;
 }
