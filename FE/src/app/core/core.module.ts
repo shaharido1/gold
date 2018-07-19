@@ -1,23 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
-import { CoreReducer } from './store/core.reducer';
+import { coreReducer } from './store/core.reducer';
 import { coreFeatureKey } from './store/core.selectors';
 import { CoreComponent } from './components/core/core.component';
 
-
-
 @NgModule({
   declarations: [
-    CoreComponent
+    CoreComponent,
   ],
   imports: [
     CommonModule,
-    StoreModule.forFeature(coreFeatureKey, CoreReducer),
+    StoreModule.forFeature(coreFeatureKey, coreReducer),
   ],
   exports: [
-    CoreComponent
-  ]
+    CoreComponent,
+  ],
 })
 
 export class CoreModule {

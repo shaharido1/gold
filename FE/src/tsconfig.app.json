@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../tsconfig.fe.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "module": "es2015",
@@ -19,8 +19,7 @@
       "es2015.proxy",
       "es2015.reflect",
       "es2015.symbol",
-      "es2015.symbol.wellknown",
-      "esnext.asynciterable",
+      "es2015.symbol.wellknown"
     ]
   },
   "exclude": [

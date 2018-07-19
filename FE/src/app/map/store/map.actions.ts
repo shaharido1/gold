@@ -1,13 +1,11 @@
 import { Action } from '@ngrx/store';
 
 export enum MapActionTypes {
-  TEST = 'TEST'
+  TEST = 'TEST',
 }
 
-
 export type MapActions =
-  TestAction
-
+  TestAction;
 
 export class TestAction implements Action {
   type: string = MapActionTypes.TEST;
@@ -19,4 +17,3 @@ export class TestAction implements Action {
   constructor(public payload: string) {
   }
 }
-

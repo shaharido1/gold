@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
-
+import graphqlTag from 'graphql-tag';
 
 @Injectable()
 export class ApolloService {
 
-  constructor(private apollo: Apollo){
+  constructor(private apollo: Apollo) {
 
   }
-
 
   query() {
     // const sub = this.apollo.watchQuery({
@@ -53,15 +51,13 @@ export class ApolloService {
       query: gql`
         subscription {
           messageAdded {
-            id, 
+            id,
             content
           }
         }
-      `
+      `,
     })
     .subscribe(some => console.log(some));
 
   }
 }
-
-

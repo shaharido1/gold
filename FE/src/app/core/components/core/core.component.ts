@@ -18,38 +18,23 @@ import { messageAddedSelector } from '../../../apollo/store/apollo.selectors';
 
 export class CoreComponent {
 
-  name$ : Observable<string> = this.store.select(testSelector);
-  books$ : Observable<any> = this.store.select(messageAddedSelector)
+  name$: Observable<string> = this.store.select(testSelector);
+  books$: Observable<any> = this.store.select(messageAddedSelector)
     .filter(Boolean)
-    .do(query => console.log(query))
-
+    .do(query => console.log(query));
 
   constructor(private store: Store<IGoldAppState>) {
-      this.store.dispatch(new QueryAction())
-
+    this.store.dispatch(new QueryAction());
 
   }
 
   testAction() {
 
+    setTimeout(() => {
+      this.store.dispatch(new TestAction('haim'));
+    },         5000);
 
-      setTimeout(() => {
-        this.store.dispatch(new TestAction("haim"))
-      }, 5000)
+    this.books$.subscribe(book => console.log(book));
 
-      this.books$.subscribe(book => {
-        console.log(book)
-      })
-
-
-    }
+  }
 }
-
-
-
-
-
-
-
-
-

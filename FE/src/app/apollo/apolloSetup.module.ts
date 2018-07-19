@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Apollo, ApolloModule } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular-link-http';
-import {StoreModule} from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 import {
   NgrxCacheModule,
@@ -24,21 +24,19 @@ import { ApolloService } from './services/apollo.service';
     EffectsModule.forFeature([ApolloEffects]),
     NgrxCacheModule,
     ApolloModule,
-  ]
+  ],
 })
 export class ApolloSetupModule {
   constructor(apollo: Apollo, httpLink: HttpLink, ngrxCache: NgrxCache) {
     const cache = ngrxCache.create({});
 
-
-    const httpApolloLink = httpLink.create({uri: environment.url});
+    const httpApolloLink = httpLink.create({ uri: environment.url });
     const webSocketApolloLink = new WebSocketLink({
       uri: environment.ws,
       options: {
-        reconnect: true
-      }
+        reconnect: true,
+      },
     });
-
     const splitLink = split(
       // split based on operation type
       ({ query }) => {
@@ -50,8 +48,8 @@ export class ApolloSetupModule {
     );
 
     apollo.create({
+      cache,
       link: splitLink,
-      cache: cache
     });
   }
 

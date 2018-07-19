@@ -1,13 +1,11 @@
 import { Action } from '@ngrx/store';
 
 export enum CoreActionTypes {
-  TEST = 'TEST'
+  TEST = 'TEST',
 }
 
-
 export type CoreActions =
-  TestAction
-
+  TestAction;
 
 export class TestAction implements Action {
   type: string = CoreActionTypes.TEST;
@@ -19,4 +17,3 @@ export class TestAction implements Action {
   constructor(public payload: string) {
   }
 }
-

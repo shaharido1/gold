@@ -1,4 +1,4 @@
 import { IMapState } from '../interfaces/map.interfaces';
 
-export const mapInitState : IMapState = {
-}
+export const mapInitState: IMapState = {
+};

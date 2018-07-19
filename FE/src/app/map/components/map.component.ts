@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-
 @Component({
   selector: 'gold-map',
   templateUrl: './map.component.html',
@@ -8,6 +7,5 @@ import { Component } from '@angular/core';
 })
 
 export class MapComponent {
-
 
 }

@@ -1,3 +1,3 @@
 export interface ICoreState {
-  name: string
+  name: string;
 }

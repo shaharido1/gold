@@ -1,13 +1,11 @@
 import { Action } from '@ngrx/store';
 
 export enum ApolloActionTypes {
-  QUERY = 'QUERY'
+  QUERY = 'QUERY',
 }
 
-
 export type ApolloActions =
-  QueryAction
-
+  QueryAction;
 
 export class QueryAction implements Action {
   type: string = ApolloActionTypes.QUERY;
@@ -15,4 +13,3 @@ export class QueryAction implements Action {
   constructor() {
   }
 }
-

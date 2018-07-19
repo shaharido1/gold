@@ -1,23 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
-import { MapReducer } from './store/map.reducer';
+import { mapReducer } from './store/map.reducer';
 import { mapFeatureKey } from './store/map.selectors';
 import { MapComponent } from './components/map.component';
 
-
-
 @NgModule({
   declarations: [
-    MapComponent
+    MapComponent,
   ],
   imports: [
     CommonModule,
-    StoreModule.forFeature(mapFeatureKey, MapReducer),
+    StoreModule.forFeature(mapFeatureKey, mapReducer),
   ],
   exports: [
-    MapComponent
-  ]
+    MapComponent,
+  ],
 })
 
 export class MapModule {
