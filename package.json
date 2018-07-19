@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cd  ./fe && npm run test",
-    "te": "echo 's'"
+    "bar": "echo \"bar\" && exit 0"
   },
   "dependencies": {
     "tslint-config-airbnb": "^5.9.2"
@@ -17,7 +17,7 @@
   },
   "prepush.silent": false,
   "pre-push": [
-    "te"
+    "bar"
   ]
   "repository": {
     "type": "git",
