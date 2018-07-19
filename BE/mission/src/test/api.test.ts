@@ -1,5 +1,4 @@
 import { DBManager } from "../dbModule/connect";
-import { Mission } from "../dbModule/schemas/mission.schema";
 const supertest = require("supertest");
 const {app, stop} = require("../server");
 const mongoose = require("mongoose");

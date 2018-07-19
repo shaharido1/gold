@@ -9,6 +9,11 @@ export const missionQueries = new GraphQLObjectType({
   name: 'missionsQueries',
   description: 'Root of mission query',
   fields: () => ({
+    test: {
+      type: GraphQLString,
+      description: 'test mission server',
+      resolve: () => 'test ok'
+    },
     missionTestQuery: {
       type: GraphQLString,
       description: 'test mission server',

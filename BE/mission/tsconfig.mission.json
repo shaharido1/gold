@@ -9,6 +9,7 @@
     "declaration": true,
     "outDir": "dist",
     "baseUrl": ".",
+    "typeRoots": ["./node_modules/@types"],
     "paths": {
       "*": [
         "node_modules/*",
@@ -20,6 +21,7 @@
     "src/**/*"
   ],
   "exclude": [
-    "src/test/**/*"
+    "src/**/*.spec.ts",
+    "node_modules/*"
   ]
 }

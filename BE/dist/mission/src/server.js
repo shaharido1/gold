@@ -1,5 +1,13 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const missionServer_1 = require("./missionServer");
-const missionServer = new missionServer_1.MissionServer();
+// import { MissionServer } from './missionServer';
+//
+// const missionServer = new MissionServer();
+console.log("yessssssssssfsdfsddasdasssssssssssssssssss!");
+console.log("yesssssssssssssssssssdfsdfssssssssss!");
+console.log("dsasadsasdfsdfd!");
+console.log("yesssxxxxssssdfsdfsdfsdfsssssddssssssssdasdsssssssssssss!");
+console.log("sdfsdf!");
+debugger;
+console.log(";kdas;l;ldask;sladk;!");
+console.log("no");
+console.log("yes");
 //# sourceMappingURL=server.js.map

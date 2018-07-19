@@ -26,7 +26,7 @@ export class ApolloServer extends GoldServer {
     this.createWsServer();
   }
 
-  createServer() {
+  private createServer() {
     this.server.use('*', cors());
     const validationRules = this.validationRules;
     this.server.use('/graphql', bodyParser.json(), graphqlExpress({
@@ -38,7 +38,7 @@ export class ApolloServer extends GoldServer {
     }));
   }
 
-  createWsServer() {
+  private createWsServer() {
     this.ws = createServer(this.server);
     const validationRules = this.validationRules;
     this.ws.listen(this.config.serverPort, () => {

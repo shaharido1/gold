@@ -12,7 +12,6 @@
   "precommit": [
       "lint",
       "test"
-
   ],
   "private": true,
   "dependencies": {

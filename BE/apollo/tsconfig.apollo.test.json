@@ -10,6 +10,8 @@
     "inlineSources" :true,
     "outDir": "dist",
     "baseUrl": ".",
+    "types" : [ "node", "mocha", "chai", "bunyan"],
+    "typeRoots": ["./node_modules/@types"],
 
     "lib": [
       "es5",
@@ -34,6 +36,7 @@
     }
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "test/**/*"
   ]
 }

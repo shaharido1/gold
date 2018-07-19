@@ -2,8 +2,7 @@ import { GraphQLObjectType } from 'graphql';
 import axios from 'axios';
 import { MissionServer } from '../../../../../shared/src/paths/servers.paths';
 import { MissionPaths } from '../../../../../shared/src/paths/mission.paths';
-import { Mission } from './mission.typesDef';
-import { MissionInput } from '../../../../../dist/apollo/src/graphQl/mission/mission.typesDef';
+import { CHANNEL_MISSION_ADDED, Mission, MissionInput, pubSub } from './mission.typesDef';
 
 export const missionMutations = new GraphQLObjectType({
   name: 'MissionMutations',
@@ -17,6 +16,7 @@ export const missionMutations = new GraphQLObjectType({
       },
       resolve: (root, {mission}) => {
         return axios.post(MissionServer + MissionPaths.addMission, { mission}).then(res =>{
+          pubSub.publish(CHANNEL_MISSION_ADDED, res.data);
           console.log(res.data)
         })
       }

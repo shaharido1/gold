@@ -6,12 +6,16 @@
     "clean": "RD /s './dist'",
     "start": "npm run serve",
     "build": "tsc -w",
+    "build:test": "tsc -p tsconfig.apollo.test.json",
+    "ts-node": "ts-node -p ./tsconfig.apollo.json ./src/server.ts",
+    "build:test:watch": "npm run build:test -- -w",
+    "test": "mocha -r ts-node/register -p \"./test/**/*spec.ts*\"",
+    "test:watch": "npm run test -- -watch-extensions ts",
     "watch-node": "nodemon dist/server.js",
     "serve": "concurrently \"npm run build\" \"npm run watch-node\"",
     "debug": "tsc -p ./tsconfig.debug.json",
     "mongoDocker": "docker run --network host -v mongoVol:/data/db --name mongo mongo",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "test": "jest --coverage --verbose",
     "lint": "tslint -c tslint.json -p tsconfig.json --fix"
   },
   "private": true,
@@ -41,9 +45,11 @@
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
+    "@types/chai": "^4.1.4",
     "@types/graphql": "^0.13.1",
     "@types/ioredis": "^3.2.8",
     "@types/jest": "^22.2.3",
+    "@types/mocha": "^5.2.5",
     "@types/node": "^10.1.2",
     "async": "^2.6.1",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
@@ -58,7 +64,7 @@
     "morgan": "^1.9.0",
     "nodemon": "^1.17.5",
     "supertest": "3.0.0",
-    "tsc": "^1.20150623.0",
+    "ts-node": "^7.0.0",
     "tslint": "^5.10.0",
     "typescript": "^2.8.3"
   }
