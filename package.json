@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cd  ./fe && npm run test"
+    "test": "cd  ./fe && npm run test",
+    "te": "echo 's'"
   },
   "dependencies": {
     "tslint-config-airbnb": "^5.9.2"
@@ -14,8 +15,9 @@
     "tslint": "^5.11.0",
     "typescript": "^2.9.2"
   },
+  "prepush.silent": false,
   "pre-push": [
-    "test"
+    "te"
   ]
   "repository": {
     "type": "git",
