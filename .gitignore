@@ -1,8 +1,5 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-src/**/*.js
-src/**/*.js.map
-
 # compiled output
 /dist
 /tmp
@@ -10,10 +7,6 @@ src/**/*.js.map
 
 # dependencies
 /node_modules
-/server/node_modules
-/server/dist
-/mongo
-/storage
 
 # IDEs and editors
 /.idea
@@ -37,21 +30,10 @@ src/**/*.js.map
 /coverage
 /libpeerconnection.log
 npm-debug.log
+yarn-error.log
 testem.log
 /typings
-
-# e2e
-/e2e/*.js
-/e2e/*.map
 
 # System Files
 .DS_Store
 Thumbs.db
-
-server/\.idea/
-
-server/app/config/emailService\.js
-
-*.ts-theirs
-
-*.ts-base

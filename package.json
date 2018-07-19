@@ -1,0 +1,30 @@
+{
+  "name": "goldstar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cd ./fe && npm run test"
+  },
+  "dependencies": {
+    "tslint-config-airbnb": "^5.9.2"
+  },
+  "devDependencies": {
+    "pre-push": "^0.1.1",
+    "tslint": "^5.11.0",
+    "typescript": "^2.9.2"
+  },
+  "pre-push": [
+    "test"
+  ]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaharido1/gold.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shaharido1/gold/issues"
+  },
+  "homepage": "https://github.com/shaharido1/gold#readme"
+}
