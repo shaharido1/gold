@@ -17,7 +17,7 @@
   },
   "prepush.silent": false,
   "pre-push": [
-    "npm run bar"
+    "bar"
   ]
   "repository": {
     "type": "git",
