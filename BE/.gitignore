@@ -7,6 +7,7 @@ src/**/*.js.map
 /dist
 /tmp
 /out-tsc
+./dist
 
 # dependencies
 /node_modules

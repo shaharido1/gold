@@ -2,7 +2,7 @@ import { DBTestConfig } from './config/config';
 
 describe('simple test', () => {
   it('should work', (done) => {
-    console.log("csdf");
+    console.log("csfsasasddfsddf");
     console.log(DBTestConfig);
 
     done();
@@ -10,7 +10,7 @@ describe('simple test', () => {
 
 
   it('should work', (done) => {
-    console.log("dfgsfsdfsdfasdfsdfdgx");
+    console.log("dfgssdfasdfasdfsdfsdfasdfsdfdgx");
     console.log(DBTestConfig);
     done();
   })

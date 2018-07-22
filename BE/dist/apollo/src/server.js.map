@@ -1,1 +1,0 @@
-{"version":3,"file":"server.js","sourceRoot":"","sources":["../../../apollo/src/server.ts"],"names":[],"mappings":";;AAAA,iDAA8C;AAG9C,MAAM,YAAY,GAAG,IAAI,2BAAY,EAAE,CAAC","sourcesContent":["import { ApolloServer } from './apolloServer';\r\n\r\n\r\nconst apolloServer = new ApolloServer();"]}
