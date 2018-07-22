@@ -1,1 +1,0 @@
-{"version":3,"file":"server.js","sourceRoot":"","sources":["../../../enrich/src/server.ts"],"names":[],"mappings":";;AAAA,qCAAkC;AAElC,MAAM,MAAM,GAAG,IAAI,eAAM,EAAE,CAAC","sourcesContent":["import { Enrich } from './enrich';\r\n\r\nconst enrich = new Enrich();\r\n\r\n"]}

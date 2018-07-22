@@ -1,4 +1,3 @@
-
 export interface RedisEntity {
   type: RedisDataType;
   entityId: string;
@@ -7,8 +6,8 @@ export interface RedisEntity {
 }
 
 export interface RedisInput {
-  value: string
-  subField: string
+  subField: string;
+  value: string;
 }
 
 
@@ -23,13 +22,13 @@ export type RedisInterCeptionFiedls = RedisInterceptionCoreFields | RedisInterce
 export type RedisInterceptionQuery = RedisQueryMissionRelated | RedisQueryCore;
 
 
-export interface RedisQueryMissionRelated  extends RedisQuery {
+export interface RedisQueryMissionRelated extends RedisQuery {
   missionRelatedFields: Array<RedisInterceptionMissionRelatedFields>;
   subField: string;
 }
 
-export interface RedisQueryCore  extends RedisQuery {
-  coreFields: Array<RedisInterceptionCoreFields>;
+export interface RedisQueryCore extends RedisQuery {
+  subField: Array<RedisInput>;
 }
 
 export interface RedisQuery {

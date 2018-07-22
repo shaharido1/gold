@@ -4,6 +4,8 @@ export declare class DockerAdapter {
     name: string;
     containers: Array<Container>;
     defaultContainer: any;
+    getListContainers(): any;
+    checkImageExist(image: string, tag?: string): Promise<{}>;
     startContainer(imageName: string): Promise<{}>;
     ifExistDestroy(dockerName?: string): Promise<{}>;
     getContainerById(continerId?: any): Dockerode.Container;

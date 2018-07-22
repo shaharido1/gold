@@ -1,1 +1,0 @@
-{"version":3,"file":"mission.method.js","sourceRoot":"","sources":["../../../../../mission/src/dbModule/methods/mission.method.ts"],"names":[],"mappings":";;AAAA,+CAA2C;AAG3C,oBAA4B,SAAQ,wBAAU;CAE7C;AAFD,wCAEC","sourcesContent":["import { CrudMethod } from \"./crud.method\";\r\n\r\n\r\nexport class MissionMethods extends CrudMethod {\r\n\r\n}\r\n\r\n"]}

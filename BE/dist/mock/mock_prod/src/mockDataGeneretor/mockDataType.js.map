@@ -1,1 +1,0 @@
-{"version":3,"file":"mockDataType.js","sourceRoot":"","sources":["../../../../../mock/mock_prod/src/mockDataGeneretor/mockDataType.ts"],"names":[],"mappings":"","sourcesContent":["export interface MockDataType {\r\n  message: string;\r\n  id: string;\r\n}"]}

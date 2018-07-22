@@ -14,6 +14,50 @@ export class DockerAdapter {
   containers: Array<Container> = [];
   defaultContainer;
 
+  getListContainers() : any  {
+    return new Promise((resolve, reject) => {
+      docker.listContainers()
+          .then((containers) => {
+            resolve(containers);
+          })
+          .catch((err) => {
+            console.log(err);
+            reject(err);
+          });
+    });
+  }
+
+  checkImageExist(image: string, tag?: string) {
+    return new Promise((resolve, reject) => {
+      // console.log(`check if the Image Exists`);
+      docker.pull(`${image}`, {})
+          .then(() => {
+            console.log(`${image} created `);
+            reject();
+          })
+          .catch((err) => {
+                console.log(`cant pull image ${image}`);
+                reject(err);
+              }
+          );
+      // docker.listImages()
+      //     .then(
+      //         (images) => {
+      //           images.forEach(x => {
+      //             console.log(`Check images`);
+      //             if (image !== x.RepoTags[0]) {
+      //
+      //             }
+      //           });
+      //         }
+      //     )
+      //     .catch((err) => {
+      //       console.log('cant  list images');
+      //       console.log(err);
+      //     });
+    });
+  }
+
   startContainer(imageName: string) {
     this.name = imageName + '-1';
     return new Promise((resolve, reject) => {
@@ -64,7 +108,7 @@ export class DockerAdapter {
   }
 
   killContainer(container = this.defaultContainer) {
-    return container.kill()
+    return container.kill();
   }
 
   stopContaioner(container = this.defaultContainer) {

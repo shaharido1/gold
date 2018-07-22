@@ -5,8 +5,8 @@ export interface RedisEntity {
     redisInput: Array<RedisInput>;
 }
 export interface RedisInput {
-    value: string;
     subField: string;
+    value: string;
 }
 export declare enum RedisDataType {
     mission = "M",
@@ -20,7 +20,7 @@ export interface RedisQueryMissionRelated extends RedisQuery {
     subField: string;
 }
 export interface RedisQueryCore extends RedisQuery {
-    coreFields: Array<RedisInterceptionCoreFields>;
+    subField: Array<RedisInput>;
 }
 export interface RedisQuery {
     type: RedisDataType;
