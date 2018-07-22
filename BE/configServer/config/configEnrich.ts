@@ -2,10 +2,6 @@
   // publishToEnrich: process.env.redisChanel || "publishToEnrich",
   // publishToApollo: process.env.redisChanel || "publishToApollo",
 
-
-
-
-
 //   config_batchNumber: 1,
 //   config_totalNumberOfRounds: 1000,
 //

@@ -3,4 +3,3 @@ import { CrudMongoMethod } from '../../../../shared/src/modules/crudManager/crud
 export class MissionMethods extends CrudMongoMethod {
 
 }
-

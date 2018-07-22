@@ -7,7 +7,6 @@ import { DBManager } from './dbModule/connect';
 import { dbConfig } from './config/dbConfig';
 import { configFileLocation } from './config/mission.config.filePath';
 
-
 export class MissionServer extends GoldServer {
 
   app = express();
@@ -38,6 +37,5 @@ export class MissionServer extends GoldServer {
       console.log(`running fsdfsdon localhost:${this.config.port}`);
     });
   }
-
 
 }

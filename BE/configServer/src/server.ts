@@ -3,10 +3,9 @@ import { appConfig as prod } from '../config/configProducer';
 import { appConfig as cons } from '../config/configConsumer';
 import { appConfig as enri } from '../config/configEnrich';
 
-import express from "express";
-import cors from "cors";
-import bodyParser from "body-parser";
-
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
 
 const app = express();
 const port = appConfig.config_rabbitPort;
@@ -21,15 +20,18 @@ app.get('/test', function (req, res) {
 
 app.get('/getConfig', function (req, res) {
   console.log(req.query.type);
-  if ( req.query.type === 'producer')
-      res.json(prod);
-  else if ( req.query.type === 'consumer')
+  if (req.query.type === 'producer') {
+    res.json(prod);
+  }
+  else if (req.query.type === 'consumer') {
     res.json(cons);
-  else if (req.query.type === 'enrich')
+  }
+  else if (req.query.type === 'enrich') {
     res.json(enri);
-  else
-    res.send("404")
+  }
+  else {
+    res.send('404');
+  }
 });
-
 
 app.listen(port, () => console.log(`Service Listening on Port ${port}`));

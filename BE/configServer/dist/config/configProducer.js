@@ -5,7 +5,7 @@ exports.appConfig = {
     config_rabbitHost: 'localhost',
     config_batchNumber: 100,
     config_mockQueueName: 'task',
-    config_test: "configProducer",
-    TEST: "configServer"
+    config_test: 'configProducer',
+    TEST: 'configServer',
 };
 //# sourceMappingURL=configProducer.js.map

@@ -1,6 +1,5 @@
 import * as bunyan from 'bunyan';
 
-
 export class LogToBunyan {
 
   error;
@@ -9,24 +8,23 @@ export class LogToBunyan {
   debug;
   trace;
 
-
-   create(config) {
+  create(config) {
     // config is the object passed to the client constructor.
-    const bun = bunyan.createLogger({ name: 'mylogger' });
-    this.error = bun.error.bind(bun);
-    this.warning = bun.warn.bind(bun);
-    this.info = bun.info.bind(bun);
-    this.debug = bun.debug.bind(bun);
-    this.trace = function (method, requestUrl, body, responseBody, responseStatus) {
+     const bun = bunyan.createLogger({ name: 'mylogger' });
+     this.error = bun.error.bind(bun);
+     this.warning = bun.warn.bind(bun);
+     this.info = bun.info.bind(bun);
+     this.debug = bun.debug.bind(bun);
+     this.trace = function (method, requestUrl, body, responseBody, responseStatus) {
       bun.trace({
-        method: method,
-        requestUrl: requestUrl,
-        body: body,
-        responseBody: responseBody,
-        responseStatus: responseStatus
+        method,
+        requestUrl,
+        body,
+        responseBody,
+        responseStatus
       });
     };
-  }
+   }
 
 }
-
+

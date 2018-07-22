@@ -6,142 +6,28 @@
     </enabled-run-configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e139a43c-f971-4bf1-8467-811cced5678f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/BE/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/.dockerignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/.idea/BE.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/.idea/jsLibraryMappings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/.idea/libraries/tsconfig_roots.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/.idea/runConfigurations/debug_test_mission.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/.idea/typescript-compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mock/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/.dockerignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/config/config.filePath.ts" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/config/config.filePath.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/config/producer.config.dev.json" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/config/producer.config.dev.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/config/producer.config.prod.json" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/config/producer.config.prod.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/config/producer.config.test.json" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/config/producer.config.test.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/jest.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/jest.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/rebuild.sh" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/rebuild.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/src/dataGenertorgenerator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/src/dataGenertorgenerator.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/src/mockDataGeneretor/mockDataGeneretor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/src/mockDataGeneretor/mockDataGeneretor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/src/mockDataGeneretor/mockDataType.ts" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/src/mockDataGeneretor/mockDataType.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/src/model/Qtypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/src/model/Qtypes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/src/model/producer.config.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/src/model/producer.config.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/src/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/src/test/dataGenerator.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/src/test/dataGenerator.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/tsconfig.mock.json" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/tsconfig.mock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock/mock_prod/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/mock/mock_prod/tslint.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock_prod/dist/config/appConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock_prod/dist/config/appConfig.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock_prod/dist/server.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mock_prod/dist/server.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/.dockerignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/configFetch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/configFetch.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/jest.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/interface/rabitConfig.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/interface/rabitConfig.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/interface/redisConfig.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/interface/redisConfig.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/configSetup/configFileLocation.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/configSetup/configFileLocation.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/configSetup/configHandler.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/configSetup/configHandler.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/configSetup/test/configHandler.spec.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/configSetup/test/configHandler.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/configSetup/test/configPathTest.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/configSetup/test/configPathTest.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/configSetup/test/validateMockData.custom.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/configSetup/test/validateMockData.dev.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/configSetup/test/validateMockData.prod.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/configSetup/test/validateMockData.test.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/consumer/consumer.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/consumer/consumer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/crudManager/crud.mongo.method.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/crudManager/crud.routesManager.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/dockerode/dockerAdapter.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/dockerode/dockerAdapter.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/goldServer/goldServer.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/goldServer/goldServer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/logHandler/logHendler.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/logHandler/logHendler.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/logHandler/log_to_bunyan.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/logHandler/log_to_bunyan.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/logHandler/modle/logerOptions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/logHandler/modle/logerOptions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/measureTime/TimeSetup.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/measureTime/TimeSetup.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/measureTime/measeuerTime.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/measureTime/measeuerTime.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/producer/producer.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/producer/producer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/rabbit/rabbit.config.default.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/rabbit/rabbit.config.default.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/rabbit/rabbit.interface.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/rabbit/rabbit.interface.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/rabbit/rabbitChannel.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/rabbit/rabbitChannel.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/rabbit/rabbitConnectionManager.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/rabbit/rabbitConnectionManager.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/rabbit/rabbitConsumer.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/rabbit/rabbitConsumer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/rabbit/rabbitProducer.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/rabbit/rabbitProducer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/entity/entity.class.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/entity/entity.class.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/entity/entity.interface.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/entity/entity.interface.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/entity/mission.interface.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/entity/mission.interface.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/goldDbService.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/goldDbService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/model/RedismqWorkerSetup.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/model/RedismqWorkerSetup.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/model/dbInterface.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/model/dbInterface.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/model/redisListenEvents.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/model/redisListenEvents.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/redis.config.defalt.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/redis.config.defalt.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/redisAdapter.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/redisAdapter.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/redisMQ-worker.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/redisMQ-worker.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/redisMQ.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/redisMQ.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/test/configPathTest.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/test/configPathTest.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/test/custom.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/test/dev.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/test/prod.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/test/redis.spec.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/test/redis.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/redis/test/test.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/utils/utils.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/utils/utils.spec.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/utils/utils.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/modules/utils/utils.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/paths/mission.paths.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/paths/mission.paths.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/paths/servers.paths.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/src/paths/servers.paths.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/test.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/tsconfig.shared.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/shared/tslint.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/tslint.json" beforeDir="false" />
+    <list default="true" id="e139a43c-f971-4bf1-8467-811cced5678f" name="Default" comment="working version">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/apollo/src/graphQl/mission/mission.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/apollo/src/graphQl/mission/mission.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/mission/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/mission/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/mission/src/config/appConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/src/config/appConfig.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/mission/src/config/dbConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/src/config/dbConfig.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/mission/src/config/mission.config.filePath.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/src/config/mission.config.filePath.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/mission/src/dbModule/connect.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/src/dbModule/connect.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/mission/src/dbModule/methods/mission.method.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/src/dbModule/methods/mission.method.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/mission/src/dbModule/schemas/mission.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/src/dbModule/schemas/mission.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/mission/src/missionServer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/src/missionServer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/mission/src/routes/missionRoutesManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/src/routes/missionRoutesManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/mission/src/routes/routesFunction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/src/routes/routesFunction.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/mission/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/src/server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/mission/src/test/api.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/src/test/api.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/mission/src/test/config/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/src/test/config/config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/mission/src/test/mission.method.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/src/test/mission.method.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/mission/src/test/simpleTest.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/src/test/simpleTest.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/mission/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/tslint.mission.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/tslint.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -161,74 +47,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="server.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BE/mission/src/server.ts">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BE/mission/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="13" selection-start-line="13" selection-end-line="13" />
+            <state relative-caret-position="221">
+              <caret line="13" column="68" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="68" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tslint.mission.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BE/mission/tslint.mission.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tslint.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tslint.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="connect.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BE/mission/src/dbModule/connect.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mission.schema.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BE/apollo/src/graphQl/mission/mission.schema.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#0#40#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="simpleTest.spec.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BE/mission/src/test/simpleTest.spec.ts">
+      <file leaf-file-name="config.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BE/mission/src/test/config/config.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+            <state relative-caret-position="51">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BE/.gitignore">
+      <file leaf-file-name="tsconfig.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tsconfig.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="10" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+            <state relative-caret-position="17">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="front_end.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/runConfigurations/front_end.xml">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="mission_debug.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/runConfigurations/mission_debug.xml">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="mission_watch.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/runConfigurations/mission_watch.xml">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+            <state relative-caret-position="136">
+              <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
-            </state>
-          </provider>
+      <file leaf-file-name="tslint.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BE/apollo/tslint.json">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name=".dockerignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/shared/.dockerignore">
+      <file leaf-file-name="nodemon.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BE/mission/nodemon.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="51">
+              <caret line="3" column="53" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -289,10 +192,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/BE/mission/src/routes/routesFunction.ts" />
-        <option value="$PROJECT_DIR$/BE/shared/src/modules/crudManager/crud.routesManager.ts" />
-        <option value="$PROJECT_DIR$/BE/mission/src/routes/crud.routesManager.d.ts" />
-        <option value="$PROJECT_DIR$/BE/mission/src/routes/missionRoutesManager.ts" />
         <option value="$PROJECT_DIR$/BE/mission/src/dbModule/methods/crud.method.d.ts" />
         <option value="$PROJECT_DIR$/BE/mission/src/dbModule/methods/mission.method.ts" />
         <option value="$PROJECT_DIR$/BE/mission/src/config/mission.config.dev.json" />
@@ -317,7 +216,6 @@
         <option value="$PROJECT_DIR$/FE/tslint.fe.json" />
         <option value="$PROJECT_DIR$/FE/src/app/apollo/apolloSetup.module.ts" />
         <option value="$PROJECT_DIR$/FE/src/app/apollo/store/apollo.effects.ts" />
-        <option value="$PROJECT_DIR$/tslint.json" />
         <option value="$PROJECT_DIR$/FE/src/app/apollo/store/apollo.selectors.ts" />
         <option value="$PROJECT_DIR$/FE/src/app/core/components/core/core.component.ts" />
         <option value="$PROJECT_DIR$/FE/src/app/core/store/core.reducer.ts" />
@@ -334,12 +232,17 @@
         <option value="$PROJECT_DIR$/FE/src/tsconfig.app.json" />
         <option value="$PROJECT_DIR$/FE/src/app/goldApp/components/app.component.spec.ts" />
         <option value="$PROJECT_DIR$/FE/package.json" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/BE/mission/package.json" />
         <option value="$PROJECT_DIR$/BE/mission/src/server.ts" />
         <option value="$PROJECT_DIR$/BE/mission/src/test/simpleTest.spec.ts" />
         <option value="$PROJECT_DIR$/BE/.gitignore" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/BE/mission/tslint.json" />
+        <option value="$PROJECT_DIR$/BE/mission/src/dbModule/connect.ts" />
+        <option value="$PROJECT_DIR$/BE/mission/src/test/config/config.ts" />
+        <option value="$PROJECT_DIR$/BE/apollo/src/graphQl/mission/mission.schema.ts" />
+        <option value="$PROJECT_DIR$/tslint.json" />
+        <option value="$PROJECT_DIR$/BE/mission/package.json" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -1446,7 +1349,6 @@
       <path value="$PROJECT_DIR$/BE/mission/node_modules/tslib/package.json" />
       <path value="$PROJECT_DIR$/BE/mission/node_modules/tslint/node_modules/ansi-styles/package.json" />
       <path value="$PROJECT_DIR$/BE/mission/node_modules/tslint/node_modules/chalk/package.json" />
-      <path value="$PROJECT_DIR$/BE/mission/node_modules/tslint/node_modules/commander/package.json" />
       <path value="$PROJECT_DIR$/BE/mission/node_modules/tslint/node_modules/supports-color/package.json" />
       <path value="$PROJECT_DIR$/BE/mission/node_modules/tslint/package.json" />
       <path value="$PROJECT_DIR$/BE/mission/node_modules/tsutils/package.json" />
@@ -1650,7 +1552,13 @@
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="goldstar" type="cbb8eebc:String" user="goldstar" />
-              <item name="shared" type="cbb8eebc:String" user="shared" />
+              <item name="BE" type="cbb8eebc:String" user="BE" />
+              <item name="mission" type="cbb8eebc:String" user="mission" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="goldstar" type="cbb8eebc:String" user="goldstar" />
+              <item name="FE" type="cbb8eebc:String" user="FE" />
             </path>
           </expand>
           <select />
@@ -1772,7 +1680,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="mapreducerts&#9;FILE&#9;file://C:/Users/user/projects/goldstar/FE/src/app/map/store/map.reducer.ts&#10;goldappmo&#9;FILE&#9;file://C:/Users/user/projects/goldstar/FE/src/app/goldApp/goldApp.module.ts&#10;coreredu&#9;FILE&#9;file://C:/Users/user/projects/goldstar/FE/src/app/core/store/core.reducer.ts&#10;core comp&#9;null&#9;null&#10;apolloselec&#9;FILE&#9;file://C:/Users/user/projects/goldstar/FE/src/app/apollo/store/apollo.selectors.ts&#10;apolloeffe&#9;null&#9;null&#10;apollo&#9;FILE&#9;file://C:/Users/user/projects/goldstar/FE/src/app/apollo/apolloSetup.module.ts&#10;missionre&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/apollo/test/graphQl/mission/mission.query.resolver.spec.ts&#10;missionrout&#9;null&#9;null&#10;apollt&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/apollo/tsconfig.apollo.test.json&#10;pack&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/mission/package.json&#10;packj&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/mission/package.json&#10;routes&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/mission/src/routes/missionRoutesManager.ts&#10;apollocon&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/apollo/config/apollo.config.filePath.ts&#10;producer.ts&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/shared/src/modules/producer/producer.ts&#10;utils.&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/mission/dist/shared/src/modules/utils/utils.js&#10;ra&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/shared/src/modules/rabbit/rabbitConnectionManager.ts&#10;tsc&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/mission/tsconfig.json&#10;enrich&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/enrich" />
+    <property name="SearchEverywhereHistoryKey" value="configts&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/mission/src/test/config/config.ts&#10;missionschets&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/apollo/src/graphQl/mission/mission.schema.ts&#10;connect.ts&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/mission/src/dbModule/connect.ts&#10;mapreducerts&#9;FILE&#9;file://C:/Users/user/projects/goldstar/FE/src/app/map/store/map.reducer.ts&#10;goldappmo&#9;FILE&#9;file://C:/Users/user/projects/goldstar/FE/src/app/goldApp/goldApp.module.ts&#10;coreredu&#9;FILE&#9;file://C:/Users/user/projects/goldstar/FE/src/app/core/store/core.reducer.ts&#10;core comp&#9;null&#9;null&#10;apolloselec&#9;FILE&#9;file://C:/Users/user/projects/goldstar/FE/src/app/apollo/store/apollo.selectors.ts&#10;apolloeffe&#9;null&#9;null&#10;apollo&#9;FILE&#9;file://C:/Users/user/projects/goldstar/FE/src/app/apollo/apolloSetup.module.ts&#10;missionre&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/apollo/test/graphQl/mission/mission.query.resolver.spec.ts&#10;missionrout&#9;null&#9;null&#10;apollt&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/apollo/tsconfig.apollo.test.json&#10;pack&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/mission/package.json&#10;packj&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/mission/package.json&#10;routes&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/mission/src/routes/missionRoutesManager.ts&#10;apollocon&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/apollo/config/apollo.config.filePath.ts&#10;producer.ts&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/shared/src/modules/producer/producer.ts&#10;utils.&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/mission/dist/shared/src/modules/utils/utils.js&#10;ra&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/shared/src/modules/rabbit/rabbitConnectionManager.ts&#10;tsc&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/mission/tsconfig.json&#10;enrich&#9;FILE&#9;file://C:/Users/user/projects/goldstar/BE/enrich" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.lang.jsgraphql.ide.injection.JSGraphQLLanguageInjectionUtil.gql" value="apollo" />
     <property name="jsgraphql-schema-editor-notification" value="false" />
@@ -1847,7 +1755,7 @@
       <workItem from="1531126071283" duration="2681000" />
       <workItem from="1531385129461" duration="45298000" />
       <workItem from="1532004652098" duration="12464000" />
-      <workItem from="1532257521205" duration="535000" />
+      <workItem from="1532257521205" duration="1971000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1528274132874</created>
@@ -1968,7 +1876,14 @@
       <option name="project" value="LOCAL" />
       <updated>1532256561940</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="working version">
+      <created>1532258063306</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1532258063306</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2004,21 +1919,22 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164891000" />
+    <option name="totallyTimeSpent" value="166327000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TypeScript" order="13" weight="0.32897604" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25605902" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25605902" />
       <window_info anchor="bottom" id="TODO" order="8" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50105375" side_tool="true" weight="0.37472767" />
+      <window_info anchor="bottom" id="Find" order="3" weight="0.32897604" />
       <window_info anchor="bottom" id="Run" order="4" weight="0.5795207" />
       <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49894625" visible="true" weight="0.37472767" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49894625" visible="true" weight="0.37472767" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.46187365" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -2029,7 +1945,6 @@
       <window_info anchor="bottom" id="Messages" order="1" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="3" weight="0.32897604" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -2171,53 +2086,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.dockerignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FE/src/tslint.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BE/apollo/src/graphQl/typesDef.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BE/apollo/node_modules/graphql-tools/dist/stitching/mergeSchemas.d.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/tslint-consistent-codestyle/rules/objectShorthandPropertiesFirstRule.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FE/src/app/apollo/apolloSetup.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="52" column="7" lean-forward="true" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FE/src/app/apollo/store/apollo.effects.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="34" lean-forward="true" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FE/src/app/apollo/store/apollo.selectors.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -2273,13 +2141,6 @@
     <entry file="file://$PROJECT_DIR$/FE/package-lock.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/tslint.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tsconfig.js" />
     <entry file="file://$PROJECT_DIR$/FE/src/tsconfig.app.json">
       <provider selected="true" editor-type-id="text-editor">
@@ -2323,20 +2184,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FE/tslint.fe.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="29" selection-start-line="1" selection-start-column="29" selection-end-line="1" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FE/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="12" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package-lock.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -2357,17 +2204,13 @@
     <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/tsconfig.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BE/apollo/src/graphQl/schema.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#69#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2382,13 +2225,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BE/apollo/package.json">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BE/mission/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="57" selection-start-line="7" selection-start-column="57" selection-end-line="7" selection-end-column="57" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BE/mission/src/missionServer.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -2443,13 +2279,6 @@
     <entry file="file://$PROJECT_DIR$/.idea/runConfigurations/mission_watch.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BE/tsconfig.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -2464,6 +2293,92 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FE/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="12" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FE/tslint.fe.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BE/mission/tsconfig.mission.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BE/mission/src/dbModule/connect.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BE/mission/src/test/config/config.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BE/apollo/src/graphQl/mission/mission.schema.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tslint.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BE/apollo/tslint.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BE/mission/tslint.mission.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BE/mission/nodemon.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="53" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BE/mission/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="68" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
         </state>
       </provider>
     </entry>

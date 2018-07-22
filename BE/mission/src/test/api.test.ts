@@ -1,26 +1,25 @@
-import { DBManager } from "../dbModule/connect";
-const supertest = require("supertest");
-const {app, stop} = require("../server");
-const mongoose = require("mongoose");
+import { DBManager } from '../dbModule/connect';
+const supertest = require('supertest');
+const { app, stop } = require('../server');
+const mongoose = require('mongoose');
 
-describe("publisher api", () => {
+describe('publisher api', () => {
 
   let request;
   let server;
 
   beforeAll(async(done) => {
     server = app.listen(done);
-    request = supertest.agent(server)
+    request = supertest.agent(server);
 
   });
 
-
-  it("get publisher should return 200 OK", () => {
-    return request.get("/publisher")
+  it('get publisher should return 200 OK', () => {
+    return request.get('/publisher')
         .expect(200);
   });
-  it("get test2 should return 404", () => {
-    return request.get("/test2")
+  it('get test2 should return 404', () => {
+    return request.get('/test2')
         .expect(404);
   });
   //
@@ -43,7 +42,7 @@ describe("publisher api", () => {
   afterAll(async (done) => {
     try {
       await DBManager.disconnect(done);
-      const {missions} = mongoose.connection.collections;
+      const { missions } = mongoose.connection.collections;
       await missions.conn.doClose(true, done);
       await mongoose.disconnect();
       // await server.close();
@@ -55,6 +54,4 @@ describe("publisher api", () => {
     }
   });
 
-
 });
-

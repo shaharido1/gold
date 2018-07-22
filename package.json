@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "cd  ./fe && npm run test",
-    "bar": "echo \"bar\" && exit 0"
+    "bar": "echo \"bar\" && exit 0",
+    "lint": "tslint  -c tslint.json -p tsconfig.json --fix"
   },
   "dependencies": {
     "tslint-config-airbnb": "^5.9.2"
@@ -15,10 +16,6 @@
     "tslint": "^5.11.0",
     "typescript": "^2.9.2"
   },
-  "prepush.silent": false,
-  "pre-push": [
-    "npm run bar"
-  ]
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shaharido1/gold.git"

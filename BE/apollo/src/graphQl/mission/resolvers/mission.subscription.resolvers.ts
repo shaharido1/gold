@@ -9,8 +9,8 @@ export const missionQueries = new GraphQLObjectType({
     missionSubscription: {
       type: GraphQLString,
       description: 'test subscritpion server',
-      resolve: (data) => {console.log(data); return data},
-      subscribe: () => pubSub.asyncIterator(CHANNEL_MISSION_ADDED)
-    }
-  })
+      resolve: (data) => {console.log(data); return data;},
+      subscribe: () => pubSub.asyncIterator(CHANNEL_MISSION_ADDED),
+    },
+  }),
 });

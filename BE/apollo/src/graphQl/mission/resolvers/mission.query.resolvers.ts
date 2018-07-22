@@ -4,7 +4,6 @@ import { MissionServer } from '../../../../../shared/src/paths/servers.paths';
 import { MissionPaths } from '../../../../../shared/src/paths/mission.paths';
 import { Mission, Missions } from './mission.typesDef';
 
-
 export const missionQueries = new GraphQLObjectType({
   name: 'missionsQueries',
   description: 'Root of mission query',
@@ -12,22 +11,22 @@ export const missionQueries = new GraphQLObjectType({
     test: {
       type: GraphQLString,
       description: 'test mission server',
-      resolve: () => 'test ok'
+      resolve: () => 'test ok',
     },
     missionTestQuery: {
       type: GraphQLString,
       description: 'test mission server',
-      resolve: () => axios.get(MissionServer + MissionPaths.test).then(res => res.data)
+      resolve: () => axios.get(MissionServer + MissionPaths.test).then(res => res.data),
     },
     getAllMissions: {
       type: Missions,
       description: 'get all missions',
-      resolve: () => axios.get(MissionServer + MissionPaths.getAllMission).then(res => res.data)
+      resolve: () => axios.get(MissionServer + MissionPaths.getAllMission).then(res => res.data),
     },
     mission: {
       type: Mission,
       description: 'get one mission',
-      resolve: () => axios.get(MissionServer + MissionPaths.getMissionById).then(res => res.data)
-    }
-  })
+      resolve: () => axios.get(MissionServer + MissionPaths.getMissionById).then(res => res.data),
+    },
+  }),
 });

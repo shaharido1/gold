@@ -2,7 +2,7 @@ import { schema } from './graphQl/schema';
 import express from 'express';
 import {
   graphqlExpress,
-  graphiqlExpress
+  graphiqlExpress,
 } from 'apollo-server-express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -12,7 +12,6 @@ import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { GoldServer } from '../../shared/src/modules/goldServer/goldServer';
 import { configFileLocation } from '../../consumer/config/config.filePath';
 import * as core from 'express-serve-static-core';
-
 
 export class ApolloServer extends GoldServer {
 
@@ -30,11 +29,11 @@ export class ApolloServer extends GoldServer {
     this.server.use('*', cors());
     const validationRules = this.validationRules;
     this.server.use('/graphql', bodyParser.json(), graphqlExpress({
-      schema, debug: true, validationRules
+      schema, debug: true, validationRules,
     }));
     this.server.use('/graphiql', graphiqlExpress({
       endpointURL: '/graphql',
-      subscriptionsEndpoint: `ws://localhost:${this.config.serverPort}/subscriptions`
+      subscriptionsEndpoint: `ws://localhost:${this.config.serverPort}/subscriptions`,
     }));
   }
 
@@ -47,10 +46,10 @@ export class ApolloServer extends GoldServer {
         execute,
         subscribe,
         validationRules,
-        schema
-      }, {
+        schema,
+      },                     {
         server: this.ws,
-        path: '/subscriptions'
+        path: '/subscriptions',
       });
     });
   }

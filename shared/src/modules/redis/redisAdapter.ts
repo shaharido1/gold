@@ -1,8 +1,7 @@
-import { Callback, createClient, Multi, RedisClient } from 'redis';
+import { createClient, Multi, RedisClient } from 'redis';
 import { RedisConfig } from '../../interface/redisConfig';
 import { redisDefaultConfig } from './redis.config.defalt';
 import { RedisConnectionSetup, RedisListenEvents } from './model/redisListenEvents';
-import { RedisEntity, RedisInterceptionQuery, RedisQueryCore, RedisQueryMissionRelated } from './model/dbInterface';
 
 export class RedisAdapter {
   public config: RedisConfig;

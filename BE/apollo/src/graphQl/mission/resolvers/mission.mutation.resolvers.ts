@@ -12,15 +12,15 @@ export const missionMutations = new GraphQLObjectType({
       type: Mission,
       description: 'Create a new mission',
       args: {
-        mission: { type: MissionInput }
+        mission: { type: MissionInput },
       },
-      resolve: (root, {mission}) => {
-        return axios.post(MissionServer + MissionPaths.addMission, { mission}).then(res =>{
+      resolve: (root, { mission }) => {
+        return axios.post(MissionServer + MissionPaths.addMission, { mission }).then(res => {
           pubSub.publish(CHANNEL_MISSION_ADDED, res.data);
-          console.log(res.data)
-        })
-      }
+          console.log(res.data);
+        });
+      },
     },
 
-  })
-})
+  }),
+});

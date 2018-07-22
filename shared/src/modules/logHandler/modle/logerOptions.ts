@@ -6,12 +6,11 @@ export enum levels {
   WARN = 'warn',
   INFO = 'info',
   DEBUG = 'debug',
-  TRACE = 'trace'
+  TRACE = 'trace',
 }
 
 export interface MyLoggerOptions {
   name: string;
   path: string;
-
 
 }

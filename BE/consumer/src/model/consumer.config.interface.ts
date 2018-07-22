@@ -8,4 +8,4 @@ export interface ConsumerConfig {
   config_totalNumberOfRounds: number;
   config_keyId: string;
 }
-
+

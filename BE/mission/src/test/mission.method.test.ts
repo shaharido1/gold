@@ -1,7 +1,7 @@
 // import { MissionMethods } from "../dbModule/methods/mission.method";
 // import { Mission } from "../dbModule/schemas/mission.schema";
 // import { DBManager } from "../dbModule/connect";
-// import { DBTestConfig } from "./config/config";
+// import { dBTestConfig } from "./config/config";
 //
 //
 // describe("test DB methods", () => {
@@ -11,7 +11,7 @@
 //   };
 //
 //   beforeAll(async (done) => {
-//     // await DBManager.connect(DBTestConfig.url);
+//     // await DBManager.connect(dBTestConfig.url);
 //     const initMission = await Mission.init();
 //     missionMethod = new MissionMethods(initMission);
 //     done();
