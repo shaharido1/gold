@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="noBuild" pattern="!file[goldstar]:*//*.js&amp;&amp;!file[goldstar]:*//*.js.map&amp;&amp;!file[goldstar]:*//*.d.ts&amp;&amp;!file[goldstar]:*//*.xml&amp;&amp;!file[goldstar]:*//*.iml&amp;&amp;!file[goldstar]:*//*.gitignore&amp;&amp;!file[goldstar]:*//*.dockerignore" />
+</component>
