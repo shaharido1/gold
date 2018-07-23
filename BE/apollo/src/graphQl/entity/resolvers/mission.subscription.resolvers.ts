@@ -1,6 +1,7 @@
 import { GraphQLObjectType, GraphQLString } from 'graphql';
 
-import { CHANNEL_MISSION_ADDED, pubSub } from './mission.typesDef';
+import { CHANNEL_MISSION_ADDED } from '../types/mission.typesDef';
+import { pubSub } from '../../../apolloServer';
 
 export const missionQueries = new GraphQLObjectType({
   name: 'missionSubscription',

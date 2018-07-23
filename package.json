@@ -9,6 +9,9 @@
     "gulp": "gulp --gulpfile a.js webPackcompile"
   },
   "dependencies": {
+    "apollo-server": "^2.0.0",
+    "axios": "^0.18.0",
+    "graphql": "^0.13.2",
     "gulp-sequence": "^1.0.0",
     "tslint-config-airbnb": "^5.9.2"
   },

@@ -1,4 +1,14 @@
-import mergeSchemas from 'graphql-tools/dist/stitching/mergeSchemas';
-import { missionSchema } from './mission/mission.schema';
+import { mergeSchemas, PubSub } from 'apollo-server';
+import { MissionSchema } from './mission/mission.schema';
 
-export const schema = mergeSchemas({ schemas: [missionSchema] });
+export class SchemaManager {
+  public schema;
+  public pubSub = new PubSub();
+  missionSchema: any;
+  constructor() {
+    this.missionSchema = new MissionSchema(this.pubSub);
+    this.schema =  mergeSchemas({ schemas: [ this.missionSchema.schema ] });
+
+  }
+}
+
