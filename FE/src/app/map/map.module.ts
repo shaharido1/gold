@@ -5,18 +5,18 @@ import { MapReducer } from './store/map.reducer';
 import { mapFeatureKey } from './store/map.selectors';
 import { MapComponent } from './components/mapComponent/map.component';
 import { AngularCesiumModule } from 'angular-cesium';
-import { ZoomLevelOneComponent } from './components/zoom-level-one/zoom-level-one.component';
-import { ZoomLevelTwoComponent } from './components/zoom-level-two/zoom-level-two.component';
+import { ZoomLevelOneComponent } from './components/mapComponent/plane/zoom-level-one/zoom-level-one.component';
+import { ZoomLevelTwoComponent } from './components/mapComponent/plane/zoom-level-two/zoom-level-two.component';
 import { MapProviderComponent } from './components/map-provider/map-provider.component';
-
-
+import { PlaneComponent } from './components/mapComponent/plane/plane.component';
 
 @NgModule({
   declarations: [
     MapComponent,
     ZoomLevelOneComponent,
     ZoomLevelTwoComponent,
-    MapProviderComponent
+    MapProviderComponent,
+    PlaneComponent
   ],
   imports: [
     CommonModule,

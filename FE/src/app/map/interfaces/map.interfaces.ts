@@ -1,41 +1,53 @@
 import { AcEntity } from 'angular-cesium';
+import { graphicConfig } from './config';
 
-export interface IMapState {
-}
+// export class MapEntity extends AcEntity {
+//   name: string;
+//   levels: ZoomLevels;
+//   position?: any;
+//
+//   constructor(
+//     name: string = 'test',
+//     levels: ZoomLevels = {},
+//     position = { x: 0, y: 0 }
+//   ) {
+//     super();
+//     this.name = name;
+//     this.levels = levels;
+//     this.position = new Cesium.Cartesian3.fromDegrees(position.x, position.y);
+//   }
+// }
 
-export class MapEntity extends AcEntity {
+export class GraphicEntity extends AcEntity {
   name: string;
-  levels: ZoomLevels;
+  data;
   position?: any;
 
   constructor(
     name: string = 'test',
-    levels: ZoomLevels = {},
+    data,
     position = { x: 0, y: 0 }
   ) {
     super();
     this.name = name;
-    this.levels = levels;
+    this.data = data;
     this.position = new Cesium.Cartesian3.fromDegrees(position.x, position.y);
   }
 }
 
-export interface ZoomLevels {
-  level1?: { [key: string]: ShapeEntity };
-  level2?: { [key: string]: ShapeEntity };
-  level3?: { [key: string]: ShapeEntity };
-}
-
 export class ShapeEntity {
-  color: any;
-  distanceDisplayCondition: any;
+  color;
+  distanceDisplayCondition: IDistanceDisplayCondition;
 
   constructor(
-    color: any = Cesium.Color.BLACK,
+    color: any = Cesium.Color,
     distanceDisplayCondition: IDistanceDisplayCondition = ZoomLevelViewDistance.first
   ) {
     this.color = color;
-    this.distanceDisplayCondition = new Cesium.DistanceDisplayCondition(distanceDisplayCondition.near, distanceDisplayCondition.far);
+    this.distanceDisplayCondition = new Cesium.DistanceDisplayCondition(
+      distanceDisplayCondition.near,
+      distanceDisplayCondition.far
+    );
   }
 }
 
@@ -43,26 +55,32 @@ export class EllipseGraphic extends ShapeEntity {
   semiMinorAxis: number;
   semiMajorAxis: number;
   color: any;
-  private _multiplier;
-  private _scaleStep: number;
-  private _scaleLevel;
-  private _opacityLevel;
+  _multiplier: number;
+  _scaleStep: number;
+  _scaleLevel: number;
+  _opacityLevel: number;
   //TODO get from appConfig
-  private _minSize = 100000;
-  private;
+  _minSize = 100000;
 
-  constructor(rank: number = 1, category: string = 'a', opacityLevel: number = 0.1, scaleLevel: number = 1, distanceDisplayCondition: IDistanceDisplayCondition = ZoomLevelViewDistance.first) {
+  constructor(
+    rank: number = 1,
+    category: string = 'a',
+    opacity: number = 0.1,
+    scale: number = 1,
+    distanceDisplayCondition: IDistanceDisplayCondition = ZoomLevelViewDistance.first
+  ) {
     super(distanceDisplayCondition);
-    this.color = Cesium.Color[Color[category]].withAlpha(opacityLevel);
+    this.color = Cesium.Color[Color[category]].withAlpha(opacity);
     this._multiplier = rank;
-    this._opacityLevel = opacityLevel;
-    this._scaleLevel = scaleLevel;
+    this._opacityLevel = opacity;
+    this._scaleLevel = scale;
     this.setAxis();
   }
 
   setAxis() {
     this.calculateScaleStep();
-    this.semiMajorAxis = this.semiMinorAxis = this._scaleStep * this._scaleLevel;
+    this.semiMajorAxis = this.semiMinorAxis =
+      this._scaleStep * this._scaleLevel;
   }
 
   calculateScaleStep() {
@@ -98,12 +116,12 @@ export class LabelGraphic extends ShapeEntity {
 
   constructor(
     category: string = 'a',
-    distanceDisplayCondition: IDistanceDisplayCondition = ZoomLevelViewDistance.second,
     title: string = 'test',
-    font: string = '15px sans-serif',
-    horizontalOrigin: any = Cesium.HorizontalOrigin.CENTER,
-    verticalOrigin: any = Cesium.VerticalOrigin.TOP,
-    pixelOffset: any = new Cesium.Cartesian2(0, 15)
+    distanceDisplayCondition: IDistanceDisplayCondition = ZoomLevelViewDistance.second,
+    font: string = graphicConfig.font,
+    horizontalOrigin: any = graphicConfig.horizontalOrigin,
+    verticalOrigin: any = graphicConfig.verticalOrigin,
+    pixelOffset: any = graphicConfig.pixelOffset
   ) {
     super(Cesium.Color[Color[category]], distanceDisplayCondition);
     this.verticalOrigin = verticalOrigin;
@@ -118,23 +136,19 @@ export class BillboardGraphic extends ShapeEntity {
   image: string;
   scale: number;
 
-  constructor(category: string = 'a', distanceDisplayCondition = ZoomLevelViewDistance.second, image: any = Math.floor(Math.random() * 10) % 2 === 0 ? IconsArr[0] : IconsArr[1], scale: number = 0.1) {
+  constructor(
+    category: string = 'a',
+    distanceDisplayCondition = ZoomLevelViewDistance.second,
+    image: any = Math.floor(Math.random() * 10) % 2 === 0
+      ? IconsArr[0]
+      : IconsArr[1],
+    scale: number = 0.1
+  ) {
     super(Cesium.Color[Color[category]], distanceDisplayCondition);
     this.image = image;
     this.scale = scale;
   }
 }
-
-export enum Color {
-  'a' = 'RED',
-  'b' = 'BLUE',
-  'c' = 'GREEN'
-}
-
-export const IconsArr = [
-  'assets/icons/fighter-jet.png',
-  'assets/icons/volkswagen-car-side-view.png'
-];
 
 export enum EllipseScaleLevel {
   First = 1.0,
@@ -148,6 +162,12 @@ export enum EllipseOpacityLevel {
   Third = 0.1
 }
 
+export enum Color {
+  'a' = 'RED',
+  'b' = 'BLUE',
+  'c' = 'GREEN'
+}
+
 export const ZoomLevelViewDistance = {
   first: { near: 5.5e6, far: Number.MAX_VALUE },
   second: { near: 0, far: 5.5e6 },
@@ -158,3 +178,14 @@ export interface IDistanceDisplayCondition {
   near: number;
   far: number;
 }
+
+export interface ZoomLevels {
+  level1?: { [key: string]: ShapeEntity };
+  level2?: { [key: string]: ShapeEntity };
+  level3?: { [key: string]: ShapeEntity };
+}
+
+export const IconsArr = [
+  'assets/icons/fighter-jet.png',
+  'assets/icons/volkswagen-car-side-view.png'
+];
