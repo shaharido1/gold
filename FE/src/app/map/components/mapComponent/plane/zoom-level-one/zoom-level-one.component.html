@@ -1,0 +1,40 @@
+<!--<ac-point-desc *ngIf="plane" props="{{getFields()}}">-->
+<!--</ac-point-desc>-->
+
+
+<ac-point-desc *ngIf="plane" props="{
+                  position: plane.position,
+                  pixelSize: plane.data.point.pixelSize,
+                  color: plane.data.point.color,
+                  outlineColor: plane.data.point.outlineColor,
+                  outlineWidth: plane.data.point.outlineWidth,
+                  distanceDisplayCondition: plane.data.point.distanceDisplayCondition
+                }">
+</ac-point-desc>
+
+
+
+<ac-ellipse-desc *ngIf="plane" props="{
+                    semiMinorAxis: plane.data.firstEllipse.semiMinorAxis,
+                    semiMajorAxis: plane.data.firstEllipse.semiMajorAxis,
+                    material: plane.data.firstEllipse.color,
+                    position: plane.position,
+                    distanceDisplayCondition: plane.data.firstEllipse.distanceDisplayCondition
+                  }">
+</ac-ellipse-desc>
+<ac-ellipse-desc *ngIf="plane" props="{
+                    semiMinorAxis: plane.data.secondEllipse.semiMinorAxis,
+                    semiMajorAxis: plane.data.secondEllipse.semiMajorAxis,
+                    material: plane.data.secondEllipse.color,
+                    position: plane.position,
+                    distanceDisplayCondition: plane.data.secondEllipse.distanceDisplayCondition
+                  }">
+</ac-ellipse-desc>
+<ac-ellipse-desc *ngIf="plane" props="{
+                    semiMinorAxis: plane.data.thirdEllipse.semiMinorAxis,
+                    semiMajorAxis: plane.data.thirdEllipse.semiMajorAxis,
+                    material: plane.data.thirdEllipse.color,
+                    position: plane.position,
+                    distanceDisplayCondition: plane.data.thirdEllipse.distanceDisplayCondition
+                  }">
+</ac-ellipse-desc>

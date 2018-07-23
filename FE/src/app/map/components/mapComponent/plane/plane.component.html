@@ -1,0 +1,5 @@
+<ac-layer acFor="let plane of planeSource$" [context]="this">
+  <!--<app-zoom-level-one [plane]="stringfyPlane(plane)" ></app-zoom-level-one>-->
+  <app-zoom-level-one [plane]="plane" ></app-zoom-level-one>
+  <app-zoom-level-two [plane]="plane"></app-zoom-level-two>
+</ac-layer>
