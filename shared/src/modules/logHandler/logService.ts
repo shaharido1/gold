@@ -13,7 +13,7 @@ export class LogService {
     this.init(setup);
   }
 
-  private init(setup) {
+  public init(setup) {
     const loggerSetup = {
       name: setup.name,
       // level: "trace",

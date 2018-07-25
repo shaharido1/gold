@@ -1,4 +1,5 @@
 import { Container, default as Dockerode } from 'dockerode';
+import { createWriteStream } from 'fs';
 
 const ErrorMessage = {
   noSuchContainer: 'no such container'
@@ -9,35 +10,34 @@ export class DockerAdapter {
   name: string;
   containers: Array<Container> = [];
   defaultContainer;
-  private docker: Dockerode;
-  constructor() {
-    this.docker = new Dockerode();
-  }
+  private docker: Dockerode = new Dockerode();
 
-  startContainer(imageName: string) {
-    this.name = imageName + '-1';
+  public startContainer(imageName, exposePort, containerName = imageName) {
+    const port = `${exposePort}/tcp`;
     return new Promise((resolve, reject) => {
-      this.ifExistDestroy().then(() => {
-        this.docker.createContainer({
-          Image: imageName,
-          Tty: false,
-          name: this.name,
-          HostConfig: { PortBindings: { '6379/tcp': [{ 'HostPort': '6379' }] } }
-        })
-            .then((container) => {
-              container.start()
-                  .then(() => {
-                    console.log('id: ' + container.id);
-                    this.containers.push(container);
-                    resolve(this.defaultContainer = container);
-                  });
-            })
-            .catch(err => {
-              console.log('cant create');
-              console.error(err);
-              reject();
+      this.ifExistDestroy(containerName)
+          .then(() => {
+            const createOptions: Dockerode.ContainerCreateOptions = {
+              Image: imageName,
+              name: containerName,
+              ExposedPorts: { [`${port}`]: {} },
+              HostConfig: { PortBindings: { [`${port}`]: [{ HostPort: exposePort }] } },
+              AttachStderr: true
+            };
+            this.docker.createContainer(createOptions).then((container: Container) => {
+              this.defaultContainer = container;
+              this.containers.push(container);
+              container.start().then(cont => {
+                console.log('id: ' + cont.id);
+                return resolve(cont);
+
+              });
             });
-      });
+          })
+          .catch(err => {
+            console.log('cant create container' + containerName);
+            reject(err);
+          });
     });
   }
 
@@ -64,7 +64,7 @@ export class DockerAdapter {
   }
 
   killContainer(container = this.defaultContainer) {
-    return container.kill()
+    return container.kill();
   }
 
   stopContaioner(container = this.defaultContainer) {

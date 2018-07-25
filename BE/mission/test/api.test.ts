@@ -1,6 +1,6 @@
-import { DBManager } from '../dbModule/connect';
+import { DBManager } from '../src/dbModule/connect';
 const supertest = require('supertest');
-const { app, stop } = require('../server');
+const { app, stop } = require('../src/server');
 const mongoose = require('mongoose');
 
 describe('publisher api', () => {
@@ -8,7 +8,7 @@ describe('publisher api', () => {
   let request;
   let server;
 
-  beforeAll(async(done) => {
+  before(async(done) => {
     server = app.listen(done);
     request = supertest.agent(server);
 

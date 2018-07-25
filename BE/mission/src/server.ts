@@ -1,11 +1,4 @@
 //
-// const missionServer = new MissionServer();
+import { MissionServer } from './missionServer';
 
-console.log('sdfsdf!');
-console.log(';kdas;lasdsad;ldask;slcsdcsdadk;!');
-console.log(';kdas;lasdfedfasdsad;ldask;slcsdcsdadk;!');
-console.log(';kdas;lasdsad;ldask;slcsdcsdadk;!');
-console.log(';kdas;lasdsad;ldaasdasdsk;slcsdcsdadk;!');
-console.log(';kdas;lsdfdsasdsad;ldask;slcsdcsdadk;!');
-console.log('nsdfsdfsasdsado');
-console.log('yasdcasdcsdes');
+const missionServer = new MissionServer();

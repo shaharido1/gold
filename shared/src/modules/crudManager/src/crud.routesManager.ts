@@ -1,4 +1,4 @@
-import { LogService } from '../logHandler/logHendler';
+import { LogService } from '../../logHandler/logHendler';
 import { CrudMongoMethod } from './crud.mongo.method';
 
 

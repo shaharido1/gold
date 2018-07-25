@@ -1,0 +1,1 @@
+{"version":3,"file":"config.js","sourceRoot":"","sources":["config.ts"],"names":[],"mappings":";;AAAa,QAAA,YAAY,GAAG;IAC1B,GAAG,EAAI,YAAY,GAAG,WAAW,GAAG,qBAAqB;CAC1D,CAAC","sourcesContent":["export const DBTestConfig = {\r\n  url :  \"mongodb://\" + \"localhost\" + \":27017/testMissions\"\r\n};"]}

@@ -16,9 +16,11 @@
   "dependencies": {
     "apollo-server": "^2.0.0",
     "axios": "^0.18.0",
+    "casual": "^1.5.19",
     "graphql": "^0.13.2",
     "graphql-redis-subscriptions": "^1.5.0",
-    "ioredis": "^3.2.2"
+    "ioredis": "^3.2.2",
+    "redis": "^2.8.0"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",

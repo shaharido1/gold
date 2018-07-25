@@ -1,11 +1,8 @@
-import { MissionPaths } from '../../../../../shared/src/paths/mission.paths';
-import { MissionServer } from '../../../../../shared/src/paths/servers.paths';
-import { CHANNEL_MISSION_ADDED, Mission, MissionInput, Missions } from './mission.typesDef';
-import axios from 'axios';
+import { Mission, MissionInput, Missions } from './mission.typesDef';
 import { GraphQLObjectType, GraphQLString } from 'graphql';
+import { MissionService } from './mission.service';
 
 export class MissionResolvers {
-
 
   public mutation = new GraphQLObjectType({
     name: 'MissionMutations',
@@ -17,15 +14,8 @@ export class MissionResolvers {
         args: {
           mission: { type: MissionInput },
         },
-        resolve: (root, { mission }) => {
-          return axios.post(MissionServer + MissionPaths.addMission, { mission }).then(res => {
-            this.pubSub.publish(CHANNEL_MISSION_ADDED, res.data);
-            console.log(res.data);
-          });
-        },
-
+        resolve: (root, { mission }) => this.missionService.addMission,
       },
-
     }),
   });
 
@@ -36,23 +26,23 @@ export class MissionResolvers {
     fields: () => ({
       test: {
         type: GraphQLString,
-        description: 'test mission server',
-        resolve: () => 'test ok'
+        description: 'test graphQl',
+        resolve: () => 'test graphQl ok'
       },
       missionTestQuery: {
         type: GraphQLString,
         description: 'test mission server',
-        resolve: () => axios.get(MissionServer + MissionPaths.test).then(res => res.data)
+        resolve: () => this.missionService.missionTestQuery()
+      },
+      getMission: {
+        type: Mission,
+        description: 'get one mission',
+        resolve: () => this.missionService.getMission()
       },
       getAllMissions: {
         type: Missions,
         description: 'get all missions',
-        resolve: () => axios.get(MissionServer + MissionPaths.getAllMission).then(res => res.data)
-      },
-      mission: {
-        type: Mission,
-        description: 'get one mission',
-        resolve: () => axios.get(MissionServer + MissionPaths.getMissionById).then(res => res.data)
+        resolve: () => this.missionService.getAllMissions()
       }
     })
   });
@@ -65,17 +55,15 @@ export class MissionResolvers {
         type: GraphQLString,
         description: 'test subscritpion server',
         resolve: (data) => {console.log(data); return data;},
-        subscribe: () => this.pubSub.asyncIterator(CHANNEL_MISSION_ADDED),
+        subscribe: this.missionService.missionSubscription,
       },
     }),
   });
 
 
-  pubSub;
-  missionService;
+  missionService : MissionService;
 
-  constructor(pubSub, missionService) {
-    this.pubSub = pubSub;
+  constructor(missionService: MissionService) {
     this.missionService = missionService
   }
 }

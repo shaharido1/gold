@@ -1,7 +1,7 @@
 // import { MissionMethods } from "../dbModule/methods/mission.method";
 // import { Mission } from "../dbModule/schemas/mission.schema";
 // import { DBManager } from "../dbModule/connect";
-// import { dBTestConfig } from "./config/config";
+// import { DBTestConfig } from "./config/config";
 //
 //
 // describe("test DB methods", () => {
@@ -11,7 +11,7 @@
 //   };
 //
 //   beforeAll(async (done) => {
-//     // await DBManager.connect(dBTestConfig.url);
+//     // await DBManager.connect(DBTestConfig.url);
 //     const initMission = await Mission.init();
 //     missionMethod = new MissionMethods(initMission);
 //     done();
@@ -103,3 +103,4 @@
 //
 //
 // });
+//# sourceMappingURL=mission.method.test.js.map

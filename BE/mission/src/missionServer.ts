@@ -1,22 +1,24 @@
 import * as http from 'http';
 import bodyParser from 'body-parser';
 import express from 'express';
-import { GoldServer } from '../../shared/src/modules/goldServer/goldServer';
 import { routes } from './routes/routesFunction';
 import { DBManager } from './dbModule/connect';
 import { dbConfig } from './config/dbConfig';
 import { configFileLocation } from './config/mission.config.filePath';
+import { GoldServer } from '../../../shared/src/modules/goldServer/goldServer';
 
 export class MissionServer extends GoldServer {
 
   app = express();
   server = http.createServer(this.app);
+
   constructor() {
     super(configFileLocation);
     this.configApp();
-    this.setupDB();
-    this.setupRoutes();
-    this.setupListener();
+    this.setupDB().then(() => {
+      this.setupRoutes();
+      this.setupListener();
+    });
   }
 
   configApp() {
@@ -25,7 +27,7 @@ export class MissionServer extends GoldServer {
   }
 
   setupDB() {
-    DBManager.connect(dbConfig.url, this.logService);
+    return DBManager.connect(dbConfig.url, this.logService);
   }
 
   setupRoutes() {
