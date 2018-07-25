@@ -1,0 +1,1 @@
+{"version":3,"file":"redisConfig.js","sourceRoot":"","sources":["../../../../shared/src/interface/redisConfig.ts"],"names":[],"mappings":"","sourcesContent":["export interface RedisConfig {\r\n  config_redisHost : string;\r\n  config_redisPort : number;\r\n  reconnect: number;\r\n  config_redisQueueName? : string;\r\n}"]}

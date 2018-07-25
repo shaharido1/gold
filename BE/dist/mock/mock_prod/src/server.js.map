@@ -1,0 +1,1 @@
+{"version":3,"file":"server.js","sourceRoot":"","sources":["../../../../mock/mock_prod/src/server.ts"],"names":[],"mappings":";;AAAA,mEAAwD;AAExD,MAAM,GAAG,GAAG,IAAI,qCAAa,EAAE,CAAC","sourcesContent":["import { DataGenerator } from './dataGenertorgenerator';\r\n\r\nconst gen = new DataGenerator();\r\n"]}

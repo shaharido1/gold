@@ -5,8 +5,8 @@ import { EnrichConfig } from './model/EnrichConfig';
 import { TimeSetup } from '../../shared/src/modules/measureTime/TimeSetup';
 import { MeasureTime } from '../../shared/src/modules/measureTime/measeuerTime';
 import { ConfigFileLocation } from '../config/config.enrich.default';
-import { RedisMQWorkerAdapter } from '../../shared/src/modules/redis/redisMQ-worker';
-import { RedisAdapter2 } from '../../shared/src/modules/redis/redisAdapter';
+import { RedisMQWorkerAdapter } from '../../shared/src/modules/redis/src/redisMQ-worker';
+import { RedisAdapter2 } from '../../shared/src/modules/redis/src/redisAdapter';
 
 export const DEV_ENVIRONMENT = 'goldStarDevelopment';
 
