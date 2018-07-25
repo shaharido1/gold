@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <excludedPredefinedLibrary name="goldstar/BE/apollo/node_modules" />
+    <excludedPredefinedLibrary name="goldstar/BE/consumer/node_modules" />
+    <excludedPredefinedLibrary name="goldstar/BE/mission/node_modules" />
+    <excludedPredefinedLibrary name="goldstar/FE/node_modules" />
+    <excludedPredefinedLibrary name="goldstar/shared/node_modules" />
+    <excludedPredefinedLibrary name="goldstar/shared/src/modules/crudManager/node_modules" />
+  </component>
+</project>

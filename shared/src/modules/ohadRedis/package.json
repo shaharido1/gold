@@ -1,0 +1,23 @@
+{
+  "name": "redisAdapter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "redisMQ.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "set TS_NODE_PROJECT=./tsconfig.json&& mocha --require ts-node/register \"./test/**/*spec.ts*\"",
+    "test:watch": "npm run test -- --watch --watch-extensions ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "redis": "^2.8.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "typescript": "^2.9.2"
+  }
+}
