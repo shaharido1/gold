@@ -6,65 +6,7 @@
     </enabled-run-configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e139a43c-f971-4bf1-8467-811cced5678f" name="Default" comment="working version">
-      <change afterPath="$PROJECT_DIR$/BE/apollo/src/graphQl/entity/entity.mock.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/apollo/src/graphQl/entity/entity.resolvers.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/apollo/src/graphQl/entity/entity.schema.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/apollo/src/graphQl/entity/entity.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/apollo/src/graphQl/entity/redisMockPublisher/redisMockPublisher.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/apollo/src/graphQl/mission/mission.mock.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/apollo/test/graphQl/mission/mission.integration.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/mission/test/api.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/mission/test/api.test.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/mission/test/config/config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/mission/test/config/config.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/mission/test/mission.method.test.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/mission/test/mission.method.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/mission/test/mission.method.test.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/mission/test/simpleTest.spec.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/mission/test/simpleTest.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BE/mission/test/simpleTest.spec.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/modules/crudManager/nodemon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/modules/crudManager/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/modules/crudManager/src/mongoConnection.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/modules/crudManager/test/crud.mongo.method.mock.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/modules/crudManager/test/crud.mongo.method.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/modules/crudManager/test/mongoConnection.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/modules/crudManager/test/test.scheme.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/modules/crudManager/tsconfig.crudManager.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/modules/crudManager/tslint.crudManager.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/modules/logHandler/logServiceMock.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/apollo/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/BE/apollo/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/apollo/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/BE/apollo/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/apollo/src/apolloServer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/apollo/src/apolloServer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/apollo/src/graphQl/entity/resolvers/entity.query.resolvers.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/apollo/src/graphQl/entity/resolvers/mission.subscription.resolvers.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/apollo/src/graphQl/entity/types/entity.typeDef.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/apollo/src/graphQl/entity/entity.typesDef.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/apollo/src/graphQl/mission/mission.resolvers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/apollo/src/graphQl/mission/mission.resolvers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/apollo/src/graphQl/mission/mission.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/apollo/src/graphQl/mission/mission.schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/apollo/src/graphQl/mission/mission.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/apollo/src/graphQl/mission/mission.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/apollo/src/graphQl/resolvers.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/apollo/src/graphQl/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/apollo/src/graphQl/schemaManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/apollo/test/graphQl/mission/mission.query.resolver.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/apollo/test/graphQl/mission/mission.unit.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/apollo/test/graphQl/mission/simpleTest.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mission/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mission/src/dbModule/methods/mission.method.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/src/dbModule/methods/mission.method.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mission/src/missionServer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/src/missionServer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mission/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/src/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mission/src/test/api.test.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/test/api.test.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mission/src/test/api.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/test/api.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mission/src/test/config/config.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/test/config/config.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mission/src/test/config/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/test/config/config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mission/src/test/mission.method.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/test/mission.method.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BE/mission/src/test/simpleTest.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BE/mission/test/simpleTest.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/modules/crudManager/crud.mongo.method.ts" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/modules/crudManager/src/crud.mongo.method.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/modules/crudManager/crud.routesManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/modules/crudManager/src/crud.routesManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/modules/dockerode/dockerAdapter.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/modules/dockerode/dockerAdapter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/modules/dockerode/dockerAdapter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/modules/logHandler/logHendler.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/modules/logHandler/logService.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/modules/logHandler/logHendler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/modules/logHandler/logService.ts" afterDir="false" />
-    </list>
+    <list default="true" id="e139a43c-f971-4bf1-8467-811cced5678f" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -129,11 +71,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="crud.mongo.method.mock.spec.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="crud.mongo.method.mock.spec.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shared/src/modules/crudManager/test/crud.mongo.method.mock.spec.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+            <state relative-caret-position="357">
+              <caret line="21" column="54" lean-forward="true" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
               <folding>
                 <element signature="e#0#62#0" expanded="true" />
               </folding>
@@ -149,42 +91,6 @@
               <folding>
                 <element signature="e#0#60#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="nodemon.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/src/modules/crudManager/nodemon.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="51" selection-start-line="3" selection-start-column="51" selection-end-line="3" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.scheme.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/src/modules/crudManager/test/test.scheme.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tsconfig.crudManager.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/src/modules/crudManager/tsconfig.crudManager.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="crud.mongo.method.spec.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/src/modules/crudManager/test/crud.mongo.method.spec.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="29" selection-end-line="104" />
             </state>
           </provider>
         </entry>
@@ -212,6 +118,34 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
+      <file leaf-file-name="package-lock.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shared/package-lock.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="24">
+              <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="angular.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FE/angular.json">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FE/package.json">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="package-lock.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/FE/package-lock.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="166">
+              <caret line="7957" column="13" selection-start-line="7957" selection-start-column="9" selection-end-line="7957" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -225,8 +159,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>rxjs</find>
-      <find>mongo</find>
       <find>DBManager</find>
       <find>article</find>
       <find>rabbit</find>
@@ -255,6 +187,8 @@
       <find>create</find>
       <find>createCon</find>
       <find>run</find>
+      <find>hapijs</find>
+      <find>body</find>
     </findStrings>
     <replaceStrings>
       <replace>entity</replace>
@@ -276,7 +210,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/BE/configServer/package.json" />
         <option value="$PROJECT_DIR$/BE/consumer/package.json" />
         <option value="$PROJECT_DIR$/BE/enrich/package.json" />
         <option value="$PROJECT_DIR$/BE/apollo/src/server.ts" />
@@ -327,6 +260,7 @@
         <option value="$PROJECT_DIR$/shared/src/modules/crudManager/test/mongoConnection.spec.ts" />
         <option value="$PROJECT_DIR$/shared/src/modules/dockerode/dockerAdapter.ts" />
         <option value="$PROJECT_DIR$/shared/src/modules/crudManager/test/crud.mongo.method.mock.spec.ts" />
+        <option value="$PROJECT_DIR$/FE/package-lock.json" />
       </list>
     </option>
   </component>
@@ -1827,16 +1761,6 @@
               <item name="goldstar" type="462c0819:PsiDirectoryNode" />
               <item name="FE" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="goldstar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="goldstar" type="462c0819:PsiDirectoryNode" />
-              <item name="mock" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="goldstar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="goldstar" type="462c0819:PsiDirectoryNode" />
-              <item name="shared" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -1932,7 +1856,7 @@
       <workItem from="1531385129461" duration="45298000" />
       <workItem from="1532004652098" duration="12464000" />
       <workItem from="1532257521205" duration="2708000" />
-      <workItem from="1532260265128" duration="55455000" />
+      <workItem from="1532260265128" duration="55701000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1528274132874</created>
@@ -2081,7 +2005,14 @@
       <option name="project" value="LOCAL" />
       <updated>1532353810677</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="last commit">
+      <created>1532507136386</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1532507136386</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2117,20 +2048,21 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="222519000" />
+    <option name="totallyTimeSpent" value="222765000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="8" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5015806" side_tool="true" weight="0.37472767" />
       <window_info anchor="bottom" id="GraphQL" order="0" weight="0.34313726" />
       <window_info anchor="bottom" id="Run" order="4" weight="0.5795207" />
       <window_info anchor="bottom" id="Version Control" order="12" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49841937" visible="true" weight="0.37472767" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49841937" visible="true" weight="0.37472767" />
       <window_info anchor="bottom" id="TypeScript" order="13" weight="0.32897604" />
       <window_info id="Gulp" sideWeight="0.1271777" side_tool="true" weight="0.25605902" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8728223" visible="true" weight="0.25605902" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8728223" visible="true" weight="0.25605902" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32897604" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -2223,7 +2155,8 @@
     <MESSAGE value="shared folder" />
     <MESSAGE value="working version" />
     <MESSAGE value="apollo" />
-    <option name="LAST_COMMIT_MESSAGE" value="apollo" />
+    <MESSAGE value="last commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="last commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2268,33 +2201,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/BE/apollo/node_modules/@types/graphql/type/definition.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="358" column="12" selection-start-line="358" selection-start-column="12" selection-end-line="358" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BE/apollo/src/graphQl/entity/entity.resolvers.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BE/apollo/src/graphQl/entity/entity.mock.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BE/apollo/src/graphQl/mission/mission.mock.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="9" lean-forward="true" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BE/apollo/src/graphQl/mission/mission.typesDef.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -2628,11 +2534,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/shared/src/modules/crudManager/test/crud.mongo.method.mock.spec.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+        <state relative-caret-position="357">
+          <caret line="21" column="54" lean-forward="true" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
           <folding>
             <element signature="e#0#62#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FE/angular.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FE/package.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FE/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="7957" column="13" selection-start-line="7957" selection-start-column="9" selection-end-line="7957" selection-end-column="13" />
         </state>
       </provider>
     </entry>

@@ -34,7 +34,6 @@
     "apollo-link-ws": "^1.0.8",
     "core-js": "^2.5.4",
     "rxjs": "^6.0.0",
-    "rxjs-compat": "^6.2.0",
     "subscriptions-transport-ws": "^0.9.9",
     "zone.js": "^0.8.26"
   },
