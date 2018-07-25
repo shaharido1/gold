@@ -1,0 +1,17 @@
+<div class="login">
+  <div class="credentials">
+    <input class="userInput userName" [(ngModel)]="userName" placeholder="Enter User Name">
+    <input class="userInput password" [(ngModel)]="password" placeholder="Enter your Password">
+  </div>
+
+  <div class="nav-buttons">
+    <button class="buttonInput" (click)="onClickJoin()">
+      {{JOIN_MISSION}}
+    </button>
+    <button class="buttonInput right-button" (click)="onClickNew()">
+      {{NEW_MISSION}}
+    </button>
+  </div>
+</div>
+
+

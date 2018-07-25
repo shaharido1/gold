@@ -1,0 +1,38 @@
+<div class="missionContainer">
+  <div class="mission-details">
+    <div class="firstLineOfBlocks">
+      <div class="missionName">
+        <div class="label name">{{MISSION_NAME}}</div>
+        {{missionName$ | async}}
+      </div>
+      <div class="status ">
+        <div class="label" tooltip-value="mission status">Mission status</div>
+          <app-Select-Status></app-Select-Status>
+      </div>
+    </div>
+    <div class="missionDescription">
+      <div class="label description">{{MISSION_DESCRIPTION}}</div>
+      {{missionDescription$ | async}}
+    </div>
+    <div class="area">
+      <div class="label area">Area of interest</div>
+      Edit Polygon <br>
+      Advanced AOI
+    </div>
+    <div class="tags">
+      <div class="label tags">Tags</div>
+      <app-tags [list]="missionTagList$| async" [needAddButton]="true" class="tags"></app-tags>
+    </div>
+    <div class="members">
+      <div class="label member">Members</div>
+      <app-members [members]="missionMembers$ | async" [needAddButton]="true" class="circles"
+                   (addMember)="addNewMember()"></app-members>
+    </div>
+  </div>
+  <div class="footer">
+    <div>PlayBack</div>
+    <div>Duplicate</div>
+    <div>Edit</div>
+    <button class="button launch" (click)="launch()">Enter mission</button>
+  </div>
+</div>

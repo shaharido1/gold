@@ -5,6 +5,7 @@ import { coreReducer } from './store/core.reducer';
 import { coreFeatureKey } from './store/core.selectors';
 import { CoreComponent } from './components/core/core.component';
 
+
 @NgModule({
   declarations: [
     CoreComponent,

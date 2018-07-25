@@ -3,6 +3,6 @@ export declare class LogService {
     log: any;
     error: any;
     constructor(setup: MyLoggerOptions);
-    private init(setup);
+    private init;
     loggerWrite(level: levels, msg: string): void;
 }

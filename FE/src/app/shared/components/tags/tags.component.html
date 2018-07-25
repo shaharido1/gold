@@ -1,0 +1,24 @@
+<div class="tags">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Tags</th>
+        <th>Keywords</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="tableRow" *ngFor="let tag of list">
+        <td>{{tag.tagName}}</td>
+        <td>{{tag.keyWords}}</td>
+      </tr>
+    </tbody>
+    <tfoot *ngIf="needAddButton">
+      <tr>
+        <td>
+        ADD TAG
+        </td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

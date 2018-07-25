@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import graphqlTag from 'graphql-tag';
+import gql from 'graphql-tag';
 
 @Injectable()
 export class ApolloService {

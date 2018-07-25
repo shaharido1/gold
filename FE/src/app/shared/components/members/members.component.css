@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  width: 100%;
+}
+.circles {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+  margin-right: 1.5%;
+}
+
+.add {
+  width : 25px;
+  height: 25px;
+  background: grey;
+  align-self: center;
+}

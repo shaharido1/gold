@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="buttonsBar">
+    <button (click)="changeDisplay('Active')">RECENT</button>
+    <button (click)="changeDisplay('Active')">ACTIVE</button>
+    <button (click)="changeDisplay('Suspended')">SUSPENDED</button>
+    <button (click)="changeDisplay('All')">ALL</button>
+  </div>
+  <div *ngFor="let mission of presentedMissions$ | async">{{mission.name}}</div>
+</div>

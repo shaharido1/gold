@@ -1,0 +1,42 @@
+:host {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 180px;
+  padding: 6px 6px;
+  border: solid #cbcbcb 0.5px;
+}
+.progressBarData {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #ffffff;
+}
+
+.name {
+  font-size: 12px;
+}
+
+.percentage {
+  font-size: 13px;
+}
+
+.progress {
+  overflow: hidden;
+  height: 4px;
+
+  background-color: #bfbfbf;
+}
+
+.progress .bar {
+  /*width: 70%;*/
+  height: 4px;
+  background-color: #7fc14e;
+}
+

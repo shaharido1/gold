@@ -1,0 +1,12 @@
+<div class="icon-bar">
+  <div>search</div>
+  <div>tags</div>
+
+  <div [ngSwitch]="color">
+    <div (click)="color='green'" *ngSwitchCase="'red'">red</div>
+    <div (click)="color='blue'" *ngSwitchCase="'green'">green</div>
+    <div (click)="color='red'" *ngSwitchCase="'blue'">blue</div>
+    <div (click)="color='yellow'" *ngSwitchCase="'yellow'">yellow</div>
+  </div>
+</div>
+

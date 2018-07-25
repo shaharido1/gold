@@ -6,8 +6,6 @@ import { Inject, Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 import { ApolloActionTypes } from './apollo.action';
-import graphqlTag from 'graphql-tag';
-import { Apollo } from 'apollo-angular';
 import 'rxjs-compat/add/operator/mergeMap';
 import { ApolloService } from '../services/apollo.service';
 

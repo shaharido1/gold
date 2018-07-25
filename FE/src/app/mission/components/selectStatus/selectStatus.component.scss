@@ -1,0 +1,48 @@
+/* ==========  Select Field Variables ========== */
+$color-black: "0,0,0";
+$select-font-size: 16px;
+$select-padding: 4px;
+
+/* ==========  Select Field ========== */
+
+/* Style Select Field */
+select {
+  font-family: inherit;
+  background-color: transparent;
+  width: 100%;
+  padding: $select-padding 0;
+  font-size: $select-font-size;
+  color: #cbcbcb;
+  border: none;
+}
+
+/* Remove focus */
+select:focus {
+  outline: none
+}
+
+/* Use custom arrow */
+.mdl-selectfield {
+  position: relative;
+
+  &:after {
+
+    position: absolute;
+    top: 0.75em;
+    right: 0.5em;
+    /* Styling the down arrow */
+    width: 0;
+    height: 0;
+    padding: 0;
+    content: '';
+    border-left: .25em solid transparent;
+    border-right: .25em solid transparent;
+    pointer-events: none;
+  }
+}
+
+/* ==========  Demo CSS ========== */
+.demo {
+  width: 100%;
+  display: flex;
+}

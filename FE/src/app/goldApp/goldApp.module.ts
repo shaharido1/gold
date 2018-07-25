@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { ApolloSetupModule } from '../apollo/apolloSetup.module';
 import { CoreModule } from '../core/core.module';
+import { AppRoutingModule } from './app-routes';
 
 export function metaReducer(reducer) {
   return function (state, action) {
@@ -22,17 +23,16 @@ export const metaReducers = [metaReducer];
   ],
   imports: [
     HttpClientModule,
-    StoreModule.forRoot({
-
-    },                  { metaReducers }),
+    StoreModule.forRoot({}, { metaReducers }),
     EffectsModule.forRoot([]),
     ApolloSetupModule,
     BrowserModule,
     HttpLinkModule,
-    CoreModule,
+    AppRoutingModule,
+    CoreModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class GoldAppModule {
 

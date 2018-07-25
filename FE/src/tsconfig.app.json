@@ -3,8 +3,6 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "module": "es2015",
-    "types": [],
-    "skipLibCheck": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib" : [
@@ -20,6 +18,10 @@
       "es2015.reflect",
       "es2015.symbol",
       "es2015.symbol.wellknown"
+    ],
+    "skipLibCheck": true,
+    "typeRoots": [
+      "node_modules/@types"
     ]
   },
   "exclude": [

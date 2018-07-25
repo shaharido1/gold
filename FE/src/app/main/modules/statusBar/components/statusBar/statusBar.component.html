@@ -1,0 +1,15 @@
+<div class="toolBarContainer">
+
+  <div class="name">{{missionName}}</div>
+
+  <div class="components">
+    <app-progress-bar [name]="'Alerts'" [amount]="13" [total]="20"></app-progress-bar>
+    <app-progress-bar [name]="'Notifications'" [amount]="24" [total]="100"></app-progress-bar>
+    <app-ranking-toggle [toggleName]="'Ranking Filter'"></app-ranking-toggle>
+    <div class="members">
+      <app-members [needAddButton]="false" class="ido"
+                   [members]="missionMembers$ | async"></app-members>
+    </div>
+  </div>
+
+</div>

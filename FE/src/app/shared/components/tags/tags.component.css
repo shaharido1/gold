@@ -1,0 +1,38 @@
+.tags {
+  display: flex;
+  width: 100%;
+  font-size: medium;
+}
+.table {
+  width: 100%;
+  height: 100%;
+  border-spacing: 0;
+  border-bottom: 2px solid #989898;
+}
+
+th:first-child {
+  padding-left: 3%;
+
+}
+
+td {
+  border-top: 2px solid #989898;
+}
+
+td:first-child {
+  padding-left: 3%;
+}
+
+tfoot {
+  color: #57cd4e;
+}
+
+thead {
+  text-align: left;
+  font-size: 12px;
+  color: #989898;
+}
+
+tbody {
+  text-align: left;
+}

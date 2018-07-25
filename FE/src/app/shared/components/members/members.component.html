@@ -1,0 +1,13 @@
+<!--<div class="circles" *ngIf="members && members.length" [style.width]="members.length*10 + '%'" >-->
+<div class="circles" *ngIf="members && members.length" [style.flex-wrap]="needAddButton ? 'wrap' : 'nowrap'">
+
+  <div class="circle" *ngFor="let member of members" [style.background]="member.color" >
+    {{member.name | uppercase}}
+  </div>
+
+  <div class="circle add" *ngIf="needAddButton" (click)="onAddMember()">
+    {{ADD_SIGN}}
+  </div>
+</div>
+
+
