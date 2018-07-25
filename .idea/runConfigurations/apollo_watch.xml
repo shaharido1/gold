@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="apollo:watch" type="NodeJSConfigurationType" factoryName="Node.js" folderName="watch" path-to-node="$USER_HOME$/AppData/Roaming/npm/nodemon.cmd" node-parameters="--require ts-node\register " path-to-js-file="src/server.ts" working-dir="$PROJECT_DIR$/BE/apollo">
+    <envs>
+      <env name="TS_NODE_PROJECT" value="./tsconfig.apollo.json" />
+    </envs>
+    <method />
+  </configuration>
+</component>

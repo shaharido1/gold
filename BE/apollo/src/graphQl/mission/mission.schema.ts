@@ -1,10 +1,25 @@
 import { GraphQLSchema } from 'graphql';
-import { missionQueries } from './resolvers/mission.query.resolvers';
-import { missionMutations } from './resolvers/mission.mutation.resolvers';
+import { MissionService } from './mission.service';
+import { MissionResolvers } from './mission.resolvers';
+import { addMockFunctionsToSchema } from 'apollo-server';
+import { mocks } from './mission.mock';
 
+export class MissionSchema {
+  schema : GraphQLSchema;
+  missionResolvers : MissionResolvers;
+  pubSub;
+  missionService;
 
-
-export const missionSchema = new GraphQLSchema({
-  query: missionQueries,
-  mutation: missionMutations
-});
+  constructor(pubSub, isDev) {
+    this.pubSub = pubSub;
+    this.missionService = new MissionService(this.pubSub);
+    this.missionResolvers = new MissionResolvers(this.missionService);
+    const { query, mutation, subscription } = this.missionResolvers;
+    this.schema = new GraphQLSchema({
+      query,
+      mutation,
+      subscription
+    });
+    isDev? addMockFunctionsToSchema({schema: this.schema, mocks, preserveResolvers: false}) : null;
+  }
+}

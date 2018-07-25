@@ -30,7 +30,6 @@ export class ValidateNRepack extends GoldServer {
     // });
   }
 
-
   doStuff(msg): Promise<Message> {
     return new Promise((resolve, reject) => {
       console.log(msg.content.toString());

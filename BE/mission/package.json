@@ -4,15 +4,14 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run serve:watch",
-    "serve:watch": "nodemon  src/server.ts",
+    "serve:watch": "nodemon src/server.ts",
     "serve": "set TS_NODE_PROJECT=./tsconfig.mission.json&& ts-node ./src/server.ts",
     "build": "tsc -p tsconfig.mission.json",
     "build:watch": "npm run build -- -w",
     "test": "set TS_NODE_PROJECT=./tsconfig.mission.json&& mocha --require ts-node/register \"./src/**/*spec.ts*\"",
     "test:watch": "npm run test -- --watch --watch-extensions ts",
     "mongoDocker": "docker run --network host -v mongoVol:/data/db --name mongo mongo",
-    "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "lint": "tslint -c tslint.json -p tsconfig.json --fix"
+    "lint": "tslint -c tslint.mission.json -p tsconfig.mission.json --fix"
   },
   "private": true,
   "precommit": [

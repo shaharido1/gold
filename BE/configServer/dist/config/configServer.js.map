@@ -1,1 +1,0 @@
-{"version":3,"file":"configServer.js","sourceRoot":"","sources":["../../config/configServer.ts"],"names":[],"mappings":";;AAEa,QAAA,SAAS,GAAG;IACvB,iBAAiB,EAAG,MAAM;IAC1B,gBAAgB,EAAE,WAAW;CAC9B,CAAC","sourcesContent":["\n\nexport const appConfig = {\n  config_rabbitPort : \"5000\",\n  config_redisHost: \"localhost\"\n};\n"]}

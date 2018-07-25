@@ -24,7 +24,7 @@ export class Enrich {
   }
 
   init() {
-    console.log(this.config)
+    console.log(this.config);
     this.redis = new RedisAdapter2(this.config.redisConfig);
     this.worker = new RedisMQWorkerAdapter(this.config.redisConfig.config_redisQueueName, this.config.redisConfig.config_redisHost);
     this.measureTime = new MeasureTime();
@@ -33,7 +33,7 @@ export class Enrich {
       avgTime: 0,
       roundTime: 0,
       totalTime: 0,
-      numberOfRounds: 0
+      numberOfRounds: 0,
     };
 
     this.redis.initClientConnection()

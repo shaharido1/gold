@@ -1,3 +1,3 @@
 export const dbConfig = {
-  url :  "mongodb://" + "localhost" + ":27017/goldstar"
+  url :  'mongodb://' + 'localhost' + ':27017/goldstar',
 };

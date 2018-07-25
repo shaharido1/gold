@@ -1,16 +1,24 @@
 {
-  "name": "goldStar",
-  "version": "1.1.1",
-  "description": "some",
+  "name": "goldstar",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cd  ./fe && npm run test"
+    "bar": "echo \"bar\" && exit 0",
+    "lint": "tslint  -c tslint.json -p tsconfig.json --fix",
+    "gulp": "gulp --gulpfile a.js webPackcompile"
   },
   "dependencies": {
+    "apollo-server": "^2.0.0",
+    "axios": "^0.18.0",
+    "graphql": "^0.13.2",
+    "gulp-sequence": "^1.0.0",
     "tslint-config-airbnb": "^5.9.2"
   },
   "devDependencies": {
+    "gulp": "^3.9.1",
     "pre-push": "^0.1.1",
+    "replace": "^1.0.0",
     "tslint": "^5.11.0",
     "typescript": "^2.9.2"
   },

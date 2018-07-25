@@ -1,4 +1,3 @@
-import { ApolloServer } from './apolloServer';
+import { ApolloGoldServer } from './apolloServer';
 
-
-const apolloServer = new ApolloServer();
+const apolloGoldServer = new ApolloGoldServer();
