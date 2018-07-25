@@ -14,10 +14,10 @@ import {
   oneEntityFromRedis,
   oneMissionFromRedis
 } from './mokData';
-import { CashHandler } from '../src/cashHandler';
+import { OldCashHandler } from '../src/cashHandler';
 
 
-let dbService: CashHandler;
+let dbService: OldCashHandler;
 
 
 describe('Test gold db service.', () => {
@@ -34,7 +34,7 @@ describe('Test gold db service.', () => {
 
 
   it('create redis adapter', (done) => {
-    dbService = new CashHandler();
+    dbService = new OldCashHandler();
     done();
   });
 

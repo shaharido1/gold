@@ -1,14 +1,14 @@
 import { expect, assert } from 'chai';
-import { CashHandlerMulti } from '../src/cashHandlerMulti';
+import { CashHandler } from '../src/cashHandlerMulti';
 import { MissionWithFeels } from './mokData';
 
 
 describe('', () => {
-  let cashHandlerMulti: CashHandlerMulti;
+  let cashHandlerMulti: CashHandler;
 
 
   it('create cashHandler from Multi ', (done) => {
-    cashHandlerMulti = new CashHandlerMulti();
+    cashHandlerMulti = new CashHandler();
     done();
   });
 
