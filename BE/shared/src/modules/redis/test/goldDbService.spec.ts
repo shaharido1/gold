@@ -1,10 +1,10 @@
-import { expect } from 'chai';
-import { GoldDbService } from '../GoldDbService';
+import { expect, assert } from 'chai';
+import { GoldDbService } from '../src/goldDbService';
 import {
   RedisDataType,
   RedisInterceptionCoreFields, RedisQueryGetInterception,
   RedisQuerySet
-} from '../entity/redisQuer';
+} from '../src/entity/redisQuer';
 import { DockerAdapter } from '../../dockerode/dockerAdapter';
 import {
   entity1,
@@ -15,6 +15,7 @@ import {
   oneEntityFromRedis,
   oneMissionFromRedis
 } from './mokData';
+import { error } from 'util';
 
 
 let dbService: GoldDbService;
@@ -47,15 +48,12 @@ describe('Test gold db service.', () => {
   });
 
 
-  it('redis connection', (done) => {
-
-    dbService.connectToDataBase()
+  it('redis connection', () => {
+    return dbService.connectToDataBase()
         .then((status: string) => {
           expect(status).to.equal('redis is ready');
-          done();
         })
-        .catch(err => console.error(err));
-
+        .catch(notOk)
   });
 
   // xit('redis connection after falling', (done) => {
@@ -69,68 +67,62 @@ describe('Test gold db service.', () => {
   //
   // });
 
-  it('write to redis entity1', function (done) {
-    dbService.writeBatchToRedis(entity1).then(res => {
-      expect(res).to.be.ok;
-      done();
-    });
+  it('write to redis entity1', function () {
+    return dbService.writeBatchToRedis(entity1)
+        .then(res => {
+          expect(res).to.be.ok;
+        })
+        .catch(notOk)
+  });
+  it('write to redis entity2', function () {
+    return dbService.writeBatchToRedis(entity2)
+        .then(res => {
+          expect(res).to.be.ok;
+        }).catch(notOk)
 
   });
-  it('write to redis entity2', function (done) {
-    dbService.writeBatchToRedis(entity2).then(res => {
-      expect(res).to.be.ok;
-      done();
-    });
-
+  it('write to redis entity3', function () {
+    return dbService.writeBatchToRedis(entity3)
+        .then(res => {
+          expect(res).to.be.ok;
+        })
+        .catch(notOk)
   });
-  it('write to redis entity3', function (done) {
-    dbService.writeBatchToRedis(entity3).then(res => {
-      expect(res).to.be.ok;
-      done();
-    });
 
-  });
-  it('write to redis missions', function (done) {
-    dbService.writeBatchToRedis(missions.map(mission => {
+  it('write to redis missions', function () {
+    return dbService.writeBatchToRedis(missions.map(mission => {
       return { ...mission, entityId: mission.missionId };
     })).then(res => {
       expect(res).to.be.ok;
-      done();
-    });
-
+    }).catch(notOk)
   });
 
 
-  it('Get one mission1 from redis with the top 10,000 score', (done) => {
-    dbService.getTopInRangeOfScore(oneMissionFromRedis.missionQuery1, oneMissionFromRedis.min, oneMissionFromRedis.max)
-        .then((res) => {
-          console.log(res);
-          expect(res).to.deep.equal(oneMissionFromRedis.missionQueryAnswer1);
-          done();
-        });
-  });
-
-  it('Get entity from redis with all marked fields', (done) => {
-    dbService.getAllEntityData(oneEntityFromRedis.queryOfEntity1)
-        .then((res) => {
-          console.log(res);
-          expect(res).to.deep.equal(oneEntityFromRedis.queryOfEntity1Answer);
-          done();
-
-        });
-  });
-
-  xit('Get mission with all entities fields', (done) => {
-
-
-    dbService.getFieldsOfMission(MissinWithFielsd.mission1, MissinWithFielsd.max, MissinWithFielsd.min)
+  it('Get one mission1 from redis with the top 10,000 score', () => {
+    return dbService.getTopInRangeOfScore(oneMissionFromRedis.missionQuery1, oneMissionFromRedis.min, oneMissionFromRedis.max)
         .then((res) => {
           // console.log(res);
+          expect(res).to.deep.equal(oneMissionFromRedis.missionQueryAnswer1);
+        }).catch(notOk)
+  });
+
+  it('Get entity from redis with all marked fields', () => {
+    return dbService.getDataOfEntity(oneEntityFromRedis.queryOfEntity1)
+        .then((res) => {
+          // console.log(res);
+          expect(res).to.deep.equal(oneEntityFromRedis.queryOfEntity1Answer);
+        })
+        .catch(notOk)
+  });
+
+
+  it('Get mission with all entities fields', () => {
+    return dbService.getFieldsOfMission(MissinWithFielsd.mission1, MissinWithFielsd.max, MissinWithFielsd.min)
+        .then((res) => {
+          console.log(res);
           // expect(res).to.deep.equal(query2Answer);
-          done();
-
-        });
-
+        })
+        .catch(notOk)
   });
 
 
@@ -166,3 +158,7 @@ describe('Test gold db service.', () => {
 
 
 });
+
+function notOk(err) {
+  assert.isNotOk(err, 'Promise error');
+}

@@ -1,5 +1,5 @@
 import { RedisAdapter } from './redisAdapter';
-import { RedisConfig } from '../../interface/redisConfig';
+import { RedisConfig } from '../../../interface/redisConfig';
 import {
   RedisDataType,
   RedisInput,
@@ -24,24 +24,28 @@ export enum GetRangeSorted {
   withscores = 'withscores',
   limit = 'limit',
   zero = 0,
-  one = 1
+  one = 1,
+  tenThousand = 10000
 
 }
 
+export enum SizeOfBatch { size = 2}
+
 export type SomeFields = Map<string, { entityId: string, mainField: string, subFields: Array<string>, missionId?: string }>;
 export type SetFields = Map<string, { entityId: string, mainField: string }>;
+
 export class GoldDbService {
 
   public redis: RedisAdapter;
   public config: RedisConfig;
   mapSetFields: SetFields;
-  mapSomeFields: SomeFields;
+  mapHashFields: SomeFields;
 
   constructor() {
     this.redis = new RedisAdapter();
     this.config = this.redis.config;
     this.mapSetFields = new Map();
-    this.mapSomeFields = new Map();
+    this.mapHashFields = new Map();
   }
 
   connectToDataBase() {
@@ -139,17 +143,16 @@ export class GoldDbService {
                   stringFields.push(sub);
                 }
               });
-          this.mapSomeFields.set(redisKey, {
+          this.mapHashFields.set(redisKey, {
             entityId: obj.entityId,
             mainField: key,
             subFields: stringFields
-
           });
           break;
         case RedisInterceptionCoreFields.related_missions:
         case RedisInterceptionCoreFields.rank:
         case RedisInterceptionCoreFields.tags:
-          this.mapSomeFields.set(redisKey, {
+          this.mapHashFields.set(redisKey, {
             entityId: obj.entityId,
             mainField: key,
             subFields: obj.missionId,
@@ -160,18 +163,46 @@ export class GoldDbService {
     });
   }
 
-
-  getAllEntityData(query: RedisQueryGetInterception): Promise<any> {
+  getDataFromBatchOfEntities(ArrayOfQueries: Array<RedisQueryGetInterception>): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.redisKeyBuilder(query);
       const promises = [];
-      promises.push(this.getAllEntitiesSubFields());
-      promises.push(this.getTopRateFieldOfSet(this.mapSetFields));
+      ArrayOfQueries.forEach(query => {
+        this.redisKeyBuilder(query);
+        promises.push(...this.getAllEntitiesOfSubFields());
+        promises.push(...this.getTopRateFieldOfSet());
+      });
       this.redis.execData()
           .then(() => {
             Promise.all(promises).then((response) => {
-              const missionAnswer = this.missionParser(response);
-              this.mapSomeFields = new Map();
+              // console.log("getDataFromBatchOfEntities")
+              console.log('execData');
+              console.log(response);
+              const missionAnswer = this.createObjectOfEntity(response);
+              this.mapHashFields = new Map();
+              this.mapSetFields = new Map();
+              resolve(response);
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+            reject(err);
+          });
+    });
+  }
+
+
+  getDataOfEntity(query: RedisQueryGetInterception): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.redisKeyBuilder(query);
+      const promises = [];
+      promises.push(...this.getAllEntitiesOfSubFields());
+      promises.push(...this.getTopRateFieldOfSet());
+      this.redis.execData()
+          .then(() => {
+            Promise.all(promises).then((response) => {
+              // console.log(response);
+              const missionAnswer = this.createObjectOfEntity(response);
+              this.mapHashFields = new Map();
               this.mapSetFields = new Map();
               resolve(missionAnswer);
             });
@@ -183,18 +214,21 @@ export class GoldDbService {
     });
   }
 
-  getAllEntitiesSubFields(someFields : SomeFields = this.mapSomeFields) {
+  getAllEntitiesOfSubFields(someFields: SomeFields = this.mapHashFields): Array<Promise<any>> {
     const promises = [];
-    someFields.forEach(({subFields}, redisKey) => {
+    someFields.forEach(({ subFields }, redisKey) => {
+      // console.log(redisKey)
+      // console.log(subFields)
       promises.push(this.redis.getValue(redisKey, subFields, {
         redisKey,
         type: RedisGetTypes.hashMap
       }));
     });
     return promises;
+
   }
 
-  getTopRateFieldOfSet(setFields : SetFields = this.mapSetFields) {
+  getTopRateFieldOfSet(setFields: SetFields = this.mapSetFields): Array<Promise<any>> {
     const promises = [];
     setFields.forEach((value, redisKey) => {
       promises.push(this.redis.getRangeSetByScoreHighToLow(redisKey, '+inf', '-inf', GetRangeSorted.withscores,
@@ -206,35 +240,35 @@ export class GoldDbService {
     return promises;
   }
 
-  missionParser(arr : Array<Array<{argsToResolve : {redisKey: string, type: RedisGetTypes}, response: string}>>) {
+  createObjectOfEntity(arr: Array<{ argsToResolve: { redisKey: string, type: RedisGetTypes }, response: string }>) {
     const newMissionAnswer = {};
-    arr.forEach((wrapper) => {
-      wrapper.forEach((answer) => {
+    if (arr && arr.length) {
+      arr.forEach((answer) => {
         if (answer.argsToResolve && answer.argsToResolve.type === RedisGetTypes.hashMap) {
-          const val = this.mapSomeFields.get(answer.argsToResolve.redisKey);
-          const st = {};
-          if (typeof val.subFields === RedisAnswerTypes.object) {
-            val.subFields.forEach((f, i) => {
-              st[f] = answer.response[i];
+          const mapHashFieldsValue = this.mapHashFields.get(answer.argsToResolve.redisKey);
+          const subField = {};
+          if (typeof mapHashFieldsValue.subFields === RedisAnswerTypes.object) {
+            mapHashFieldsValue.subFields.forEach((f, i) => {
+              subField[f] = answer.response[i];
             });
-            newMissionAnswer[val.mainField] = st;
+            newMissionAnswer[mapHashFieldsValue.mainField] = subField;
           }
           else {
-            newMissionAnswer[val.mainField] = answer.response;
-            newMissionAnswer[RedisAnswerTypes.missionId] = val.missionId;
+            newMissionAnswer[mapHashFieldsValue.mainField] = answer.response;
+            newMissionAnswer[RedisAnswerTypes.missionId] = mapHashFieldsValue.missionId;
           }
-          newMissionAnswer[RedisAnswerTypes.entityId] = val.entityId;
+          newMissionAnswer[RedisAnswerTypes.entityId] = mapHashFieldsValue.entityId;
 
         }
         else if (answer.argsToResolve && answer.argsToResolve.type === RedisGetTypes.set) {
-          const val = this.mapSetFields.get(answer.argsToResolve.redisKey);
-          newMissionAnswer[val.mainField] = GoldDbService.fromRedisArrayToObject(answer.response);
+          const mapSetFieldsValue = this.mapSetFields.get(answer.argsToResolve.redisKey);
+          newMissionAnswer[mapSetFieldsValue.mainField] = GoldDbService.fromRedisArrayToObject(answer.response);
         }
       });
-
-    });
+    }
     // console.log(newMissionAnswer);
     return newMissionAnswer;
+
   }
 
   createQuery(entityId, missionId, options?) {
@@ -259,18 +293,24 @@ export class GoldDbService {
   public getFieldsOfMission({ type, missionId, mainFieldId }: RedisQueryGetMission, max, min) {
     return new Promise((resolve, reject) => {
       this.getMission({ type, missionId, mainFieldId }, max, min)
-          .then((entityIds : Array<string>) => {
-            this.mapSomeFields = new Map();
+          .then((entityIds: Array<string>) => {
+            this.mapHashFields = new Map();
             this.mapSetFields = new Map();
-            entityIds.forEach((entityId) => {
+            const entityQueue: Array<RedisQueryGetInterception> = [];
+            entityIds.forEach((entityId, index) => {
               const query = this.createQuery(entityId, missionId);
-              console.log(query);
-              console.log('\n');
-              this.getAllEntityData(query);
-              // .then((entityDetails) => {
-              //   console.log(entityDetails);
-              // resolve(entityDetails);
-              // });
+              entityQueue.push(query);
+              if (index === SizeOfBatch.size) {
+                this.getDataFromBatchOfEntities(entityQueue)
+                    .then((a) => {
+                      console.log('res');
+                      // console.log(a);
+                      // console.log(response);
+                      // const missionAnswer = this.createObנjectOfEntity(response);
+                      resolve(a);
+                      // resolve(missionAnswer);
+                    });
+              }
             });
 
           }).catch(err => console.log(err));
@@ -302,7 +342,7 @@ export class GoldDbService {
   public getTopInRangeOfScore({ type, missionId, mainFieldId }: RedisQueryGetMission, max: number, min: number) {
     return new Promise((resolve, reject) => {
       const redisKey = `${type}_${missionId}_${mainFieldId}`;
-      console.log(redisKey);
+      // console.log(redisKey);
       const prom = this.redis.getRangeSetByScoreHighToLow(redisKey, '+inf', '-inf', GetRangeSorted.withscores,
           GetRangeSorted.limit, max, min);
       this.redis.execData()

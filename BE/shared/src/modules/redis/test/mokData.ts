@@ -1,9 +1,20 @@
-import { RedisDataType, RedisInterceptionCoreFields, RedisQuerySet } from '../entity/redisQuer';
+import { RedisDataType, RedisInterceptionCoreFields, RedisQuerySet } from '../src/entity/redisQuer';
+
+const enum types {
+  entity1Id = '1234577',
+  entity2Id = '1234578',
+  entity3Id = '1234579',
+  mission1 = 'M_100',
+  mission2 = 'M_101',
+  mission3 = 'M_102',
+
+}
+
 
 export const entity1: Array<RedisQuerySet> = [
   {
     type: RedisDataType.interception,
-    entityId: '1234577',
+    entityId: types.entity1Id,
     mainFieldId: RedisInterceptionCoreFields.static,
     entFields: [
       { subField: 'name', value: 'ohad' },
@@ -13,7 +24,7 @@ export const entity1: Array<RedisQuerySet> = [
   },
   {
     type: RedisDataType.interception,
-    entityId: '1234577',
+    entityId: types.entity1Id,
     mainFieldId: RedisInterceptionCoreFields.dynamic,
     entFields: [
       { subField: '1111111111', value: 'location1' },
@@ -23,25 +34,25 @@ export const entity1: Array<RedisQuerySet> = [
   },
   {
     type: RedisDataType.interception,
-    entityId: '1234577',
+    entityId: types.entity1Id,
     mainFieldId: RedisInterceptionCoreFields.related_missions,
     entFields: [
-      { subField: 'M_100', value: 'T' },
+      { subField: 'M_101', value: 'T' },
       { subField: 'M_105', value: 'T' }
     ]
   },
   {
     type: RedisDataType.interception,
-    entityId: '1234577',
+    entityId: types.entity1Id,
     mainFieldId: RedisInterceptionCoreFields.rank,
     entFields: [
-      { subField: 'M_100', value: '0.3' },
+      { subField: 'M_101', value: '0.3' },
       { subField: 'M_105', value: '0.12' }
     ]
   },
   {
     type: RedisDataType.interception,
-    entityId: '1234577',
+    entityId: types.entity1Id,
     mainFieldId: RedisInterceptionCoreFields.tags,
     entFields: [
       { subField: 'M_100', value: '[tag1,tag2,tag3]' },
@@ -50,10 +61,11 @@ export const entity1: Array<RedisQuerySet> = [
   }
 ];
 
+
 export const entity2: Array<RedisQuerySet> = [
   {
     type: RedisDataType.interception,
-    entityId: '1234578',
+    entityId: types.entity2Id,
     mainFieldId: RedisInterceptionCoreFields.static,
     entFields: [
       { subField: 'name', value: 'david' },
@@ -63,7 +75,7 @@ export const entity2: Array<RedisQuerySet> = [
   },
   {
     type: RedisDataType.interception,
-    entityId: '1234578',
+    entityId: types.entity2Id,
     mainFieldId: RedisInterceptionCoreFields.dynamic,
     entFields: [
       { subField: '1111111112', value: 'location1' },
@@ -74,7 +86,7 @@ export const entity2: Array<RedisQuerySet> = [
   },
   {
     type: RedisDataType.interception,
-    entityId: '1234578',
+    entityId: types.entity2Id,
     mainFieldId: RedisInterceptionCoreFields.related_missions,
     entFields: [
       { subField: 'M_101', value: 'T' },
@@ -84,7 +96,7 @@ export const entity2: Array<RedisQuerySet> = [
   },
   {
     type: RedisDataType.interception,
-    entityId: '1234578',
+    entityId: types.entity2Id,
     mainFieldId: RedisInterceptionCoreFields.rank,
     entFields: [
       { subField: 'M_101', value: '0.4' },
@@ -94,7 +106,7 @@ export const entity2: Array<RedisQuerySet> = [
   },
   {
     type: RedisDataType.interception,
-    entityId: '1234578',
+    entityId: types.entity2Id,
     mainFieldId: RedisInterceptionCoreFields.tags,
     entFields: [
       { subField: 'M_100', value: '[tag1,tag2,tag3]' },
@@ -106,7 +118,7 @@ export const entity2: Array<RedisQuerySet> = [
 export const entity3: Array<RedisQuerySet> = [
   {
     type: RedisDataType.interception,
-    entityId: '1234579',
+    entityId: types.entity3Id,
     mainFieldId: RedisInterceptionCoreFields.static,
     entFields: [
       { subField: 'name', value: 'ido' },
@@ -116,7 +128,7 @@ export const entity3: Array<RedisQuerySet> = [
   },
   {
     type: RedisDataType.interception,
-    entityId: '1234579',
+    entityId: types.entity3Id,
     mainFieldId: RedisInterceptionCoreFields.dynamic,
     entFields: [
       { subField: '1111111112', value: 'location1' },
@@ -127,25 +139,25 @@ export const entity3: Array<RedisQuerySet> = [
   },
   {
     type: RedisDataType.interception,
-    entityId: '1234579',
+    entityId: types.entity3Id,
     mainFieldId: RedisInterceptionCoreFields.related_missions,
     entFields: [
-      { subField: 'M_100', value: 'T' },
+      { subField: 'M_101', value: 'T' },
       { subField: 'M_103', value: 'T' }
     ]
   },
   {
     type: RedisDataType.interception,
-    entityId: '1234579',
+    entityId: types.entity3Id,
     mainFieldId: RedisInterceptionCoreFields.rank,
     entFields: [
-      { subField: 'M_100', value: '0.5' },
+      { subField: 'M_101', value: '0.5' },
       { subField: 'M_103', value: '0.95' }
     ]
   },
   {
     type: RedisDataType.interception,
-    entityId: '1234579',
+    entityId: types.entity3Id,
     mainFieldId: RedisInterceptionCoreFields.tags,
     entFields: [
       { subField: 'M_100', value: '[tag1,tag2,tag3]' },
@@ -161,9 +173,9 @@ export const missions = [
     missionId: '100',
     mainFieldId: RedisInterceptionCoreFields.byTime,
     entFields: [
-      { subField: '1', value: 'I_12345677' },
-      { subField: '2', value: 'I_12345678' },
-      { subField: '3', value: 'I_12345679' }
+      { subField: '1', value: 'I_1234577' },
+      { subField: '2', value: 'I_1234578' },
+      { subField: '3', value: 'I_1234579' }
     ]
   },
   {
@@ -171,9 +183,9 @@ export const missions = [
     missionId: '101',
     mainFieldId: RedisInterceptionCoreFields.byRank,
     entFields: [
-      { subField: '0.3', value: 'I_12345677' },
-      { subField: '0.4', value: 'I_12345678' },
-      { subField: '0.5', value: 'I_12345679' }
+      { subField: '0.3', value: 'I_1234577' },
+      { subField: '0.4', value: 'I_1234578' },
+      { subField: '0.5', value: 'I_1234579' }
     ]
   },
   {
@@ -181,8 +193,8 @@ export const missions = [
     missionId: '102',
     mainFieldId: RedisInterceptionCoreFields.byTime,
     entFields: [
-      { subField: '11', value: 'I_12345677' },
-      { subField: '12', value: 'I_12345678' }
+      { subField: '11', value: 'I_1234577' },
+      { subField: '12', value: 'I_1234578' }
     ]
   },
   {
@@ -190,8 +202,8 @@ export const missions = [
     missionId: '103',
     mainFieldId: RedisInterceptionCoreFields.byRank,
     entFields: [
-      { subField: '0.92', value: 'I_12345677' },
-      { subField: '0.95', value: 'I_12345678' }
+      { subField: '0.92', value: 'I_1234577' },
+      { subField: '0.95', value: 'I_1234578' }
     ]
   },
   {
@@ -199,8 +211,8 @@ export const missions = [
     missionId: '104',
     mainFieldId: RedisInterceptionCoreFields.byTime,
     entFields: [
-      { subField: '33', value: 'I_12345678' },
-      { subField: '25', value: 'I_12345679' }
+      { subField: '33', value: 'I_1234578' },
+      { subField: '25', value: 'I_1234579' }
     ]
   },
   {
@@ -208,8 +220,8 @@ export const missions = [
     missionId: '105',
     mainFieldId: RedisInterceptionCoreFields.byRank,
     entFields: [
-      { subField: '0.12', value: 'I_12345677' },
-      { subField: '0.85', value: 'I_12345678' }
+      { subField: '0.12', value: 'I_1234577' },
+      { subField: '0.85', value: 'I_1234578' }
     ]
   }
 ];
@@ -220,7 +232,11 @@ export const oneMissionFromRedis = {
   missionQuery1: { type: RedisDataType.mission, missionId: '100', mainFieldId: RedisInterceptionCoreFields.byTime },
   min: 0,
   max: 10000,
-  missionQueryAnswer1: [{ key: 'I_12345679', score: 3 }, { key: 'I_12345678', score: 2 }, { key: 'I_12345677', score: 1 }]
+  missionQueryAnswer1: [{ key: 'I_1234579', score: 3 }, { key: 'I_1234578', score: 2 }, {
+    key: 'I_1234577',
+    score: 1
+  }
+  ]
 
 };
 
@@ -228,8 +244,8 @@ export const oneMissionFromRedis = {
 export const oneEntityFromRedis = {
   queryOfEntity1: {
     type: RedisDataType.interception,
-    entityId: '1234577',
-    missionId: 'M_100',
+    entityId: types.entity1Id,
+    missionId: 'M_101',
     static: {
       name: true,
       surName: true,
@@ -240,17 +256,12 @@ export const oneEntityFromRedis = {
     tags: true
   },
   queryOfEntity1Answer: {
-    entityId: '1234577',
-    missionId: 'M_100',
-    static: {
-      name: 'ohad',
-      surName: 'gefen',
-      address: '{City: "Tel-Aviv"}'
-    },
-    dynamic: { location1: '1111111111', location2: '2222222222', location3: '3333333333' },
-
+    static: { name: 'ohad', surName: 'gefen', address: '{City: "Tel-Aviv"}' },
+    entityId: types.entity1Id,
     rank: ['0.3'],
-    tags: ['[tag1,tag2,tag3]']
+    missionId: 'M_101',
+    tags: [null],
+    dynamic: [{ key: 'location3', score: 3333333333 }]
   }
 };
 
