@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="redis:test" type="mocha-javascript-test-runner" factoryName="Mocha" folderName="test:debug">
+    <node-interpreter>project</node-interpreter>
+    <node-options />
+    <working-directory>$PROJECT_DIR$/shared/src/modules/redis</working-directory>
+    <pass-parent-env>true</pass-parent-env>
+    <envs>
+      <env name="TS_NODE_PROJECT" value="./tsconfig.redis.json" />
+    </envs>
+    <ui>bdd</ui>
+    <extra-mocha-options>--require ts-node/register  --watch --watch-extensions ts</extra-mocha-options>
+    <test-kind>PATTERN</test-kind>
+    <test-pattern>**/*spec.ts*</test-pattern>
+    <method />
+  </configuration>
+</component>

@@ -1,8 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="mission:watch" type="NodeJSConfigurationType" factoryName="Node.js" folderName="watch" path-to-node="$USER_HOME$/AppData/Roaming/npm/nodemon.cmd" node-parameters="--require ts-node\register " path-to-js-file="src/server.ts" working-dir="$PROJECT_DIR$/BE/mission">
-    <envs>
-      <env name="TS_NODE_PROJECT" value="./tsconfig.mission.json" />
-    </envs>
-    <method />
-  </configuration>
-</component>

@@ -1,0 +1,1 @@
+{"version":3,"file":"Qtypes.js","sourceRoot":"","sources":["../../../../../src/model/Qtypes.ts"],"names":[],"mappings":";;AAAA,IAAY,SAGX;AAHD,WAAY,SAAS;IACnB,4BAAe,CAAA;IACf,8BAAiB,CAAA;AACnB,CAAC,EAHW,SAAS,GAAT,iBAAS,KAAT,iBAAS,QAGpB","sourcesContent":["export enum QueueTipe {\r\n  redis = 'redis',\r\n  rabbit = 'rabbit'\r\n}"]}
