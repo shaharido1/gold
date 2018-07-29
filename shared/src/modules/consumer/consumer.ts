@@ -1,10 +1,10 @@
-import { RabbitConsumer } from '../rabbit/rabbitConsumer';
+import { RabbitConsumer } from '../rabbit/src/rabbitConsumer';
 import { Options } from 'amqplib/properties';
 import { Connection, Message } from 'amqplib';
 import { Subscription } from 'rxjs/index';
 import { RabbitConfig } from '../../interface/rabitConfig';
-import { CreatesType, RabbitConnectionManager } from '../rabbit/rabbitConnectionManager';
-import { RabbitProducer } from '../rabbit/rabbitProducer';
+import { CreatesType, RabbitConnectionManager } from '../rabbit/src/rabbitConnectionManager';
+import { RabbitProducer } from '../rabbit/src/rabbitProducer';
 
 
 export class Consumer {
