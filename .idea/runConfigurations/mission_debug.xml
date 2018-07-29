@@ -1,8 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="mission:debug" type="NodeJSConfigurationType" factoryName="Node.js" folderName="debug" path-to-node="node" node-parameters="--inspect --require ts-node\register" path-to-js-file="src/server.ts" working-dir="$PROJECT_DIR$/BE/mission">
-    <envs>
-      <env name="TS_NODE_PROJECT" value="./tsconfig.mission.json" />
-    </envs>
-    <method />
-  </configuration>
-</component>

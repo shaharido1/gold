@@ -6,12 +6,14 @@
 ./**/*.d.ts
 
 # compiled output
-/dist
+/dist/
+dist/
 /tmp
 /out-tsc
 
 # dependencies
-/node_modules
+/node_modules/
+node_modules/
 
 # IDEs and editors
 .project

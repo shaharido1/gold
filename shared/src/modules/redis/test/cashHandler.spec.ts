@@ -1,5 +1,4 @@
 import { expect, assert } from 'chai';
-import { GoldDbService } from '../src/goldDbService';
 import {
   RedisDataType,
   RedisInterceptionCoreFields, RedisQueryGetInterception,
@@ -15,10 +14,10 @@ import {
   oneEntityFromRedis,
   oneMissionFromRedis
 } from './mokData';
-import { error } from 'util';
+import { OldCashHandler } from '../src/cashHandler';
 
 
-let dbService: GoldDbService;
+let dbService: OldCashHandler;
 
 
 describe('Test gold db service.', () => {
@@ -35,7 +34,7 @@ describe('Test gold db service.', () => {
 
 
   it('create redis adapter', (done) => {
-    dbService = new GoldDbService();
+    dbService = new OldCashHandler();
     done();
   });
 
@@ -48,13 +47,13 @@ describe('Test gold db service.', () => {
   });
 
 
-  it('redis connection', () => {
-    return dbService.connectToDataBase()
-        .then((status: string) => {
-          expect(status).to.equal('redis is ready');
-        })
-        .catch(notOk)
-  });
+  // xit('redis connection', () => {
+  //   return dbService.connectToDataBase()
+  //       .then((status: string) => {
+  //         expect(status).to.equal('redis is ready');
+  //       })
+  //       .catch(notOk);
+  // });
 
   // xit('redis connection after falling', (done) => {
   //   this.redisDocker.killContainer()
@@ -72,13 +71,13 @@ describe('Test gold db service.', () => {
         .then(res => {
           expect(res).to.be.ok;
         })
-        .catch(notOk)
+        .catch(notOk);
   });
   it('write to redis entity1', function () {
     return dbService.writeBatchToRedis(entity2)
         .then(res => {
           expect(res).to.be.ok;
-        }).catch(notOk)
+        }).catch(notOk);
 
   });
   it('write to redis entity2', function () {
@@ -86,7 +85,7 @@ describe('Test gold db service.', () => {
         .then(res => {
           expect(res).to.be.ok;
         })
-        .catch(notOk)
+        .catch(notOk);
   });
 
   it('write to redis missions', function () {
@@ -94,7 +93,7 @@ describe('Test gold db service.', () => {
       return { ...mission, entityId: mission.missionId };
     })).then(res => {
       expect(res).to.be.ok;
-    }).catch(notOk)
+    }).catch(notOk);
   });
 
 
@@ -103,7 +102,7 @@ describe('Test gold db service.', () => {
         .then((res) => {
           // console.log(res);
           expect(res).to.deep.equal(oneMissionFromRedis.missionQueryAnswer1);
-        }).catch(notOk)
+        }).catch(notOk);
   });
 
   it('Get entity from redis with all marked fields', () => {
@@ -112,18 +111,11 @@ describe('Test gold db service.', () => {
           // console.log(res);
           expect(res).to.deep.equal(oneEntityFromRedis.queryOfEntity1Answer);
         })
-        .catch(notOk)
+        .catch(notOk);
   });
 
 
-  it('Get mission with all entities fields', () => {
-    return dbService.getFieldsOfMission(MissionWithFeels.mission0, MissionWithFeels.max, MissionWithFeels.min)
-        .then((res) => {
-          console.log(res);
-          // expect(res).to.deep.equal(query2Answer);
-        })
-        .catch(notOk)
-  });
+
 
 
   // xit('Get mission0 with the Highest score in the set ', (done) => {

@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="crudManager:test" type="mocha-javascript-test-runner" factoryName="Mocha" folderName="shared">
+  <configuration default="false" name="crudManager:test" type="mocha-javascript-test-runner" factoryName="Mocha" folderName="test:debug">
     <node-interpreter>project</node-interpreter>
     <node-options />
     <working-directory>$PROJECT_DIR$/shared/src/modules/crudManager</working-directory>

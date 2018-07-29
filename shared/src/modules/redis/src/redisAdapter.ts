@@ -14,6 +14,7 @@ export class RedisAdapter {
   }
 
   initClientConnection(): Promise<RedisClient> {
+    //todo if connect -> return with connection.
     return new Promise((resolve, reject) => {
       this.redisConnect();
       this.client.on(RedisListenEvents.READY, () => {
@@ -139,7 +140,6 @@ export class RedisAdapter {
     }
     else {
       console.log('error with no error message');
-
       return reject('error with no error message');
     }
   }

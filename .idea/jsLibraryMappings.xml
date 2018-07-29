@@ -6,6 +6,5 @@
     <excludedPredefinedLibrary name="goldstar/BE/mission/node_modules" />
     <excludedPredefinedLibrary name="goldstar/FE/node_modules" />
     <excludedPredefinedLibrary name="goldstar/shared/node_modules" />
-    <excludedPredefinedLibrary name="goldstar/shared/src/modules/crudManager/node_modules" />
   </component>
 </project>
