@@ -5,8 +5,8 @@ export const missionIntialState: IMissionState = {
   missions :
     [
       {
-        name: 'Sivan\'s mission',
-        description: 'very nice mission',
+        name: 'Sivan\'s missions',
+        description: 'very nice missions',
         tagList: [
           {
             tagName: 'tag name 1',

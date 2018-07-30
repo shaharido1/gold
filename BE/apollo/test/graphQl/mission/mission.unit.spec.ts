@@ -4,7 +4,7 @@ import { MissionSchema } from '../../../src/graphQl/mission/mission.schema';
 import { mocks } from '../../../src/graphQl/mission/mission.mock';
 import { assert, expect } from 'chai';
 
-describe('test mission', () => {
+describe('test missions', () => {
   const missionSchema = new MissionSchema({}, true);
   let mockMissionServer = mockServer(missionSchema.schema, mocks);
 
@@ -15,7 +15,7 @@ describe('test mission', () => {
         });
   });
 
-  it('test get on mission', () => {
+  it('test get on missions', () => {
     return mockMissionServer.query(`{getMission{content, id}}`)
         .then((res) => {
           assertMission(res.data.getMission);
@@ -32,7 +32,7 @@ describe('test mission', () => {
         });
   });
 
-  it('add mission', () => {
+  it('add missions', () => {
     return mockMissionServer.query(`{addMission(mission:{content: "content"}}`)
         .then((res) => {
           assert.isDefined(res);

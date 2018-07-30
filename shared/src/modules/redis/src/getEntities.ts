@@ -1,6 +1,5 @@
 import { RedisAdapter } from './redisAdapter';
-import { OldCashHandler, SetFields, SomeFields } from './old--CashHandler';
-import { RedisInterceptionCoreFields, RedisQueryGetInterception } from './entity/redisQuer';
+import { RedisInterceptionCoreFields, RedisQuestion, RedisReturnCB } from './entity/redisQuer';
 import { Parser } from './parser';
 import { GetRangeSorted } from './cashHandler';
 
@@ -17,7 +16,7 @@ export enum RedisAnswerTypes {
 
 
 export type SomeFields = Map<string, { entityId: string, mainField: string, subFields: Array<string>, missionId?: string }>;
-export type SetFields = Map<string, { entityId: string, mainField: string }>;
+export type SetFields = Map<string, { entityId: string, mainField: string, missionId?: string }>;
 
 export class GetEntities {
 
@@ -27,46 +26,30 @@ export class GetEntities {
 
 
   constructor(redis?: RedisAdapter) {
-    this.redis = redis || new RedisAdapter();
+    this.redis = redis;
+    this.mapSetFields = new Map();
+    this.mapHashFields = new Map();
   }
 
 
-  public getBatchOfEntities(ArrayOfQueries: Array<RedisQueryGetInterception>): Promise<any> {
-    return new Promise((resolve, reject) => {
-      const promises = [];
-      ArrayOfQueries.forEach(query => {
-        this.redisKeyBuilder(query);
-        promises.push(...this.getAllEntitiesOfSubFields());
-        promises.push(...this.getTopRateFieldOfSet());
-      });
-      this.redis.execData()
-          .then(() => {
-            Promise.all(promises).then((response) => {
-              // console.log("getDataFromBatchOfEntities")
-              console.log('execData');
-              console.log(response);
-              const missionAnswer = this.createObjectOfEntity(response);
-              this.mapHashFields = new Map();
-              this.mapSetFields = new Map();
-              resolve(response);
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-            reject(err);
-          });
-    });
+  public getBatchOfEntities(ArrayOfQueries: Map<string, RedisQuestion>): Array<Promise<RedisReturnCB>> {
+    this.mapSetFields = new Map();
+    this.mapHashFields = new Map();
+    ArrayOfQueries.forEach(query => this.redisKeyBuilder(query));
+    return [...this.getSetFields(), ...this.getHashMapFields()];
+
   }
 
 
-  private redisKeyBuilder(obj): any {
+  private redisKeyBuilder(obj): void {
     Object.keys(obj).forEach(key => {
       const redisKey = obj.type + '_' + obj.entityId + '_' + key;
       switch (key) {
         case RedisInterceptionCoreFields.dynamic:
           this.mapSetFields.set(redisKey, {
             entityId: obj.entityId,
-            mainField: key
+            mainField: key,
+            missionId: obj.missionId
           });
           break;
         case RedisInterceptionCoreFields.static:
@@ -93,11 +76,13 @@ export class GetEntities {
             missionId: obj.missionId
           });
           break;
+        default :
+          break;
       }
     });
   }
 
-  private getAllEntitiesOfSubFields(someFields: SomeFields = this.mapHashFields): Array<Promise<any>> {
+  private getHashMapFields(someFields: SomeFields = this.mapHashFields): Array<Promise<RedisReturnCB>> {
     const promises = [];
     someFields.forEach(({ subFields }, redisKey) => {
       // console.log(redisKey)
@@ -111,7 +96,7 @@ export class GetEntities {
 
   }
 
-  private getTopRateFieldOfSet(setFields: SetFields = this.mapSetFields): Array<Promise<any>> {
+  private getSetFields(setFields: SetFields = this.mapSetFields): Array<Promise<RedisReturnCB>> {
     const promises = [];
     setFields.forEach((value, redisKey) => {
       promises.push(this.redis.getRangeSetByScoreHighToLow(redisKey, '+inf', '-inf', GetRangeSorted.withscores,
@@ -124,36 +109,43 @@ export class GetEntities {
   }
 
 
-  private createObjectOfEntity(arr: Array<{ argsToResolve: { redisKey: string, type: RedisGetTypes }, response: string }>) {
-    const newMissionAnswer = {};
+  public createObjectOfEntity(arr: Array<RedisReturnCB>): any {
+    const entityMap: Map<string, any> = new Map();
     if (arr && arr.length) {
-      arr.forEach((answer) => {
-        if (answer.argsToResolve && answer.argsToResolve.type === RedisGetTypes.hashMap) {
-          const mapHashFieldsValue = this.mapHashFields.get(answer.argsToResolve.redisKey);
-          const subField = {};
-          if (typeof mapHashFieldsValue.subFields === RedisAnswerTypes.object) {
-            mapHashFieldsValue.subFields.forEach((f, i) => {
-              subField[f] = answer.response[i];
-            });
-            newMissionAnswer[mapHashFieldsValue.mainField] = subField;
+      arr.forEach((answer: { argsToResolve: { type: string, redisKey: string }, response: any }) => {
+        if (answer.argsToResolve && answer.argsToResolve.type && answer.argsToResolve.redisKey) {
+          const redisKey = answer.argsToResolve.redisKey;
+          const entityKey = redisKey.split('_')[1];
+          const entity = entityMap.get(entityKey) || {};
+          switch (answer.argsToResolve.type) {
+            case RedisGetTypes.hashMap : {
+              const entityQueryFields = this.mapHashFields.get(redisKey);
+              const subField = {};
+              if (typeof entityQueryFields.subFields === RedisAnswerTypes.object) {
+                entityQueryFields.subFields.forEach((f, i) => {
+                  subField[f] = answer.response[i];
+                });
+                entity.static = subField;
+              }
+              else {
+                entity[entityQueryFields.mainField] = answer.response[0];
+                // entity[RedisAnswerTypes.missionId] = entityQueryFields.missionId;
+                // entity[RedisAnswerTypes.id] = entityQueryFields.id;
+              }
+              entityMap.set(entityKey, entity);
+              break;
+            }
+            case RedisGetTypes.set: {
+              const missionQuestionDataFields = this.mapSetFields.get(redisKey);
+              entity[missionQuestionDataFields.mainField] = Parser.fromRedisArrayToMap(missionQuestionDataFields.missionId, answer.response);
+              entityMap.set(missionQuestionDataFields.entityId, entity);
+              break;
+            }
           }
-          else {
-            newMissionAnswer[mapHashFieldsValue.mainField] = answer.response;
-            newMissionAnswer[RedisAnswerTypes.missionId] = mapHashFieldsValue.missionId;
-          }
-          newMissionAnswer[RedisAnswerTypes.entityId] = mapHashFieldsValue.entityId;
-
-        }
-        else if (answer.argsToResolve && answer.argsToResolve.type === RedisGetTypes.set) {
-          const mapSetFieldsValue = this.mapSetFields.get(answer.argsToResolve.redisKey);
-          newMissionAnswer[mapSetFieldsValue.mainField] = Parser.fromRedisArrayToObject(answer.response);
         }
       });
     }
-    // console.log(newMissionAnswer);
-    return newMissionAnswer;
-
+    return entityMap;
   }
-
 
 }

@@ -40,7 +40,7 @@ export class MissionEditorComponent implements OnInit {
 
   addNewMember() {
     this.coreStore.dispatch(new AddMemberAction({ newMember: { name: 'new', color: 'black' } }));
-    console.log('from mission new member was pressed');
+    console.log('from missions new member was pressed');
     this.missionMembers$.subscribe(name => {
       console.log(name);
     });

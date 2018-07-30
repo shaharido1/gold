@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
 import { IMissionState, Mission } from '../interfaces/mission.state';
 
-export const missionFeatureKey = 'mission';
+export const missionFeatureKey = 'missions';
 
 export const missionStateSelector : MemoizedSelector<any, IMissionState> = createFeatureSelector<IMissionState>(missionFeatureKey);
 export const missionsSelector = createSelector(missionStateSelector, (missionState : IMissionState) => missionState.missions);

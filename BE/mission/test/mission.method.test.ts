@@ -1,5 +1,5 @@
-import { MissionMethods } from "../dbModule/methods/mission.method";
-import { Mission } from "../dbModule/schemas/mission.schema";
+import { MissionMethods } from "../dbModule/methods/missions.method";
+import { Mission } from "../dbModule/schemas/missions.schema";
 import { DBManager } from "../dbModule/connect";
 import { dBTestConfig } from "./config/config";
 
@@ -22,7 +22,7 @@ describe("test DB methods", () => {
   });
 
 
-  it("should add mission to db", () => {
+  it("should add missions to db", () => {
     expect.assertions(2);
     return missionMethod.add(missionToAdd).then(mission => {
       expect(mission).toBeDefined();
@@ -32,7 +32,7 @@ describe("test DB methods", () => {
     }).catch((err) => console.log(err));
   });
 
-  it("should get mission from db", async () => {
+  it("should get missions from db", async () => {
     expect.assertions(3);
     const missionAdded = await missionMethod.add(missionToAdd);
     expect(missionAdded._id).toBeDefined();
@@ -44,7 +44,7 @@ describe("test DB methods", () => {
     }).catch((err) => console.log(err));
   });
 
-  it("should get all mission from db", () => {
+  it("should get all missions from db", () => {
     expect.assertions(2);
     return missionMethod.getAll().then(missions => {
       expect(missions).toBeDefined();
@@ -54,7 +54,7 @@ describe("test DB methods", () => {
     }).catch((err) => console.log(err));
   });
 
-  it("should remove mission from db", async (done) => {
+  it("should remove missions from db", async (done) => {
     expect.assertions(2);
     const missionAdded = await missionMethod.add(missionToAdd);
     expect(missionAdded._id).toBeDefined();
@@ -66,7 +66,7 @@ describe("test DB methods", () => {
         });
   });
 
-  it("should update mission from db", async (done) => {
+  it("should update missions from db", async (done) => {
     expect.assertions(5);
     const missionAdded = await missionMethod.add(missionToAdd);
     expect(missionAdded._id).toBeDefined();
@@ -81,7 +81,7 @@ describe("test DB methods", () => {
     done();
   });
 
-  it("should update field in mission from db", async (done) => {
+  it("should update field in missions from db", async (done) => {
     expect.assertions(5);
     const missionAdded = await missionMethod.add(missionToAdd);
     expect(missionAdded._id).toBeDefined();
@@ -95,7 +95,7 @@ describe("test DB methods", () => {
     done();
   });
 
-  it("should remove mission from db", (done) => {
+  it("should remove missions from db", (done) => {
     return missionMethod.removeAll().then(() => {
       done();
     }).catch((err) => console.log(err));

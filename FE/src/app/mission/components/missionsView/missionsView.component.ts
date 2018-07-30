@@ -26,13 +26,13 @@ export class MissionsViewComponent implements OnInit {
   }
 
   // missionsToDisplay(filterBy: string): Observable<Array<IMissionState>> {
-  //   return this.allMissions$.filter((mission: Array<IMissionState>) =>);
+  //   return this.allMissions$.filter((missions: Array<IMissionState>) =>);
   // }
 
   //
   // changeDispalay(filterCretria) {
   //
-  //   this.presentedMissions = this.allMissions.filter((mission) => mission === filterCretria);
+  //   this.presentedMissions = this.allMissions.filter((missions) => missions === filterCretria);
   // }
 
   changeDisplay(filterCretria) {

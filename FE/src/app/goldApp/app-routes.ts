@@ -7,8 +7,8 @@ export const appRoutes: Routes = [
     loadChildren: '../login/login.module#LoginModule'
   },
   {
-    path: 'mission',
-    loadChildren: '../mission/mission.module#MissionModule'
+    path: 'missions',
+    loadChildren: '../missions/missions.module#MissionModule'
   },
   {
     path: 'main',

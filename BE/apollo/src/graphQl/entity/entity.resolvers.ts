@@ -7,7 +7,7 @@ export class EntityResolvers {
 
   public query = new GraphQLObjectType({
     name: 'missionsQueries',
-    description: 'Root of mission query',
+    description: 'Root of missions query',
     fields: () => ({
       test: {
         type: GraphQLString,

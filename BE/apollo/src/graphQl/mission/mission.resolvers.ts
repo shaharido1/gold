@@ -10,7 +10,7 @@ export class MissionResolvers {
     fields: () => ({
       addMission: {
         type: Mission,
-        description: 'Create a new mission',
+        description: 'Create a new missions',
         args: {
           mission: { type: MissionInput },
         },
@@ -22,7 +22,7 @@ export class MissionResolvers {
 
   public query = new GraphQLObjectType({
     name: 'missionsQueries',
-    description: 'Root of mission query',
+    description: 'Root of missions query',
     fields: () => ({
       test: {
         type: GraphQLString,
@@ -31,12 +31,12 @@ export class MissionResolvers {
       },
       missionTestQuery: {
         type: GraphQLString,
-        description: 'test mission server',
+        description: 'test missions server',
         resolve: () => this.missionService.missionTestQuery()
       },
       getMission: {
         type: Mission,
-        description: 'get one mission',
+        description: 'get one missions',
         resolve: () => this.missionService.getMission()
       },
       getAllMissions: {
@@ -49,7 +49,7 @@ export class MissionResolvers {
 
   public subscription = new GraphQLObjectType({
     name: 'missionSubscription',
-    description: 'Root of mission subscriptions',
+    description: 'Root of missions subscriptions',
     fields: () => ({
       missionSubscription: {
         type: GraphQLString,

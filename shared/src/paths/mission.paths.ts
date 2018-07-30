@@ -1,7 +1,7 @@
 import { MissionServer } from './servers.paths';
 
 
-const MISSION = '/mission';
+const MISSION = '/missions';
 
 
 export const MissionPaths  = {

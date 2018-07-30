@@ -4,9 +4,9 @@ import {
   RedisDataType,
   RedisInput,
   RedisInterceptionCoreFields,
-  RedisQueryGetInterception,
+  RedisQuestion,
   RedisQueryGetMission,
-  RedisQuerySet
+  RedisSetFormat
 } from './entity/redisQuer';
 import { Parser } from './parser';
 
@@ -39,7 +39,7 @@ export class OldCashHandler {
 
 
 
-  // getDataOfEntity(query: RedisQueryGetInterception): Promise<any> {
+  // getDataOfEntity(query: RedisQuestion): Promise<any> {
   //   return new Promise((resolve, reject) => {
   //     this.redisKeyBuilder(query);
   //     const promises = [];

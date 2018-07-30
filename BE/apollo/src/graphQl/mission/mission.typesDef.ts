@@ -3,7 +3,7 @@ import { PubSub } from'graphql-subscriptions';
 
 export const Mission  = new GraphQLObjectType({
   name: 'Mission',
-  description: 'mission type',
+  description: 'missions type',
   fields: {
     content: {
       type: GraphQLString,

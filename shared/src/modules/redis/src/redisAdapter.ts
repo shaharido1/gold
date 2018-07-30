@@ -2,6 +2,7 @@ import { createClient, Multi, RedisClient } from 'redis';
 import { RedisConfig } from '../../../interface/redisConfig';
 import { redisDefaultConfig } from './redis.config.defalt';
 import { RedisConnectionSetup, RedisListenEvents } from './model/redisListenEvents';
+import { RedisReturnCB } from './entity/redisQuer';
 
 export class RedisAdapter {
   public config: RedisConfig;
@@ -57,7 +58,7 @@ export class RedisAdapter {
   }
 
   // set multiple hash fields to multiple values
-  public setMultiFieldsToMultival(redisKey: string, args: Array<string>) {
+  public setMultiFieldsToMultival(redisKey: string, args: Array<string>) : Promise<RedisReturnCB>  {
     return new Promise((resolve, reject) => {
       this.multi.hmset(redisKey, args, (err, res) =>
           this.resolveCb(err, res, resolve, reject)
@@ -66,7 +67,7 @@ export class RedisAdapter {
   }
 
   // add one or more members to a sorted set, or update its score if it already exists.
-  public pushToSortedSet(redisKey: string, args: Array<string>) {
+  public pushToSortedSet(redisKey: string, args: Array<string>) :Promise<any> {
     return new Promise((resolve) => {
       this.multi.zadd(redisKey, args, (err, res) => {
         return resolve(res);
@@ -82,7 +83,7 @@ export class RedisAdapter {
                               limit?: string,
                               offset?: number,
                               count?: number,
-                              passToResolve?) {
+                              passToResolve?)  : Promise<RedisReturnCB> {
     return new Promise((resolve, reject) => {
       this.multi.ZREVRANGEBYSCORE(redisKey, min, max, withscores, limit, offset, count, (err, res) => {
         return this.resolveCb(err, res, resolve, reject, passToResolve);
@@ -91,7 +92,7 @@ export class RedisAdapter {
   }
 
   // get all fields and values in a hash
-  getAllFieldsAndValues(redisKey: string, passToResolve?) {
+  getAllFieldsAndValues(redisKey: string, passToResolve?) : Promise<RedisReturnCB>  {
     return new Promise((resolve, reject) => {
       this.multi.HGETALL(redisKey, (err, res) => {
         return this.resolveCb(err, res, resolve, reject, passToResolve);
@@ -100,7 +101,7 @@ export class RedisAdapter {
   }
 
   // get the value of a hash mainFields
-  getValue(redisKey: string, subField: string[], passToResolve?) {
+  getValue(redisKey: string, subField: string[], passToResolve?) : Promise<RedisReturnCB>   {
     return new Promise((resolve, reject) => {
       this.multi.HMGET(redisKey, subField, (err, res) => {
         return this.resolveCb(err, res, resolve, reject, passToResolve);
@@ -109,7 +110,7 @@ export class RedisAdapter {
   }
 
   // get all fields in hash
-  getAllFieldsHash(redisKey: string, passToResolve?) {
+  getAllFieldsHash(redisKey: string, passToResolve?) : Promise<RedisReturnCB>  {
     return new Promise((resolve, reject) => {
       this.multi.hkeys(redisKey, (err, res) => {
         return this.resolveCb(err, res, resolve, reject, passToResolve);
@@ -121,17 +122,15 @@ export class RedisAdapter {
     // this.multi.EXPIRE()
   }
 
-  execData(): Promise<any> {
+  execData(): Promise<RedisReturnCB> {
     return new Promise((resolve, reject) => {
       this.multi.exec((err, res) => this.resolveCb(err, res, resolve, reject));
     });
   }
 
-  private resolveCb(err, response, resolve, reject, argsToResolve?: any) {
+  private resolveCb(err, response, resolve, reject, argsToResolve = null) : RedisReturnCB {
     if (response) {
-      const toResolve = argsToResolve ? { argsToResolve, response } : response;
-      // console.log(toResolve)
-      return resolve(toResolve);
+      return resolve( { argsToResolve, response });
     }
     else if (err) {
       console.log('err resolveCB');

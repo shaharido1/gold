@@ -32,7 +32,7 @@ describe("test api", () => {
     //   return await request(app)
     //       .post("/addMission")
     //       .set("Accept", "application/json")
-    //       .send({mission: { name: "test3" }})
+    //       .send({missions: { name: "test3" }})
     //       // .expect((res => {
     //       //   assert(res.body, { name: 'test3' });
     //       // }))

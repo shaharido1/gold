@@ -5,4 +5,4 @@ const missionTemplate = mongoose.Schema({
   name: String,
 });
 
-export const Mission = mongoose.model('mission', missionTemplate);
+export const Mission = mongoose.model('missions', missionTemplate);

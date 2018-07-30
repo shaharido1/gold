@@ -22,7 +22,7 @@ export class CrudMongoMethod {
             return reject(err);
           }
           else {
-            this.logService.log("added mission: " + entityReturn.id);
+            this.logService.log("added missions: " + entityReturn.id);
             return resolve(entityReturn);
           }
         });
@@ -45,10 +45,10 @@ export class CrudMongoMethod {
           }
           else {
             if (entityReturn) {
-              this.logService.log("got mission: " + entityReturn.id);
+              this.logService.log("got missions: " + entityReturn.id);
             }
             else {
-              this.logService.error("mission id:" + entityId + "doesn't exist");
+              this.logService.error("missions id:" + entityId + "doesn't exist");
               entityReturn = {};
             }
             return resolve(entityReturn);
@@ -92,7 +92,7 @@ export class CrudMongoMethod {
             return reject(err);
           }
           else {
-            this.logService.log("remove mission: " + entityReturn.id);
+            this.logService.log("remove missions: " + entityReturn.id);
             return resolve(entityReturn);
           }
         });
@@ -113,7 +113,7 @@ export class CrudMongoMethod {
             return reject(err);
           }
           else {
-            this.logService.log("update mission: " + entityReturn.id);
+            this.logService.log("update missions: " + entityReturn.id);
             return resolve(entityReturn);
           }
         });
@@ -134,7 +134,7 @@ export class CrudMongoMethod {
             return reject(err);
           }
           else {
-            this.logService.log("update mission: " + entityReturn.id);
+            this.logService.log("update missions: " + entityReturn.id);
             return resolve(entityReturn);
           }
         });

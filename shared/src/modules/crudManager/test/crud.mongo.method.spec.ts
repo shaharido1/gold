@@ -21,29 +21,29 @@
 //   });
 //
 //
-//   it("should add mission to db", () => {
+//   it("should add missions to db", () => {
 //     expect.assertions(2);
-//     return missionMethod.add(missionToAdd).then(mission => {
-//       expect(mission).toBeDefined();
-//       if (mission) {
-//         expect(mission._id).toBeDefined();
+//     return missionMethod.add(missionToAdd).then(missions => {
+//       expect(missions).toBeDefined();
+//       if (missions) {
+//         expect(missions._id).toBeDefined();
 //       }
 //     }).catch((err) => console.log(err));
 //   });
 //
-//   it("should get mission from db", async () => {
+//   it("should get missions from db", async () => {
 //     expect.assertions(3);
 //     const missionAdded = await missionMethod.add(missionToAdd);
 //     expect(missionAdded._id).toBeDefined();
-//     return missionMethod.get(missionAdded._id).then(mission => {
-//       expect(mission).toBeDefined();
-//       if (mission) {
-//         expect(mission._id).toBeDefined();
+//     return missionMethod.get(missionAdded._id).then(missions => {
+//       expect(missions).toBeDefined();
+//       if (missions) {
+//         expect(missions._id).toBeDefined();
 //       }
 //     }).catch((err) => console.log(err));
 //   });
 //
-//   it("should get all mission from db", () => {
+//   it("should get all missions from db", () => {
 //     expect.assertions(2);
 //     return missionMethod.getAll().then(missions => {
 //       expect(missions).toBeDefined();
@@ -53,19 +53,19 @@
 //     }).catch((err) => console.log(err));
 //   });
 //
-//   it("should remove mission from db", async (done) => {
+//   it("should remove missions from db", async (done) => {
 //     expect.assertions(2);
 //     const missionAdded = await missionMethod.add(missionToAdd);
 //     expect(missionAdded._id).toBeDefined();
 //     await missionMethod.remove(missionAdded._id);
 //     return missionMethod.get(missionAdded._id)
-//         .then(mission => expect(mission).toBeUndefined())
+//         .then(missions => expect(missions).toBeUndefined())
 //         .catch(() => {
 //           done();
 //         });
 //   });
 //
-//   it("should update mission from db", async (done) => {
+//   it("should update missions from db", async (done) => {
 //     expect.assertions(5);
 //     const missionAdded = await missionMethod.add(missionToAdd);
 //     expect(missionAdded._id).toBeDefined();
@@ -80,7 +80,7 @@
 //     done();
 //   });
 //
-//   it("should update field in mission from db", async (done) => {
+//   it("should update field in missions from db", async (done) => {
 //     expect.assertions(5);
 //     const missionAdded = await missionMethod.add(missionToAdd);
 //     expect(missionAdded._id).toBeDefined();
@@ -94,7 +94,7 @@
 //     done();
 //   });
 //
-//   it("should remove mission from db", (done) => {
+//   it("should remove missions from db", (done) => {
 //     return missionMethod.removeAll().then(() => {
 //       done();
 //     }).catch((err) => console.log(err));

@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   onClickJoin() {
     console.log('pressed');
 
-    this.router.navigate(['mission'])
+    this.router.navigate(['missions'])
       .then(()=>{
         console.log('pressed');
       })

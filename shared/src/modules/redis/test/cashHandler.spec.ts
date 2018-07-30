@@ -1,26 +1,12 @@
 import { expect, assert } from 'chai';
-import {
-  RedisDataType,
-  RedisInterceptionCoreFields, RedisQueryGetInterception,
-  RedisQuerySet
-} from '../src/entity/redisQuer';
-import { DockerAdapter } from '../../dockerode/dockerAdapter';
-import {
-  entity1,
-  entity2,
-  entity3,
-  MissionWithFeels,
-  missions,
-  oneEntityFromRedis,
-  oneMissionFromRedis
-} from './mokData';
-import { OldCashHandler } from '../src/cashHandler';
+import { types, missions, entities, getEntities, missionQueryMap, relatedMissionMap, rankMap } from './mokData';
+import { CashHandler } from '../src/cashHandler';
+import { KeyScore, RedisQuestion } from '../src/entity/redisQuer';
+
+let cashHandler: CashHandler;
 
 
-let dbService: OldCashHandler;
-
-
-describe('Test gold db service.', () => {
+describe('Test cash handler db service.', () => {
 
   // before((done) => {
   //   redisDocker = new DockerAdapter();
@@ -33,27 +19,28 @@ describe('Test gold db service.', () => {
   // });
 
 
-  it('create redis adapter', (done) => {
-    dbService = new OldCashHandler();
-    done();
+  it('create and connect to cash handler', (done) => {
+    cashHandler = new CashHandler();
+    cashHandler.connect()
+        .then((status: any) => {
+          expect(status).to.be.a('object');
+          expect(status.connected).to.be.true;
+          done();
+
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   });
 
   it('redis connection to default configuration', (done) => {
-    expect(dbService.config).to.be.a('object');
-    expect(dbService.config).to.have.nested.property('config_redisHost');
-    expect(dbService.config).to.have.nested.property('config_redisPort');
+    expect(cashHandler.config).to.be.a('object');
+    expect(cashHandler.config).to.have.nested.property('config_redisHost');
+    expect(cashHandler.config).to.have.nested.property('config_redisPort');
     done();
 
   });
 
-
-  // xit('redis connection', () => {
-  //   return dbService.connectToDataBase()
-  //       .then((status: string) => {
-  //         expect(status).to.equal('redis is ready');
-  //       })
-  //       .catch(notOk);
-  // });
 
   // xit('redis connection after falling', (done) => {
   //   this.redisDocker.killContainer()
@@ -66,88 +53,88 @@ describe('Test gold db service.', () => {
   //
   // });
 
-  it('write to redis entity0', function () {
-    return dbService.writeBatchToRedis(entity1)
+  it('write missions to redis.', () => {
+    return cashHandler.setMissionsOrEntities(missions)
         .then(res => {
-          expect(res).to.be.ok;
-        })
-        .catch(notOk);
-  });
-  it('write to redis entity1', function () {
-    return dbService.writeBatchToRedis(entity2)
-        .then(res => {
-          expect(res).to.be.ok;
-        }).catch(notOk);
-
-  });
-  it('write to redis entity2', function () {
-    return dbService.writeBatchToRedis(entity3)
-        .then(res => {
-          expect(res).to.be.ok;
-        })
-        .catch(notOk);
-  });
-
-  it('write to redis missions', function () {
-    return dbService.writeBatchToRedis(missions.map(mission => {
-      return { ...mission, entityId: mission.missionId };
-    })).then(res => {
-      expect(res).to.be.ok;
-    }).catch(notOk);
-  });
-
-
-  it('Get one mission0 from redis with the top 10,000 score', () => {
-    return dbService.getTopInRangeOfScore(oneMissionFromRedis.missionQuery1, oneMissionFromRedis.min, oneMissionFromRedis.max)
-        .then((res) => {
-          // console.log(res);
-          expect(res).to.deep.equal(oneMissionFromRedis.missionQueryAnswer1);
+          // todo expect
+          expect(res).to.be.an('array').that.does.not.include(-1);
+          console.log(res);
         }).catch(notOk);
   });
 
-  it('Get entity from redis with all marked fields', () => {
-    return dbService.getDataOfEntity(oneEntityFromRedis.queryOfEntity1)
-        .then((res) => {
-          // console.log(res);
-          expect(res).to.deep.equal(oneEntityFromRedis.queryOfEntity1Answer);
+  it('write to redis entities', () => {
+    return cashHandler.setMissionsOrEntities(entities)
+        .then((res: any) => {
+          res.forEach((x) => {
+            if (typeof x === 'object') {
+              expect(x.response).to.be.eql('OK');
+            }
+            expect(res).to.be.an('array').that.does.not.include(-1);
+            console.log(x);
+          });
+
+        }).catch(notOk);
+  });
+
+
+  it('get missions', () => {
+    return cashHandler.getMission(missionQueryMap, types.max, types.min)
+        .then((res: Map<string, number>) => {
+          expect(res).not.to.be.a('null');
+          expect(res).not.to.be.a('undefined');
+          expect(res).not.to.be.an('array').that.is.empty;
+          expect(res.has(types.missionId0)).to.be.true;
+
+
+          res.forEach((val, key) => {
+            expect(key).to.eql(types.missionId0);
+            val.forEach((subField) => {
+              expect(subField).to.be.an(types.object);
+              expect(subField).to.have.all.keys('key', 'score');
+            });
+          });
+        }).catch(notOk);
+  });
+
+
+  it('Get entities', () => {
+    return cashHandler.getEntities(getEntities)
+        .then((res: any) => {
+          expect(res).not.to.be.a('null');
+          expect(res).not.to.be.a('undefined');
+          expect(res).not.to.be.an('array').that.is.empty;
+          expect(res.has(types.entity0Id)).to.be.true;
+
+          res.forEach((val) => {
+            expect(val).to.have.all.keys('dynamic', 'static', 'rank', 'tags');
+          });
         })
         .catch(notOk);
   });
 
 
+  it('get related entities to missions', () => {
+    return cashHandler.generatedEntitiesToMission(relatedMissionMap, types.max, types.min)
+        .then((res: any) => {
+          expect(res).not.to.be.a('null');
+          expect(res).not.to.be.a('undefined');
+          expect(res).not.to.be.an('array').that.is.empty;
 
+          console.log(res);
+          res.forEach((val) => {
+            expect(val).to.have.all.keys('dynamic', 'static', 'rank', 'tags');
+          });
+          expect(res.has(types.entity0Id)).to.be.true;
+          expect(res.has(types.entity1Id)).to.be.true;
+          expect(res.has(types.entity2Id)).to.be.true;
 
+        });
 
-  // xit('Get mission0 with the Highest score in the set ', (done) => {
-  //   const redisKey = 'M_12541_byRank';
-  //   const answer = [{ key: 'E_123456444', score: 8.5 }];
-  //   dbService.getHighestScore(redisKey)
-  //       .then((res) => {
-  //         expect(res).to.deep.equal(answer);
-  //         done();
-  //       });
-  // });
+  });
 
-  // xit('Get mission0 with range from max to min', (done) => {
-  //   const redisKey = 'M_12541_byRank';
-  //   const answer = [{ key: 'E_123456444', score: 8.5 },
-  //     { key: 'E_123456422', score: 5.5 },
-  //     { key: 'E_12345645345', score: 3.9 },
-  //     { key: 'E_1234567', score: 0.5 },
-  //     { key: 'E_12345634', score: 0.5 },
-  //     { key: 'E_1234562', score: 0.5 },
-  //     { key: 'E_1234563', score: 0.3 },
-  //     { key: 'E_1231321', score: 0.2 },
-  //     { key: 'E_1234569', score: 0.1 }
-  //   ];
-  //
-  //   dbService.getTopInRangeOfScore(redisKey, 0, 100)
-  //       .then((res) => {
-  //         expect(res).to.deep.equal(answer);
-  //         done();
-  //       });
-  // });
-
+  it('update rank', () => {
+      return cashHandler.updateFields(rankMap)
+  });
 
 });
 
