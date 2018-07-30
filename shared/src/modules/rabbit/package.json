@@ -1,0 +1,41 @@
+{
+  "name": "crudManager",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm run serve:watch",
+    "serve:watch": "nodemon src/server.ts",
+    "serve": "set TS_NODE_PROJECT=./tsconfig.crudManager.json&& ts-node ./src/server.ts",
+    "build": "tsc -p tsconfig.crudManager.json",
+    "build:watch": "npm run build -- -w",
+    "test": "set TS_NODE_PROJECT=./tsconfig.crudManager.json&& mocha --require ts-node/register \"./src/**/*spec.ts*\"",
+    "test:watch": "npm run test -- --watch --watch-extensions ts",
+    "mongoDocker": "docker run --network host -v mongoVol:/data/db --name mongo mongo",
+    "lint": "tslint -c tslint.mission.json -p tsconfig.mission.json --fix"
+  },
+  "private": true,
+  "precommit": [
+    "lint",
+    "test"
+  ],
+  "dependencies": {
+    "amqplib": "^0.5.2",
+    "rxjs": "^6.2.2"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/dockerode": "^2.5.5",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.1.4",
+    "@types/sinon": "^5.0.1",
+    "chai-as-promised": "^7.1.1",
+    "dockerode": "^2.5.5",
+    "mocha": "^3.5.3",
+    "nodemon": "^1.18.3",
+    "sinon": "^6.1.4",
+    "supertest": "3.0.0",
+    "ts-node": "^7.0.0",
+    "tslint": "^5.10.0",
+    "typescript": "^2.8.3"
+  }
+}

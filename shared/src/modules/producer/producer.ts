@@ -1,7 +1,7 @@
-import { RabbitProducer } from '../rabbit/rabbitProducer';
+import { RabbitProducer } from '../rabbit/src/rabbitProducer';
 import { Options } from 'amqplib/properties';
 import { Observable } from 'rxjs/index';
-import { CreatesType, RabbitConnectionManager } from '../rabbit/rabbitConnectionManager';
+import { CreatesType, RabbitConnectionManager } from '../rabbit/src/rabbitConnectionManager';
 
 
 export class Producer {

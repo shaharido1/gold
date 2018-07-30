@@ -1,4 +1,4 @@
-import { RabbitConsumer } from '../rabbit/rabbitConsumer';
+import { RabbitConsumer } from '../rabbit/src/rabbitConsumer';
 import { Options } from 'amqplib/properties';
 import { Message } from 'amqplib';
 export declare class Consumer {

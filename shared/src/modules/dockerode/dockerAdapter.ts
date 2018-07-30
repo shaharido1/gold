@@ -10,9 +10,30 @@ export class DockerAdapter {
   name: string;
   containers: Array<Container> = [];
   defaultContainer;
-  private docker: Dockerode = new Dockerode();
+  public docker: Dockerode = new Dockerode();
 
-  public startContainer(imageName, exposePort, containerName = imageName) {
+  // public getImage(imageName): Promise<void> {
+  //   return new Promise((resolve, reject) => {
+  //     return this.docker.getImage(imageName)
+  //
+  //   })
+  // }
+
+  public buildImage({ context, path }, imageName) : Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.docker.buildImage({ context, src: [path] }, { t: imageName }, (err, stream) => {
+        if (err) {
+          console.log(err);
+          reject(err);
+        }
+        stream.pipe(process.stdout, { end: true });
+        stream.on('end', () => resolve());
+      });
+    });
+  }
+
+
+  public startContainer(imageName, exposePort, containerName = imageName): Promise<Container> {
     const port = `${exposePort}/tcp`;
     return new Promise((resolve, reject) => {
       this.ifExistDestroy(containerName)
@@ -24,12 +45,13 @@ export class DockerAdapter {
               HostConfig: { PortBindings: { [`${port}`]: [{ HostPort: exposePort }] } },
               AttachStderr: true
             };
+            createOptions;
             this.docker.createContainer(createOptions).then((container: Container) => {
               this.defaultContainer = container;
               this.containers.push(container);
               container.start().then(cont => {
                 console.log('id: ' + cont.id);
-                return resolve(cont);
+                return resolve(container);
 
               });
             });

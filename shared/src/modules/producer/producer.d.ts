@@ -1,4 +1,4 @@
-import { RabbitProducer } from '../rabbit/rabbitProducer';
+import { RabbitProducer } from '../rabbit/src/rabbitProducer';
 import { Options } from 'amqplib/properties';
 import { Observable } from 'rxjs/index';
 export declare class Producer {

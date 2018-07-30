@@ -1,7 +1,7 @@
 import { Channel, connect, Connection } from 'amqplib';
 import { rabbitDefaultConfig } from './rabbit.config.default';
-import { RabbitConfig } from '../../interface/rabitConfig';
-import { retryPromise } from '../utils/utils';
+import { RabbitConfig } from '../../../interface/rabitConfig';
+import { retryPromise } from '../../utils/utils';
 import { RabbitConsumer } from './rabbitConsumer';
 import { RabbitProducer } from './rabbitProducer';
 import Bluebird = require('bluebird');
@@ -124,7 +124,7 @@ export class RabbitConnectionManager {
 
   }
 
-  private destroyConnection() {
+  public destroyConnection() {
     return new Promise((resolve, rejects) => {
       if (this.rabbitConnection) {
         this.rabbitConnection.close()
@@ -136,8 +136,10 @@ export class RabbitConnectionManager {
               console.log('[rabbitConnection]: destroy Connection dont work');
               this.clean();
               resolve();
-
             });
+      }
+      else {
+        resolve()
       }
     });
   }

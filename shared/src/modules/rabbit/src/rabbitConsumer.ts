@@ -1,13 +1,12 @@
 import { Message, Options, Replies } from 'amqplib/properties';
 import { Observable, Observer } from 'rxjs/index';
 import { RabbitChannel } from './rabbitChannel';
-import { EventEmitter } from "events";
+import { EventEmitter } from 'events';
 
 
 export class RabbitConsumer extends RabbitChannel {
   private consumerTag: Replies.Consume;
   public observer: Observer<Message>;
-  protected recoverEvent: EventEmitter = new EventEmitter();
 
 
 
@@ -20,51 +19,33 @@ export class RabbitConsumer extends RabbitChannel {
     });
   }
 
-
-  protected setUpListener(): void {
-    this.rabbitChannel.on('error', () => {
-      console.log('[rabbitConsumer]: error');
-      // this.closeChannel().then( () => {
-      //   this.consumeFromQueue();
-      // })
-    });
-    this.rabbitChannel.on('close', () => {
-      console.log('[rabbitConsumer]: connection closed');
-      // this.closeChannel().then( () => {
-      //   this.consumeFromQueue();
-      // })
-    });
-    this.rabbitChannel.on('blocked', () => {
-      console.log('[rabbitConsumer]: connection blocked');
-    });
-    this.rabbitChannel.on('unblocked', () => {
-      console.log('[rabbitConsumer]: connection unblocked');
-    });
+  recover(channel) {
+    console.log("on recover");
+    this.rabbitChannel = channel;
+    this.newConsumeFromQueue()
   }
 
   private newConsumeFromQueue() {
-    try {
-      this.setUpListener();
-      this.rabbitChannel.consume(
-          this.queue,
-          (msg: Message) => {
+    // this.setUpListener();
+    this.rabbitChannel.consume(
+        this.queue,
+        (msg: Message) => {
+          if (this.observer) {
             this.observer.next(msg);
-          },
-          this.queueOptions
-      )
-          .then((consumerTag) => {
-            this.consumerTag = consumerTag;
-          })
-          .catch(err => {
-            this.closeChannel();
-            console.log('[rabbitConsumer]: can\'t consume');
-            return this.newConsumeFromQueue();
-          });
-      return true;
-    }
-    catch (e) {
-      return false;
-    }
+
+          }
+        },
+        this.queueOptions
+    )
+        .then((consumerTag) => {
+          this.consumerTag = consumerTag;
+        })
+        .catch(err => {
+          // this.closeChannel();
+          console.log(err)
+          console.log('[rabbitConsumer]: can\'t consume');
+          // return this.newConsumeFromQueue();
+        });
   }
 
   private consumeFromQueue(): void {
@@ -76,7 +57,10 @@ export class RabbitConsumer extends RabbitChannel {
             channel.consume(
                 this.queue,
                 (msg: Message) => {
-                  this.observer.next(msg);
+                  if (this.observer) {
+                    this.observer.next(msg);
+
+                  }
                 },
                 this.queueOptions
             )
@@ -84,7 +68,7 @@ export class RabbitConsumer extends RabbitChannel {
                   this.consumerTag = consumerTag;
                 })
                 .catch(err => {
-                  this.closeChannel();
+                  // this.closeChannel();
                   console.log('[rabbitConsumer]: can\'t consume');
                   return this.consumeFromQueue();
                 });

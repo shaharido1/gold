@@ -3,7 +3,7 @@ import { MockDataGenerator } from './mockDataGeneretor/mockDataGeneretor';
 import { configFileLocation } from '../config/config.filePath';
 import { Producer } from '../../../shared/src/modules/producer/producer';
 import { Observable } from 'rxjs/index';
-import { RabbitConnectionManager } from '../../../shared/src/modules/rabbit/rabbitConnectionManager';
+import { RabbitConnectionManager } from '../../../shared/src/modules/rabbit/src/rabbitConnectionManager';
 import { EventEmitter } from 'events';
 
 
