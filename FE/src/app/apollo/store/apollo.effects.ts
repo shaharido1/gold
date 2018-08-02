@@ -3,11 +3,12 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/share';
 import { Inject, Injectable } from '@angular/core';
-import { Actions, Effect } from '@ngrx/effects';
+import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 import { ApolloActionTypes } from './apollo.action';
-import 'rxjs-compat/add/operator/mergeMap';
+import 'rxjs/add/operator/mergeMap';
 import { ApolloService } from '../services/apollo.service';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ApolloEffects {
@@ -18,12 +19,13 @@ export class ApolloEffects {
    * @ofType SelectMenuItemAction
    */
   @Effect({ dispatch: false })
-  onQuery$: Observable<any> = this.actions$
-    .ofType(ApolloActionTypes.QUERY)
-    .map((res) => {
+  onQuery$: Observable<any> = this.actions$.pipe(
+    ofType(ApolloActionTypes.QUERY),
+    map((res) => {
       return this.apolloService.query();
-    })
-    .map(res => console.log(res));
+    }),
+    map(res => console.log(res))
+  );
 
   constructor(protected actions$: Actions, @Inject(ApolloService) private apolloService: ApolloService) {
   }
