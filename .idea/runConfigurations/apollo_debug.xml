@@ -1,8 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="apollo:debug" type="NodeJSConfigurationType" factoryName="Node.js" folderName="debug" node-parameters="--inspect --require ts-node\register" path-to-js-file="src/server.ts" working-dir="$PROJECT_DIR$/be/apollo">
-    <envs>
-      <env name="TS_NODE_PROJECT" value="./tsconfig.apollo.json" />
-    </envs>
-    <method />
-  </configuration>
-</component>
